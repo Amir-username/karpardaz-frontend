@@ -16,7 +16,7 @@ function JobSeekerSignupForm() {
           placeholder="نام خانوادگی"
           icon="person"
         />
-        <Input type="email" name="email" placeholder="ایمیل" icon="mail" />
+        <Input type="email" name="email" placeholder="آدرس ایمیل" icon="mail" />
         <Input
           type="number"
           name="number"
