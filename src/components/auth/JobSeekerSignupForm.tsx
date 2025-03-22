@@ -19,7 +19,7 @@ function JobSeekerSignupForm() {
         <Input type="email" name="email" placeholder="آدرس ایمیل" icon="mail" />
         <Input
           type="number"
-          name="number"
+          name="phoneNumber"
           placeholder="شماره تلفن همراه"
           icon="smartphone"
         />
