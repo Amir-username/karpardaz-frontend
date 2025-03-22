@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <head>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=lock,mail" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=lock,mail,person,smartphone" />
       </head>
       <body className="bg-gray-50 font-vazir">{children}</body>
     </html>

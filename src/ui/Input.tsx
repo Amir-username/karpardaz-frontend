@@ -1,15 +1,15 @@
 type InputProps = {
-  type: "text" | "email" | "password";
+  type: "text" | "email" | "password" | "number";
   name: string;
   placeholder: string;
   icon?: string;
 };
 
-function Input({ type, name, placeholder, icon }: InputProps) {
+function Input({ type = "text", name, placeholder, icon }: InputProps) {
   return (
     <div className="relative w-full">
       <input
-        className="w-full h-12 px-4 text-sm font-semibold rounded-lg bg-gray-50 text-neutral-dark placeholder:text-neutral-mid ring-1 ring-gray-300"
+        className="w-full h-12 px-4 pl-8 text-sm rounded-lg bg-gray-50 text-neutral-dark placeholder:text-neutral-mid ring-1 ring-gray-300"
         type={type}
         name={name}
         placeholder={placeholder}
