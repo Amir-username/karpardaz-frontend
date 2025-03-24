@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-export const JobSeekerSignupSchema = z.object({
+export const jobSeekerSignupSchema = z.object({
   firstname: z.string().min(3, { message: "نام باید حداقل سه حرف باشد" }),
   lastname: z
     .string()
     .min(3, { message: "نام خانوادگی باید حداقل سه حرف باشد" }),
   email: z.string().email({ message: "آدرس ایمیل نا معتبر" }),
-  phoneNumber: z
+  phonenumber: z
     .string()
     .regex(/^(\+?98|0)9\d{9}$/, { message: "شماره تلفن نامعتبر" }),
   password: z.string().min(8, { message: "رمز عبور باید حداقل ۸ رقم باشد" }),

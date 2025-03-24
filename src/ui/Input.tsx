@@ -3,22 +3,38 @@ type InputProps = {
   name: string;
   placeholder: string;
   icon?: string;
+  isValid?: boolean;
+  errorMessage?: string[];
 };
 
-function Input({ type = "text", name, placeholder, icon }: InputProps) {
+function Input({
+  type = "text",
+  name,
+  placeholder,
+  icon,
+  isValid = true,
+  errorMessage = [],
+}: InputProps) {
   return (
-    <div className="relative w-full">
-      <input
-        className="w-full h-12 px-4 pl-8 text-sm rounded-lg bg-gray-50 text-neutral-dark placeholder:text-neutral-mid ring-1 ring-gray-300"
-        type={type}
-        name={name}
-        placeholder={placeholder}
-      />
-      {icon ? (
-        <span className="absolute material-symbols-outlined left-2 top-3 text-neutral-mid">
-          {icon}
-        </span>
-      ) : null}
+    <div className="flex flex-col gap-2 w-full">
+      <div
+        className={`relative w-full rounded-lg ${
+          isValid && "ring-2 ring-accent-coral"
+        }`}
+      >
+        <input
+          className="w-full h-12 px-4 pl-8 text-sm rounded-lg bg-gray-50 text-neutral-dark placeholder:text-neutral-mid ring-1 ring-gray-300"
+          type={type}
+          name={name}
+          placeholder={placeholder}
+        />
+        {icon ? (
+          <span className="absolute material-symbols-outlined left-2 top-3 text-neutral-mid">
+            {icon}
+          </span>
+        ) : null}
+      </div>
+      <p className="text-xs text-accent-coral">{errorMessage}</p>
     </div>
   );
 }
