@@ -1,25 +1,19 @@
 import axios from "axios";
 import { BASE_LINK } from "./config";
 
-type fetchCreateJobSeekerBody = {
-  firstname: string;
-  lastname: string;
+type fetchCreateEmployerBody = {
+  companyName: string;
   email: string;
-  phonenumber: string;
   password: string;
 };
 
-export async function fetchCreateJobSeeker(
-  body: fetchCreateJobSeekerBody
-) {
+export async function fetchCreateEmployer(body: fetchCreateEmployerBody) {
   try {
     const res = await axios.post(
-      BASE_LINK + 'jobseekers/',
+      BASE_LINK + "employers/",
       {
-        firstname: body.firstname,
-        lastname: body.lastname,
+        company_name: body.companyName,
         email: body.email,
-        phonenumber: body.phonenumber,
         password: body.password,
       },
       {

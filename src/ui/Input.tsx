@@ -34,7 +34,11 @@ function Input({
           </span>
         ) : null}
       </div>
-      <p className="text-xs text-accent-coral">{errorMessage}</p>
+      {errorMessage.map((message, i) => (
+        <p key={i} className="text-xs text-accent-coral">
+          {message}
+        </p>
+      ))}
     </div>
   );
 }
