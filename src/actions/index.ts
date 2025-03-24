@@ -4,6 +4,7 @@ const BASE_LINK = "http://127.0.0.1:8000/";
 
 import { fetchCreateEmployer } from "@/fetch/fetchCreateEmployer";
 import { fetchCreateJobSeeker } from "@/fetch/fetchCreateJobSeeker";
+import { fetchLoginEmployer } from "@/fetch/fetchLoginEmployer";
 import { fetchLoginJobSeeker } from "@/fetch/fetchLoginJobSeeker";
 import {
   employerLoginSchema,
@@ -98,11 +99,28 @@ export async function JobSeekerLoginAction(
   };
 }
 
-export async function EmployerLoginAction(formData: FormData) {
+type EmployerLoginFormState = {
+  errors?: {
+    email?: string[];
+    password?: string[];
+  };
+};
+
+export async function EmployerLoginAction(
+  formState: EmployerLoginFormState,
+  formData: FormData
+): Promise<EmployerLoginFormState> {
   const result = employerLoginSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
 
-  console.log(result?.error);
+  if (result.success) {
+    const res = fetchLoginEmployer(result.data);
+    console.log(res);
+  }
+
+  return {
+    errors: result.error?.flatten().fieldErrors,
+  };
 }
