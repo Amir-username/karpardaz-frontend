@@ -1,15 +1,14 @@
 "use server";
 
-const BASE_LINK = "https://karpardaz-backend.onrender.com/";
+const BASE_LINK = "http://127.0.0.1:8000/";
 
+import { fetchCreateJobSeeker } from "@/fetch/fetchCreateJobSeeker";
 import {
   employerLoginSchema,
   employerSignupSchema,
   jobSeekerLoginSchema,
   jobSeekerSignupSchema,
 } from "@/validation/auth";
-import axios from "axios";
-import { headers } from "next/headers";
 
 export type JobSeekerSignupFormState = {
   errors?: {
@@ -19,6 +18,7 @@ export type JobSeekerSignupFormState = {
     phonenumber?: string[];
     password?: string[];
   };
+  fetchError?: string;
 };
 
 export async function JobSeekerSignupAction(
@@ -33,36 +33,9 @@ export async function JobSeekerSignupAction(
     password: formData.get("password"),
   });
 
-  console.log(JSON.stringify(result.data));
-
   if (result.success) {
-    // const res = await fetch("http://127.0.0.1:8000/jobseekers/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     accept: "application/json",
-    //   },
-    //   body: JSON.stringify(result.data),
-    // });
-
-    const res = await axios.post(
-      "http://127.0.0.1:8000/jobseekers/",
-      {
-        firstname: result.data.firstname,
-        lastname: result.data.lastname,
-        email: result.data.email,
-        phonenumber: result.data.phonenumber,
-        password: result.data.password,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-      }
-    );
-
-    console.log(res.data);
+    const res = fetchCreateJobSeeker("jobseekers/", result.data);
+    console.log(res);
   }
   return {
     errors: result.error?.flatten().fieldErrors,
