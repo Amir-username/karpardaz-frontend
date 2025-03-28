@@ -1,6 +1,6 @@
 'use client'
 
-import { EmployerLoginAction } from "@/actions";
+import { EmployerLoginAction } from "@/actions/auth/employerActions";
 import Button from "@/ui/Button";
 import Form from "@/ui/Form";
 import FormContent from "@/ui/FormContent";

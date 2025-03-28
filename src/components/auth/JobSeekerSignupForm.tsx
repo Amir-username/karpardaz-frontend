@@ -1,5 +1,5 @@
 "use client";
-import { JobSeekerSignupAction } from "@/actions";
+import { JobSeekerSignupAction } from "@/actions/auth/jobseekerActions";
 import Button from "@/ui/Button";
 import Form from "@/ui/Form";
 import FormContent from "@/ui/FormContent";

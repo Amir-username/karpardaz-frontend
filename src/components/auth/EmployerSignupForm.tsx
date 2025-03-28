@@ -1,5 +1,5 @@
 'use client'
-import { EmployerSignupAction } from "@/actions";
+import { EmployerSignupAction } from "@/actions/auth/employerActions";
 import Button from "@/ui/Button";
 import Form from "@/ui/Form";
 import FormContent from "@/ui/FormContent";
