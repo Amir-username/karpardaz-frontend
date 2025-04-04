@@ -1,12 +1,15 @@
 type ButtonProps = {
   text: string;
   type?: "button" | "submit";
+  card?: boolean;
 };
 
-function Button({ text, type = "button" }: ButtonProps) {
+function Button({ text, type = "button", card = false }: ButtonProps) {
   return (
     <button
-      className="w-full h-12 text-center duration-300 rounded-lg cursor-pointer text-neutral-light bg-primary-blue hover:bg-primary-blue/95"
+      className={`${
+        card ? "rounded-b-lg" : "rounded-lg"
+      } w-full h-12 text-center duration-300  cursor-pointer text-neutral-light bg-primary-blue hover:bg-primary-blue/95`}
       type={type}
     >
       {text}
