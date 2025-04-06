@@ -1,5 +1,7 @@
 import { AdvertiseModel } from "@/models/Advertise";
 import Button from "../../ui/Button";
+import { BASE_LINK } from "@/fetch/config";
+import { EmployerModel } from "@/models/Employer";
 
 type AdvertiseItemProps = {
   advertise: AdvertiseModel;
@@ -16,7 +18,7 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
           <div className="flex flex-col gap-3">
             <AdHeader
               title={advertise.title}
-              companyName={advertise.employer_id.toString()}
+              companyID={advertise.employer_id}
             />
             <AdInfo
               city={advertise.city}
@@ -40,15 +42,22 @@ function AdEmployerAvatar() {
 
 type AdHeaderProps = {
   title: string;
-  companyName: string;
+  companyID: number;
 };
 
-function AdHeader({ title, companyName }: AdHeaderProps) {
+async function AdHeader({ title, companyID }: AdHeaderProps) {
+  const res = await fetch(BASE_LINK + `employers/${companyID}`);
+  const data = await res.json();
+  const comnpany: EmployerModel = {
+    id: data.id,
+    name: data.company_name,
+    email: data.email,
+  };
   return (
     <div className="flex justify-between w-full">
       <div className="flex flex-col justify-between h-full gap-2">
         <h3 className="font-semibold text-neutral-dark">{title}</h3>
-        <h6 className="text-gray-700">{companyName}</h6>
+        <h6 className="text-gray-700 text-sm">{comnpany.name}</h6>
       </div>
       <span className="material-symbols-outlined text-neutral-mid">
         favorite
