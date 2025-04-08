@@ -1,5 +1,5 @@
 type FormProps = {
-  action: any;
+  action: (payload: FormData) => void;
   children: React.ReactNode;
 };
 

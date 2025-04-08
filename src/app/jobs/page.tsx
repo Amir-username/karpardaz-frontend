@@ -1,16 +1,16 @@
-import { BASE_LINK } from "@/fetch/config";
-import AdvertiseList from "@/components/advertise/AdvertiseList";
+// import AdvertiseList from "@/components/advertise/AdvertiseList"`;
+// import { fetchAdvertisements } from "@/fetch/fetchAdvertisements";
 
 async function Page() {
-  const jobsData = await fetchAdvertisements();
+  // const jobsData = await fetchAdvertisements();
   return (
     <div className="container flex items-center justify-center mx-auto py-12 bg-neutral-light">
       <main className="flex justify-center">
-        {jobsData ? (
+        {/* {jobsData ? (
           <AdvertiseList advertises={jobsData} />
         ) : (
           <div>not found</div>
-        )}
+        )} */}
       </main>
     </div>
   );
@@ -18,8 +18,4 @@ async function Page() {
 
 export default Page;
 
-async function fetchAdvertisements() {
-  const res = await fetch(BASE_LINK + "advertisements");
-  const jobsData = await res.json();
-  return jobsData;
-}
+
