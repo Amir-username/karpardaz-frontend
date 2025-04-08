@@ -46,12 +46,11 @@ type AdHeaderProps = {
 };
 
 async function AdHeader({ title, companyID }: AdHeaderProps) {
-  const res = await fetch(BASE_LINK + `employers/${companyID}`);
+  const res = await fetch(BASE_LINK + `employer-detail/${companyID}`);
   const data = await res.json();
   const comnpany: EmployerModel = {
     id: data.id,
     name: data.company_name,
-    email: data.email,
   };
   return (
     <div className="flex justify-between w-full">
