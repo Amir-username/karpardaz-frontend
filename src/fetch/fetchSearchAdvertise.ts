@@ -6,6 +6,7 @@ export async function fetchSearchAdvertise(query: string, signal: AbortSignal) {
     headers: {
       accept: "application/json",
     },
+    mode: "no-cors",
     signal: signal,
   });
   if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
