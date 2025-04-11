@@ -1,4 +1,5 @@
 import { BASE_LINK } from "@/fetch/config";
+import { useEmployerDetail } from "@/hooks/useEmployerDetail";
 import { EmployerModel } from "@/models/Employer";
 import { useEffect, useState } from "react";
 
@@ -10,19 +11,7 @@ type AdHeaderProps = {
 export default function AdHeader({ title, companyID }: AdHeaderProps) {
   const [company, setCompany] = useState<EmployerModel>();
 
-  useEffect(() => {
-    const fetchCompanyInfo = async () => {
-      const res = await fetch(BASE_LINK + `employer-detail/${companyID}`);
-      const data = await res.json();
-
-      setCompany({
-        id: data.id,
-        name: data.company_name,
-      });
-    };
-
-    fetchCompanyInfo();
-  }, []);
+  useEmployerDetail(companyID, setCompany);
 
   return (
     <div className="flex justify-between w-full">
