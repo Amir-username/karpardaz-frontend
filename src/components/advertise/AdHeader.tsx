@@ -1,7 +1,6 @@
-import { BASE_LINK } from "@/fetch/config";
 import { useEmployerDetail } from "@/hooks/useEmployerDetail";
 import { EmployerModel } from "@/models/Employer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type AdHeaderProps = {
   title: string;

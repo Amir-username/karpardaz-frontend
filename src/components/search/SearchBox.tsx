@@ -2,7 +2,7 @@
 
 import { useSearchAdvertise } from "@/hooks/useSearchAdvertise";
 import { AdvertiseModel } from "@/models/Advertise";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 type SearchBoxProps = {
   setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>;
 };
