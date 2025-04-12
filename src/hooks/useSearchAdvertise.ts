@@ -9,21 +9,21 @@ export function useSearchAdvertise(
   useEffect(() => {
     const controller = new AbortController();
     const fetchResult = async () => {
-      try {
-        const jobsData = await fetchSearchAdvertise(
-          searchInput,
-          controller.signal
-        );
-        setJobsData(jobsData);
-      } catch (error) {
-        if (error instanceof Error) {
-          if (error.name === "AbortError") {
-            console.log("request was aborted");
-          } else {
-            console.log("fetch error");
-          }
-        }
-      }
+      // try {
+      const jobsData = await fetchSearchAdvertise(
+        searchInput,
+        controller.signal
+      );
+      setJobsData(jobsData);
+      // } catch (error) {
+      //   if (error instanceof Error) {
+      //     if (error.name === "AbortError") {
+      //       console.log("request was aborted");
+      //     } else {
+      //       console.log("fetch error");
+      //     }
+      //   }
+      // }
     };
 
     const debounceTime = searchInput === "" ? 0 : 1000;
