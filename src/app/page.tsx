@@ -1,10 +1,9 @@
-// export async function getAuthToken() {
-//   const cookieStore = await cookies();
-//   return cookieStore.get('token')?.value;
-// }
+import Navbar from "@/components/navbar/Navbar";
 
 export default async function Home() {
-  // const token = await getAuthToken()
-
-  return <div className="text-7xl">Home</div>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 }
