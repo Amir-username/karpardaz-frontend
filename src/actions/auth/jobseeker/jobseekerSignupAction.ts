@@ -12,8 +12,8 @@ export type JobSeekerSignupFormState = {
     email?: string[];
     phonenumber?: string[];
     password?: string[];
+    signupError?: string[];
   };
-  fetchError?: string;
 };
 
 export async function JobSeekerSignupAction(
@@ -29,13 +29,17 @@ export async function JobSeekerSignupAction(
   });
 
   if (result.success) {
-    const res = fetchCreateJobSeeker(result.data);
-    if (res instanceof Error) {
-      // console.log(res.message);
-    } else {
-      console.log(res);
+    const status = await fetchCreateJobSeeker(result.data);
+    if (status == 200) {
+      console.log(status);
       revalidatePath("/auth/jobseeker/login");
       redirect("/auth/jobseeker/login");
+    } else {
+      return {
+        errors: {
+          signupError: [..."ایمیل یا شماره همراه تکراری است"],
+        },
+      };
     }
   }
   return {

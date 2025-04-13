@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { BASE_LINK } from "./config";
 
 type fetchCreateJobSeekerBody = {
@@ -9,12 +9,11 @@ type fetchCreateJobSeekerBody = {
   password: string;
 };
 
-export async function fetchCreateJobSeeker(
-  body: fetchCreateJobSeekerBody
-) {
+export async function fetchCreateJobSeeker(body: fetchCreateJobSeekerBody) {
+  let status = 200;
   try {
     const res = await axios.post(
-      BASE_LINK + 'jobseekers/',
+      BASE_LINK + "jobseekers/",
       {
         firstname: body.firstname,
         lastname: body.lastname,
@@ -29,8 +28,12 @@ export async function fetchCreateJobSeeker(
         },
       }
     );
-    return res.data;
+    status = res.status;
   } catch (error) {
-    return error;
+    if (error instanceof AxiosError) {
+      status = error.status!;
+    }
   }
+
+  return status;
 }
