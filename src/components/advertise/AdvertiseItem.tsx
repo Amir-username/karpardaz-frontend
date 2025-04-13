@@ -11,7 +11,7 @@ type AdvertiseItemProps = {
 
 function AdvertiseItem({ advertise }: AdvertiseItemProps) {
   return (
-    <li className="flex flex-col w-96 rounded-lg gap-3 shadow-md ring-1 ring-gray-200">
+    <li className="flex flex-col md:w-96 w-sm rounded-lg gap-3 shadow-md ring-1 ring-gray-200">
       <div className="flex gap-3 px-3 pt-3">
         <div className="flex flex-col justify-start h-full">
           <AdAvatar />
