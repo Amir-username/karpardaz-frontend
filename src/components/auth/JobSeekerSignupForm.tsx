@@ -3,6 +3,7 @@ import { JobSeekerSignupAction } from "@/actions/auth/jobseeker/jobseekerSignupA
 import Button from "@/ui/Button";
 import Form from "@/ui/Form";
 import FormContent from "@/ui/FormContent";
+import FormError from "@/ui/FormError";
 import FormHeader from "@/ui/FormHeader";
 import Input from "@/ui/Input";
 import { useActionState } from "react";
@@ -58,9 +59,7 @@ function JobSeekerSignupForm() {
         />
         <Button text="ثبت نام" type="submit" />
         {formState.errors?.signupError && (
-          <div className="px-3 py-2 text-accent-coral w-full rounded-lg bg-red-100 ring-1 ring-accent-coral">
-            {formState.errors.signupError}
-          </div>
+          <FormError message={formState.errors.signupError} />
         )}
       </FormContent>
     </Form>
