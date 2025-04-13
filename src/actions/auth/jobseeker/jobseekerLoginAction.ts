@@ -40,9 +40,6 @@ export async function JobSeekerLoginAction(
         maxAge: 60 * 60 * 24 * 7,
         path: "/",
       });
-
-      revalidatePath("/");
-      redirect("/");
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {
@@ -59,6 +56,9 @@ export async function JobSeekerLoginAction(
         };
       }
     }
+
+    revalidatePath("/");
+    redirect("/");
   }
 
   return {
