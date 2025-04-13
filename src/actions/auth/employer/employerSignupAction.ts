@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import { fetchCreateEmployer } from "@/fetch/fetchCreateEmployer";
 import { employerSignupSchema } from "@/validation/auth";
@@ -10,6 +10,7 @@ type EmployerSignupFormState = {
     companyName?: string[];
     email?: string[];
     password?: string[];
+    signupError?: string[];
   };
 };
 
@@ -24,13 +25,25 @@ export async function EmployerSignupAction(
   });
 
   if (result.success) {
-    const res = fetchCreateEmployer(result.data);
-    if (res instanceof Error) {
-      console.log(res.message);
+    const status = await fetchCreateEmployer(result.data);
+    if (status == 200) {
+      console.log(status);
+      revalidatePath("/auth/jobseeker/login");
+      redirect("/auth/jobseeker/login");
     } else {
-      revalidatePath("/auth/employer/login");
-      redirect("/auth/employer/login");
+      return {
+        errors: {
+          signupError: [..."ایمیل تکراری است"],
+        },
+      };
     }
+    // const res = fetchCreateEmployer(result.data);
+    // if (res instanceof Error) {
+    //   console.log(res.message);
+    // } else {
+    //   revalidatePath("/auth/employer/login");
+    //   redirect("/auth/employer/login");
+    // }
   }
 
   return {

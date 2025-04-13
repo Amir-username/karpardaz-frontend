@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { BASE_LINK } from "./config";
 
 type fetchCreateEmployerBody = {
@@ -8,6 +8,7 @@ type fetchCreateEmployerBody = {
 };
 
 export async function fetchCreateEmployer(body: fetchCreateEmployerBody) {
+  let status = 200;
   try {
     const res = await axios.post(
       BASE_LINK + "employers/",
@@ -23,8 +24,13 @@ export async function fetchCreateEmployer(body: fetchCreateEmployerBody) {
         },
       }
     );
-    return res.data;
+
+    status = res.status;
   } catch (error) {
-    return error;
+    if (error instanceof AxiosError) {
+      status = error.status!;
+    }
   }
+
+  return status;
 }
