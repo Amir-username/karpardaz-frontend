@@ -21,8 +21,11 @@ export async function fetchLoginJobSeeker({
     }
   );
 
-  const data = await res.data;
-  const token = await data.access_token;
+  if (res.status == 200) {
+    const data = await res.data;
+    const token = await data.access_token;
 
-  return token;
+    return token;
+  }
+
 }
