@@ -1,27 +1,23 @@
-// import Button from "@/ui/Button";
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import Brand from "./Brand";
+import MobileMenu from "./MobileMenu";
+import NavItems from "./NavItems";
+import NavMenuButton from "./NavMenuButton";
 
 function Navbar() {
+  const [isActiveMobileMenu, setIsActiveMobileMenu] = useState<boolean>(false);
+
   return (
-    <nav className="py-3 px-8 flex justify-between gap-2 bg-neutral-light items-center">
-      <h1 className="lg:text-3xl sm:text-lg text-primary-blue font-bold">
-        کارپرداز
-      </h1>
-      <ul className="flex lg:gap-4 gap-2 items-center">
-        <Link href={"/jobs"}>
-          <li>فرصت های شغلی</li>
-        </Link>
-        {/* <li>
-          <div className="flex gap-2 lg:gap-3 w-48 text-sm items-center">
-            <Link href={"auth/jobseeker/signup"} className="h-full w-full">
-              <Button text="ثبت نام" type="button" h="h-9" outline />
-            </Link>
-            <Link href={"auth/jobseeker/login"} className="h-full w-full">
-              <Button text="ورود" type="button" h="h-9" />
-            </Link>
-          </div>
-        </li> */}
-      </ul>
+    <nav className="flex items-center justify-between h-20 gap-2 py-3 bg-neutral-light">
+      <Brand text="کارپرداز" />
+      <NavItems />
+      <NavMenuButton setIsActive={setIsActiveMobileMenu} />
+      <MobileMenu
+        isActive={isActiveMobileMenu}
+        setIsActive={setIsActiveMobileMenu}
+      />
     </nav>
   );
 }
