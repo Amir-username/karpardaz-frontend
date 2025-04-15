@@ -14,11 +14,21 @@ export default function AdTags({ tags }: AdTagsProps) {
 
 type AdTagProps = {
   name: string;
+  size?: "sm" | "lg";
 };
 
-function AdTag({ name }: AdTagProps) {
+export function AdTag({ name, size = "sm" }: AdTagProps) {
+  if (size === "lg") {
+    return (
+      <p
+        className={`px-4 py-2 bg-secondary-blue text-white rounded-lg text-sm h-9 text-center md:text-lg md:h-10`}
+      >
+        {name}
+      </p>
+    );
+  }
   return (
-    <p className="px-2 py-1 bg-secondary-blue text-white rounded-lg text-xs h-6">
+    <p className={`px-2 py-1 bg-secondary-blue text-white rounded-lg text-xs`}>
       {name}
     </p>
   );

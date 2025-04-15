@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "کارپرداز",
@@ -19,7 +20,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body className="bg-gray-50 font-vazir">{children}</body>
+      <body className="bg-neutral-light font-vazir">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

@@ -4,6 +4,7 @@ import AdAvatar from "./AdAvater";
 import AdHeader from "./AdHeader";
 import AdInfo from "./AdInfo";
 import AdTags from "./AdTags";
+import Link from "next/link";
 
 type AdvertiseItemProps = {
   advertise: AdvertiseModel;
@@ -11,7 +12,7 @@ type AdvertiseItemProps = {
 
 function AdvertiseItem({ advertise }: AdvertiseItemProps) {
   return (
-    <li className="flex flex-col md:w-96 w-sm rounded-lg gap-3 shadow-md ring-1 ring-gray-200">
+    <li className="flex flex-col gap-3 rounded-lg shadow-md md:w-96 w-sm ring-1 ring-gray-200">
       <div className="flex gap-3 px-3 pt-3">
         <div className="flex flex-col justify-start h-full">
           <AdAvatar />
@@ -31,7 +32,9 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
           </div>
         </div>
       </div>
-      <Button text="مشاهده" card />
+      <Link href={`jobs/${advertise.id}`}>
+        <Button text="مشاهده" card />
+      </Link>
     </li>
   );
 }

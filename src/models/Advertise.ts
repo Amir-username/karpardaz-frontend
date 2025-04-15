@@ -13,4 +13,5 @@ export type AdvertiseModel = {
   description: string;
   id: number;
   employer_id: number;
+  salary: string
 };

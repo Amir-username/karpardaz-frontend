@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import { boolean } from "zod";
 
 type MobileMenuProps = {
   setIsActive: Dispatch<SetStateAction<boolean>>;
