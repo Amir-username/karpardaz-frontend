@@ -18,10 +18,10 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   };
 
   return (
-    <div className="flex flex-col lg:px-96 pt-8 justify-between h-screen">
-      <main className="flex flex-col gap-6">
+    <div className="flex flex-col lg:mx-96 my-8 mx-4 justify-between h-screen shadow-lg rounded-lg">
+      <main className="flex flex-col gap-4">
         <AdDetailHeader title={advertise.title} subtitle={company.name} />
-        <div className="flex justify-center py-4 w-full bg-gray-200">
+        <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
           <div className="grid grid-cols-2">
             <AdDetailInfo text={advertise.city} />
             <AdDetailInfo text={advertise.salary} />
@@ -50,17 +50,17 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
             })}
           </div>
         </div>
-        <p className="px-8 text-lg leading-8 text-neutral-dark">
+        <p className="px-8 text-lg leading-8 py-8 text-neutral-dark">
           {advertise.description}
         </p>
-        <div className="flex gap-4 px-8 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center">
           {advertise.technologies.map((tech, i) => {
             return <AdTag name={tech} key={i} size="lg" />;
           })}
         </div>
       </main>
       <div className="w-full">
-      <Button text="ارسال رزومه" h="h-16"/>
+        <Button text="ارسال رزومه" h="h-16" />
       </div>
     </div>
   );
