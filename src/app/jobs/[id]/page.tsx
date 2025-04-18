@@ -1,4 +1,4 @@
-import AdTags, { AdTag } from "@/components/advertise/AdTags";
+import { AdTag } from "@/components/advertise/AdTags";
 import AdDetailHeader from "@/components/advertise/detail/AdDetailHeader";
 import AdDetailInfo from "@/components/advertise/detail/AdInfo";
 import { fetchAdvertiseDetail } from "@/fetch/fetchAdvertiseDetail";

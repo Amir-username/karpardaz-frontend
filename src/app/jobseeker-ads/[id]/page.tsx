@@ -2,6 +2,7 @@ import { AdTag } from "@/components/advertise/AdTags";
 import AdDetailHeader from "@/components/advertise/detail/AdDetailHeader";
 import AdDetailInfo from "@/components/advertise/detail/AdInfo";
 import { fetchJobSeekerAdDetail } from "@/fetch/fetchJobSeekerAdDetail";
+import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
 import Button from "@/ui/Button";
 
 async function JobSeekerAdDetailPage({
@@ -12,6 +13,10 @@ async function JobSeekerAdDetailPage({
   const { id } = await params;
   const advertise: JobSeekrAdModel = await fetchJobSeekerAdDetail(Number(id));
 
+  const jobseeker: JobSeekerModel = await fetchJobSeekerDetail(
+    advertise.jobseeker_id
+  );
+
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 justify-between h-screen shadow-lg rounded-lg">
       <main className="flex flex-col gap-4">
@@ -21,7 +26,7 @@ async function JobSeekerAdDetailPage({
         />
         <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
           <div className="grid grid-cols-2">
-            <AdDetailInfo text="شهر" />
+            <AdDetailInfo text={jobseeker.city} />
             <AdDetailInfo text={advertise.salary} />
             <AdDetailInfo text={advertise.gender == "male" ? "اقا" : "خانم"} />
             <AdDetailInfo text={advertise.experience} />
