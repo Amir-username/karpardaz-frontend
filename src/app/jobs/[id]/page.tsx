@@ -34,13 +34,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
                   : "آقا یا خانم"
               }
             />
-            <AdDetailInfo
-              text={
-                advertise.is_experience
-                  ? "با سابقه کار"
-                  : "بدون نیاز به سابقه کار"
-              }
-            />
+            <AdDetailInfo text={advertise.experience} />
             {advertise.is_internship && <AdDetailInfo text="امکان کارآموزی" />}
             {advertise.is_portfolio && (
               <AdDetailInfo text="نیاز به نمونه کار" />

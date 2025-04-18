@@ -1,7 +1,7 @@
 export type AdvertiseModel = {
   title: string;
   position: "junior" | "senior" | "midlevel";
-  is_experience: boolean;
+  experience: string;
   job_group: string;
   city: string;
   is_remote: boolean;
