@@ -20,8 +20,8 @@ async function JobSeekerAdDetailPage({
   );
 
   return (
-    <div className="flex flex-col lg:mx-96 my-8 mx-4 justify-between shadow-lg rounded-lg">
-      <main className="flex flex-col gap-4 h-screen">
+    <div className="flex flex-col lg:mx-96 my-8 mx-4 h-full justify-between shadow-lg rounded-lg">
+      <main className="flex flex-col gap-4">
         <AdDetailHeader
           title={advertise.title}
           subtitle={`${advertise.firstname} ${advertise.lastname}`}
@@ -39,7 +39,7 @@ async function JobSeekerAdDetailPage({
         <p className="px-8 text-lg leading-8 py-8 text-neutral-dark">
           {advertise.description}
         </p>
-        <div className="flex flex-wrap gap-4 justify-center pb-12">
+        <div className="flex flex-wrap gap-4 justify-center pb-8">
           {advertise.technologies.map((tech, i) => {
             return <AdTag name={tech} key={i} size="lg" />;
           })}

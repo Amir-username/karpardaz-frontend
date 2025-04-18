@@ -37,7 +37,7 @@ function MobileMenu({ isActive, setIsActive }: MobileMenuProps) {
             فرصت های شغلی
           </li>
         </Link>
-        <Link href={"jobs/"}>
+        <Link href={"/jobseeker-ads"}>
           <li className="text-xl text-neutral-dark" onClick={() => setIsActive(false)}>
             آگهی کارجویان
           </li>
