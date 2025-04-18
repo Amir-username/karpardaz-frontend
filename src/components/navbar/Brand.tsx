@@ -1,5 +1,11 @@
+import Link from "next/link";
+
 function Brand({ text }: { text: string }) {
-  return <h1 className="pr-8 text-3xl font-bold text-primary-blue">{text}</h1>;
+  return (
+    <Link href={'/'}>
+      <h1 className="pr-8 text-3xl font-bold text-primary-blue">{text}</h1>
+    </Link>
+  );
 }
 
 export default Brand;

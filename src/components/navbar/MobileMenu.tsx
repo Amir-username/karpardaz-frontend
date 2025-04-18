@@ -1,3 +1,5 @@
+import Button from "@/ui/Button";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
 type MobileMenuProps = {
@@ -29,8 +31,34 @@ function MobileMenu({ isActive, setIsActive }: MobileMenuProps) {
           close
         </span>
       </div>
-      <ul className="flex flex-col items-center justify-center py-40">
-        <li className="text-xl">فرصت های شغلی</li>
+      <ul className="flex flex-col items-center justify-center gap-8 my-40">
+        <Link href={"jobs/"}>
+          <li className="text-xl text-neutral-dark" onClick={() => setIsActive(false)}>
+            فرصت های شغلی
+          </li>
+        </Link>
+        <Link href={"jobs/"}>
+          <li className="text-xl text-neutral-dark" onClick={() => setIsActive(false)}>
+            آگهی کارجویان
+          </li>
+        </Link>
+        <div className="flex flex-col items-center w-48 gap-4 text-sm lg:gap-3">
+          <div className="w-full h-0.5 bg-gray-300 rounded-lg"></div>
+          <Link
+            href={"auth/jobseeker/signup"}
+            className="w-full h-full"
+            onClick={() => setIsActive(false)}
+          >
+            <Button text="ثبت نام" type="button" h="h-9" outline />
+          </Link>
+          <Link
+            href={"auth/jobseeker/login"}
+            className="w-full h-full"
+            onClick={() => setIsActive(false)}
+          >
+            <Button text="ورود" type="button" h="h-9" />
+          </Link>
+        </div>
       </ul>
     </div>
   );
