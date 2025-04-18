@@ -1,24 +1,24 @@
 "use client";
 
-import { AdvertiseModel } from "@/models/Advertise";
-import Button from "../../ui/Button";
-import AdAvatar from "./AdAvater";
-import AdHeader from "./AdHeader";
-import AdInfo from "./AdInfo";
-import AdTags from "./AdTags";
+import Button from "@/ui/Button";
+import AdAvatar from "../advertise/AdAvater";
 import Link from "next/link";
-import { useEmployerDetail } from "@/hooks/useEmployerDetail";
-import { EmployerModel } from "@/models/Employer";
+import AdTags from "../advertise/AdTags";
 import { useState } from "react";
+import { useJobSeekerDetail } from "@/hooks/useJobSeekerDetail";
+import AdInfo from "../advertise/AdInfo";
+import AdHeader from "../advertise/AdHeader";
 
-type AdvertiseItemProps = {
-  advertise: AdvertiseModel;
+type JobSeekerAdItemProps = {
+  advertise: JobSeekrAdModel;
 };
 
-function AdvertiseItem({ advertise }: AdvertiseItemProps) {
-  const [company, setCompany] = useState<EmployerModel>();
+function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
+  const [jobSeeker, setJobSeeker] = useState<JobSeekerModel>();
 
-  useEmployerDetail(advertise.employer_id, setCompany);
+  useJobSeekerDetail(advertise.jobseeker_id, setJobSeeker);
+
+  console.log(jobSeeker);
 
   return (
     <li className="flex flex-col gap-3 rounded-lg shadow-md md:w-96 w-sm ring-1 ring-gray-200">
@@ -28,9 +28,12 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
         </div>
         <div className="flex-2">
           <div className="flex flex-col gap-3">
-            <AdHeader title={advertise.title} name={company?.name} />
+            <AdHeader
+              title={advertise.title}
+              name={`${advertise?.firstname} ${advertise?.lastname}`}
+            />
             <AdInfo
-              city={advertise.city}
+              city={jobSeeker?.city}
               isRemote={advertise.is_remote}
               isInternship={advertise.is_internship}
               salary={advertise.salary}
@@ -46,4 +49,4 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
   );
 }
 
-export default AdvertiseItem;
+export default JobSeekerAdItem;

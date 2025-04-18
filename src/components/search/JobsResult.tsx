@@ -7,7 +7,6 @@ import { useState } from "react";
 
 function JobsResult() {
   const [jobsData, setJobsData] = useState<AdvertiseModel[]>([]);
-  console.log(jobsData);
   return (
     <main className="flex flex-col gap-12">
       <SearchBox setJobsData={setJobsData} />

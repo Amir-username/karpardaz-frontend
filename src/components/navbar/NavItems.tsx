@@ -7,6 +7,9 @@ function NavItems() {
       <Link href={"/jobs"}>
         <li>فرصت های شغلی</li>
       </Link>
+      <Link href={"/jobseeker-ads"}>
+        <li>آگهی کارجویان</li>
+      </Link>
       <li>
         <div className="flex items-center w-48 gap-2 text-sm lg:gap-3">
           <Link href={"auth/jobseeker/signup"} className="w-full h-full">
