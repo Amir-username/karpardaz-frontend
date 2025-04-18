@@ -39,7 +39,7 @@ async function JobSeekerAdDetailPage({
         <p className="px-8 text-lg leading-8 py-8 text-neutral-dark">
           {advertise.description}
         </p>
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center pb-12">
           {advertise.technologies.map((tech, i) => {
             return <AdTag name={tech} key={i} size="lg" />;
           })}
