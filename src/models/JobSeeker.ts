@@ -1,4 +1,4 @@
-type JobSeekerModel = {
+export type JobSeekerModel = {
   id: number;
   firstname: string;
   lastname: string;

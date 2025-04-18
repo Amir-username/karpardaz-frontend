@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useJobSeekerDetail } from "@/hooks/useJobSeekerDetail";
 import AdInfo from "../advertise/AdInfo";
 import AdHeader from "../advertise/AdHeader";
+import { JobSeekrAdModel } from "@/models/JobSeekerAd";
+import { JobSeekerModel } from "@/models/JobSeeker";
 
 type JobSeekerAdItemProps = {
   advertise: JobSeekrAdModel;

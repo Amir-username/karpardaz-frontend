@@ -1,6 +1,7 @@
 "use client";
 
 import { useJobSeekerSearchAds } from "@/hooks/useJobseekerAdSearch";
+import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { Dispatch, SetStateAction, useState } from "react";
 type SearchBoxProps = {
   setJobseekerAds: Dispatch<SetStateAction<JobSeekrAdModel[]>>;

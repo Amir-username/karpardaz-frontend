@@ -1,3 +1,4 @@
+import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import JobSeekerAdItem from "./JobseekerAdItem";
 
 type JobSeekerAdListProps = {

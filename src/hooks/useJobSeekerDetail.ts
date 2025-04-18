@@ -1,4 +1,5 @@
 import { BASE_LINK } from "@/fetch/config";
+import { JobSeekerModel } from "@/models/JobSeeker";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function useJobSeekerDetail(

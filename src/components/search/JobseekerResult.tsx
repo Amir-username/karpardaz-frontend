@@ -3,6 +3,7 @@
 import { useState } from "react";
 import JobSeekerAdSearchBox from "./JobseekerAdSearchBox";
 import JobSeekerAdList from "../jobseekerAdvertise/JobseekerAdList";
+import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 
 function JobSeekerResult() {
   const [jobSeekerAds, setJobSeekerAds] = useState<JobSeekrAdModel[]>([]);

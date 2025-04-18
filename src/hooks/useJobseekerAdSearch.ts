@@ -1,4 +1,5 @@
 import { fetchSearchJobSeekerAds } from "@/fetch/fetchSearchJobseekerAds";
+import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function useJobSeekerSearchAds(
