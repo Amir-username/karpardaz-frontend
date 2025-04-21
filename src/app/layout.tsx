@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "پلتفرم استخدام و کاریابی",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
