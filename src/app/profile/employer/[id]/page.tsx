@@ -1,5 +1,3 @@
-import Image from "next/image";
-import DEFAULT_AVATAR from "../../../../../public/images/company_default_avatar.png";
 import { fetchEmployerDetail } from "@/fetch/fetchEmployerDetail";
 import { EmployerDetail } from "@/models/EmployerDetail";
 import Profile from "@/components/profile/Profile";

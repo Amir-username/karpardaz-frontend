@@ -1,4 +1,3 @@
-import Profile from "@/components/profile/Profile";
 import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
 
 async function JobSeekerProfilePage({
