@@ -1,8 +1,8 @@
 type AdInfoProps = {
   city: string | undefined;
-  isRemote: boolean;
-  isInternship: boolean;
-  salary: string;
+  isRemote: boolean | undefined;
+  isInternship: boolean | undefined;
+  salary: string | undefined;
 };
 
 export default function AdInfo({

@@ -1,11 +1,11 @@
 type AdTagsProps = {
-  tags: string[];
+  tags: string[] | undefined;
 };
 
 export default function AdTags({ tags }: AdTagsProps) {
   return (
     <div className="flex gap-2">
-      {tags.slice(0, 3).map((tag, i) => {
+      {tags?.slice(0, 3).map((tag, i) => {
         return <AdTag key={i} name={tag} />;
       })}
     </div>

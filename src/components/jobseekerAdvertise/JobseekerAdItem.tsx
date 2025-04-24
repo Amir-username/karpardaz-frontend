@@ -4,21 +4,28 @@ import Button from "@/ui/Button";
 import AdAvatar from "../advertise/AdAvater";
 import Link from "next/link";
 import AdTags from "../advertise/AdTags";
-import { useState } from "react";
-import { useJobSeekerDetail } from "@/hooks/useJobSeekerDetail";
+import { useEffect, useState } from "react";
 import AdInfo from "../advertise/AdInfo";
 import AdHeader from "../advertise/AdHeader";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
-import { JobSeekerModel } from "@/models/JobSeeker";
+import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
+import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
 
 type JobSeekerAdItemProps = {
   advertise: JobSeekrAdModel;
 };
 
 function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
-  const [jobSeeker, setJobSeeker] = useState<JobSeekerModel>();
+  const [jobSeeker, setJobSeeker] = useState<JobSeekerDetailModel>();
 
-  useJobSeekerDetail(advertise.jobseeker_id, setJobSeeker);
+  useEffect(() => {
+    const fetchJobSeeker = async () => {
+      const res = await fetchJobSeekerDetail(advertise.jobseeker_id);
+      setJobSeeker(res);
+    };
+
+    fetchJobSeeker();
+  }, []);
 
   console.log(jobSeeker);
 
@@ -32,15 +39,15 @@ function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
           <div className="flex flex-col gap-3">
             <AdHeader
               title={advertise.title}
-              name={`${advertise?.firstname} ${advertise?.lastname}`}
+              name={`${jobSeeker?.firstname} ${jobSeeker?.lastname}`}
             />
             <AdInfo
               city={jobSeeker?.city}
-              isRemote={advertise.is_remote}
-              isInternship={advertise.is_internship}
-              salary={advertise.salary}
+              isRemote={jobSeeker?.is_remote}
+              isInternship={jobSeeker?.is_internship}
+              salary={jobSeeker?.salary}
             />
-            <AdTags tags={advertise.technologies} />
+            <AdTags tags={jobSeeker?.technologies} />
           </div>
         </div>
       </div>
