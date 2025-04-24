@@ -22,9 +22,9 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
       <main className="flex flex-col gap-4">
         <AdDetailHeader title={advertise.title} subtitle={company.name} />
         <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
-          <div className="grid grid-cols-2">
-            <AdDetailInfo text={advertise.city} />
-            <AdDetailInfo text={advertise.salary} />
+          <div className="grid grid-cols-2 gap-2">
+            <AdDetailInfo text={advertise.city} icon="location_city" />
+            <AdDetailInfo text={advertise.salary} icon="payments" />
             <AdDetailInfo
               text={
                 advertise.gender == "male"
@@ -33,14 +33,19 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
                   ? "فقط خانم"
                   : "آقا یا خانم"
               }
+              icon="wc"
             />
-            <AdDetailInfo text={advertise.experience} />
-            {advertise.is_internship && <AdDetailInfo text="امکان کارآموزی" />}
+            <AdDetailInfo text={advertise.experience} icon="badge" />
+            {advertise.is_internship && (
+              <AdDetailInfo text="امکان کارآموزی" icon="assignment" />
+            )}
             {advertise.is_portfolio && (
-              <AdDetailInfo text="نیاز به نمونه کار" />
+              <AdDetailInfo text="نیاز به نمونه کار" icon="laptop_mac" />
             )}
             {advertise.benefits.map((benefit, i) => {
-              return <AdDetailInfo text={benefit} key={i} />;
+              return (
+                <AdDetailInfo text={benefit} key={i} icon="person_shield" />
+              );
             })}
           </div>
         </div>
