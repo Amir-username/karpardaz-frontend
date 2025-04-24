@@ -1,4 +1,7 @@
+import Profile from "@/components/profile/Profile";
+import ProfileInfoItem from "@/components/profile/ProfileInfoItem";
 import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
+import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 
 async function JobSeekerProfilePage({
   params,
@@ -6,16 +9,21 @@ async function JobSeekerProfilePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const jobseeker = await fetchJobSeekerDetail(Number(id));
+  const jobseeker: JobSeekerDetailModel = await fetchJobSeekerDetail(
+    Number(id)
+  );
   console.log(jobseeker);
 
   return (
-    <div></div>
-    // <Profile name={jobseeker.firs} description={employer.description}>
-    //   <ProfileInfoItem content={employer.website} />
-    //   <ProfileInfoItem content={employer.population} />
-    //   <ProfileInfoItem content={employer.address} />
-    // </Profile>
+    <Profile
+      name={`${jobseeker.firstname} ${jobseeker.lastname}`}
+      description={jobseeker?.description}
+      technologies={jobseeker?.technologies}
+    >
+      <ProfileInfoItem content={jobseeker?.job_group} />
+      <ProfileInfoItem content={jobseeker?.experience} />
+      <ProfileInfoItem content={jobseeker?.salary} />
+    </Profile>
   );
 }
 

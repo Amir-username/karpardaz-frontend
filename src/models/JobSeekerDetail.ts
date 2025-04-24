@@ -22,4 +22,5 @@ export type JobSeekerDetailModel = {
   is_portfolio: boolean;
   jobseeker_id: number;
   city: string
+  description: string
 };
