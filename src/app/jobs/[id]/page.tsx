@@ -20,7 +20,12 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 shadow-lg h-full rounded-lg">
       <main className="flex flex-col gap-4">
-        <AdDetailHeader title={advertise.title} subtitle={company.name} />
+        <AdDetailHeader
+          title={advertise.title}
+          subtitle={company.name}
+          role="employer"
+          id={advertise.employer_id}
+        />
         <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
           <div className="grid grid-cols-2 gap-2">
             <AdDetailInfo text={advertise.city} icon="location_city" />

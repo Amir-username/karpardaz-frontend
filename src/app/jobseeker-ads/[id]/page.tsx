@@ -3,7 +3,6 @@ import AdDetailHeader from "@/components/advertise/detail/AdDetailHeader";
 import AdDetailInfo from "@/components/advertise/detail/AdInfo";
 import { fetchJobSeekerAdDetail } from "@/fetch/fetchJobSeekerAdDetail";
 import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
-import { JobSeekerModel } from "@/models/JobSeeker";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import Button from "@/ui/Button";
@@ -26,6 +25,8 @@ async function JobSeekerAdDetailPage({
         <AdDetailHeader
           title={advertise.title}
           subtitle={`${jobseeker?.firstname} ${jobseeker?.lastname}`}
+          role="jobseeker"
+          id={advertise.jobseeker_id}
         />
         <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
           <div className="grid grid-cols-2">

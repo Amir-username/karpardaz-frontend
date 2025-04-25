@@ -40,6 +40,8 @@ function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
             <AdHeader
               title={advertise.title}
               name={`${jobSeeker?.firstname} ${jobSeeker?.lastname}`}
+              role="jobseeker"
+              id={advertise.jobseeker_id}
             />
             <AdInfo
               city={jobSeeker?.city}

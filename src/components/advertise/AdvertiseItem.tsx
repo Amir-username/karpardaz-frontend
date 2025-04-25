@@ -28,7 +28,12 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
         </div>
         <div className="flex-2">
           <div className="flex flex-col gap-3">
-            <AdHeader title={advertise.title} name={company?.name} />
+            <AdHeader
+              title={advertise.title}
+              name={company?.name}
+              role="employer"
+              id={advertise.employer_id}
+            />
             <AdInfo
               city={advertise.city}
               isRemote={advertise.is_remote}

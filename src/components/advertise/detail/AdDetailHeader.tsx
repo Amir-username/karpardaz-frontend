@@ -2,13 +2,16 @@ import Image from "next/image";
 import AdTitle from "./AdTitle";
 import AdSubtitle from "./AdSubtitle";
 import DEFAULT_AVATAR from "../../../../public/images/company_default_avatar.png";
+import Link from "next/link";
 
 type AdDetailHeaderProps = {
   title: string;
   subtitle: string;
+  id: number
+  role: 'jobseeker' | 'employer'
 };
 
-function AdDetailHeader({ title, subtitle }: AdDetailHeaderProps) {
+function AdDetailHeader({ title, subtitle, role, id }: AdDetailHeaderProps) {
   return (
     <div className="flex justify-between p-8 bg-primary-blue rounded-lg">
       <div className="flex gap-4 md:gap-8 ">
@@ -19,7 +22,9 @@ function AdDetailHeader({ title, subtitle }: AdDetailHeaderProps) {
         />
         <div className="flex flex-col gap-2">
           <AdTitle title={title} />
+          <Link href={`/profile/${role}/${id}`}>
           <AdSubtitle title={subtitle} />
+          </Link>
         </div>
       </div>
       <div className="flex items-center">
