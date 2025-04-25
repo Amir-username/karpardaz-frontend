@@ -5,6 +5,7 @@ import { fetchJobSeekerAdDetail } from "@/fetch/fetchJobSeekerAdDetail";
 import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
 import { JobSeekerModel } from "@/models/JobSeeker";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
+import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import Button from "@/ui/Button";
 
 async function JobSeekerAdDetailPage({
@@ -15,7 +16,7 @@ async function JobSeekerAdDetailPage({
   const { id } = await params;
   const advertise: JobSeekrAdModel = await fetchJobSeekerAdDetail(Number(id));
 
-  const jobseeker: JobSeekerModel = await fetchJobSeekerDetail(
+  const jobseeker: JobSeekerDetailModel = await fetchJobSeekerDetail(
     advertise.jobseeker_id
   );
 
@@ -24,23 +25,23 @@ async function JobSeekerAdDetailPage({
       <main className="flex flex-col gap-4">
         <AdDetailHeader
           title={advertise.title}
-          subtitle={`${advertise.firstname} ${advertise.lastname}`}
+          subtitle={`${jobseeker?.firstname} ${jobseeker?.lastname}`}
         />
         <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
           <div className="grid grid-cols-2">
-            <AdDetailInfo text={jobseeker.city} />
-            <AdDetailInfo text={advertise.salary} />
-            <AdDetailInfo text={advertise.gender == "male" ? "اقا" : "خانم"} />
-            <AdDetailInfo text={advertise.experience} />
-            {advertise.is_internship && <AdDetailInfo text="امکان کارآموزی" />}
-            {advertise.is_portfolio && <AdDetailInfo text="دارای نمونه کار" />}
+            <AdDetailInfo text={jobseeker.city} icon="house"/>
+            <AdDetailInfo text={jobseeker.salary} icon="payments"/>
+            <AdDetailInfo text={jobseeker.gender == "male" ? "اقا" : "خانم"} icon="wc"/>
+            <AdDetailInfo text={jobseeker.experience} icon="badge"/>
+            {jobseeker.is_internship && <AdDetailInfo text="امکان کارآموزی" icon="assignment"/>}
+            {jobseeker.is_portfolio && <AdDetailInfo text="دارای نمونه کار" icon="laptop_mac"/>}
           </div>
         </div>
         <p className="px-8 text-lg leading-8 py-8 text-neutral-dark">
           {advertise.description}
         </p>
         <div className="flex flex-wrap gap-4 justify-center pb-8">
-          {advertise.technologies.map((tech, i) => {
+          {jobseeker.technologies.map((tech, i) => {
             return <AdTag name={tech} key={i} size="lg" />;
           })}
         </div>
