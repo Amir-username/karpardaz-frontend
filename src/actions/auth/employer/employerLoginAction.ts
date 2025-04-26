@@ -41,7 +41,7 @@ export async function EmployerLoginAction(
         path: "/",
       });
 
-
+      cookieStore.set("role", "employer");
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {

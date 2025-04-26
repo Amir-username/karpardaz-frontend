@@ -40,6 +40,8 @@ export async function JobSeekerLoginAction(
         maxAge: 60 * 60 * 24 * 7,
         path: "/",
       });
+
+      cookieStore.set("role", "jobseeker");
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {

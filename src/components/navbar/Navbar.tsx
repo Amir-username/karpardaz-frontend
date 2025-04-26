@@ -1,22 +1,18 @@
-"use client";
-
-import { useState } from "react";
+import { cookies } from "next/headers";
 import Brand from "./Brand";
-import MobileMenu from "./MobileMenu";
 import NavItems from "./NavItems";
-import NavMenuButton from "./NavMenuButton";
-function Navbar() {
-  const [isActiveMobileMenu, setIsActiveMobileMenu] = useState<boolean>(false);
+import NavButtons from "./navButtons";
+
+async function Navbar() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+  const role = cookieStore.get("role");
 
   return (
     <nav className="flex items-center justify-between h-20 gap-2 py-3 bg-neutral-light">
       <Brand text="کارپرداز" />
-      <NavItems />
-      <NavMenuButton setIsActive={setIsActiveMobileMenu} />
-      <MobileMenu
-        isActive={isActiveMobileMenu}
-        setIsActive={setIsActiveMobileMenu}
-      />
+      <NavItems token={token?.value} role={role?.value} />
+      <NavButtons />
     </nav>
   );
 }
