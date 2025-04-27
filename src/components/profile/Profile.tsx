@@ -1,7 +1,7 @@
 import Image from "next/image";
 import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import React from "react";
-import AdTags, { AdTag } from "../advertise/AdTags";
+import { AdTag } from "../advertise/AdTags";
 
 type ProfileProps = {
   name: string;
