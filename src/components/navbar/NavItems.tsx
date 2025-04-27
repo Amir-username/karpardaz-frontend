@@ -8,7 +8,7 @@ import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import { EmployerDetail } from "@/models/EmployerDetail";
 import { fetchCurrentJobSeeker } from "@/fetch/fetchCurrentJobseeker";
 import { fetchCurrentEmployer } from "@/fetch/fetchCurrentEmployer";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 type NavItemsProps = {
   token: string | undefined;
@@ -21,7 +21,7 @@ function NavItems({ token, role }: NavItemsProps) {
     useState<JobSeekerDetailModel>();
   const [currentEmployer, setCurrentEmployer] = useState<EmployerDetail>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchJobSeeker = async () => {
       if (token) {
         const jobseeker = await fetchCurrentJobSeeker(token);
@@ -42,17 +42,6 @@ function NavItems({ token, role }: NavItemsProps) {
       fetchEmployer();
     }
   }, [role, token]);
-
-  // let currentJobSeeker: JobSeekerDetailModel;
-  // let currentEmployer: EmployerDetail;
-
-  // if (token && role) {
-  //   if (role === "jobseeekr") {
-  //     currentJobSeeker = await fetchCurrentJobSeeker(token);
-  //   } else {
-  //     currentEmployer = await fetchCurrentEmployer(token);
-  //   }
-  // }
 
   console.log(currentJobSeeker);
   return (
@@ -91,10 +80,10 @@ function NavItems({ token, role }: NavItemsProps) {
           </Link>
         ) : (
           <div className="flex items-center w-48 gap-2 text-sm lg:gap-3">
-            <Link href={"auth/jobseeker/signup"} className="w-full h-full">
+            <Link href={"/auth/jobseeker/signup"} className="w-full h-full">
               <Button text="ثبت نام" type="button" h="h-9" outline />
             </Link>
-            <Link href={"auth/jobseeker/login"} className="w-full h-full">
+            <Link href={"/auth/jobseeker/login"} className="w-full h-full">
               <Button text="ورود" type="button" h="h-9" />
             </Link>
           </div>
