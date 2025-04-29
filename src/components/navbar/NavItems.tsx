@@ -8,7 +8,8 @@ import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import { EmployerDetail } from "@/models/EmployerDetail";
 import { fetchCurrentJobSeeker } from "@/fetch/fetchCurrentJobseeker";
 import { fetchCurrentEmployer } from "@/fetch/fetchCurrentEmployer";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 
 type NavItemsProps = {
   token: string | undefined;
@@ -21,7 +22,7 @@ function NavItems({ token, role }: NavItemsProps) {
     useState<JobSeekerDetailModel>();
   const [currentEmployer, setCurrentEmployer] = useState<EmployerDetail>();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const fetchJobSeeker = async () => {
       if (token) {
         const jobseeker = await fetchCurrentJobSeeker(token);
