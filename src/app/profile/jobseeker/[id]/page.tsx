@@ -1,3 +1,4 @@
+import NotHaveProfile from "@/components/profile/NotHaveProfile";
 import Profile from "@/components/profile/Profile";
 import ProfileInfoItem from "@/components/profile/ProfileInfoItem";
 import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
@@ -12,17 +13,22 @@ async function JobSeekerProfilePage({
   const jobseeker: JobSeekerDetailModel = await fetchJobSeekerDetail(
     Number(id)
   );
-  return (
-    <Profile
-      name={`${jobseeker.firstname} ${jobseeker.lastname}`}
-      description={jobseeker?.description}
-      technologies={jobseeker?.technologies}
-    >
-      <ProfileInfoItem content={jobseeker?.job_group} />
-      <ProfileInfoItem content={jobseeker?.experience} />
-      <ProfileInfoItem content={jobseeker?.salary} />
-    </Profile>
-  );
+
+  if (jobseeker) {
+    return (
+      <Profile
+        name={`${jobseeker.firstname} ${jobseeker.lastname}`}
+        description={jobseeker?.description}
+        technologies={jobseeker?.technologies}
+      >
+        <ProfileInfoItem content={jobseeker?.job_group} />
+        <ProfileInfoItem content={jobseeker?.experience} />
+        <ProfileInfoItem content={jobseeker?.salary} />
+      </Profile>
+    );
+  }
+
+  return <NotHaveProfile role="jobseeker" id={Number(id)} />;
 }
 
 export default JobSeekerProfilePage;
