@@ -12,8 +12,6 @@ async function JobSeekerProfilePage({
   const jobseeker: JobSeekerDetailModel = await fetchJobSeekerDetail(
     Number(id)
   );
-  console.log(jobseeker);
-
   return (
     <Profile
       name={`${jobseeker.firstname} ${jobseeker.lastname}`}

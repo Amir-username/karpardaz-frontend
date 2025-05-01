@@ -17,7 +17,6 @@ type NavItemsProps = {
 };
 
 function NavItems({ token, role }: NavItemsProps) {
-  console.log(token);
   const [currentJobSeeker, setCurrentJobSeeker] =
     useState<JobSeekerDetailModel>();
   const [currentEmployer, setCurrentEmployer] = useState<EmployerDetail>();
@@ -44,7 +43,8 @@ function NavItems({ token, role }: NavItemsProps) {
     }
   }, [role, token]);
 
-  console.log(currentJobSeeker);
+
+
   return (
     <ul className="items-center hidden gap-2 pl-8 md:flex lg:gap-4">
       <Link href={"/jobs"}>
@@ -79,7 +79,7 @@ function NavItems({ token, role }: NavItemsProps) {
               />
             </div>
           </Link>
-        ) : (
+        ) : !token ? (
           <div className="flex items-center w-48 gap-2 text-sm lg:gap-3">
             <Link href={"/auth/jobseeker/signup"} className="w-full h-full">
               <Button text="ثبت نام" type="button" h="h-9" outline />
@@ -88,7 +88,7 @@ function NavItems({ token, role }: NavItemsProps) {
               <Button text="ورود" type="button" h="h-9" />
             </Link>
           </div>
-        )}
+        ) : null}
       </li>
     </ul>
   );

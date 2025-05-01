@@ -12,7 +12,7 @@ type ProfileProps = {
 
 function Profile({ children, name, description, technologies }: ProfileProps) {
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="flex flex-col gap-8 p-8 lg:px-96">
       <Container>
         <Image
           src={DEFAULT_AVATAR}
