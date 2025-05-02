@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-type InputTagProps = { label: string; name: string };
+type InputTagProps = {
+  label: string;
+  name: string;
+  items: string[];
+  setItems: Dispatch<SetStateAction<string[]>>;
+};
 
-function InputTag({ label, name }: InputTagProps) {
-  const [items, setItems] = useState<string[]>([]);
+function InputTag({ label, name, items, setItems }: InputTagProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState("");
 

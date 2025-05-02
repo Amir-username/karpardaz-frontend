@@ -24,6 +24,8 @@ export type JobSeekerProfileCreateState = {
 };
 
 export async function JobSeekerProfileCreateAction(
+  technologieItems: string[],
+  educations: string[],
   formState: JobSeekerProfileCreateState,
   formData: FormData
 ): Promise<JobSeekerProfileCreateState> {
@@ -47,8 +49,6 @@ export async function JobSeekerProfileCreateAction(
   };
 
   const result = JobSeekerProfileCreateSchema.safeParse(rawData);
-
-  console.log(rawData);
 
   return {
     errors: result.error?.flatten().fieldErrors,

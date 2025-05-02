@@ -10,13 +10,22 @@ import Button from "@/ui/Button";
 import PdfFileInput from "@/ui/PdfFileInput";
 import ImageFileInput from "@/ui/ImageFileInput";
 import { JobSeekerProfileCreateAction } from "@/actions/profile/JobSeekerProfileCreateAction";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import TextAriaInput from "@/ui/TextAreaInput";
 
 function CreateProfilePage() {
-  const [formState, action] = useActionState(JobSeekerProfileCreateAction, {
+  const [technologieItems, setTechnologieItems] = useState<string[]>([]);
+  const [educationItems, setEducationItems] = useState<string[]>([]);
+
+  const bindAction = JobSeekerProfileCreateAction.bind(
+    null,
+    technologieItems,
+    educationItems
+  );
+  const [formState, action] = useActionState(bindAction, {
     errors: {},
   });
+
   return (
     <main className="flex items-center justify-center p-8 mt-8">
       <Form action={action}>
@@ -116,8 +125,18 @@ function CreateProfilePage() {
           isValid={!!formState.errors?.backdropImage}
           errorMessage={formState.errors?.backdropImage}
         />
-        <InputTag name="technologies" label="تکنولوژی و ابزار های تخصصی" />
-        <InputTag name="educations" label="سوابق تحصیلی" />
+        <InputTag
+          name="technologies"
+          label="تکنولوژی و ابزار های تخصصی"
+          items={technologieItems}
+          setItems={setTechnologieItems}
+        />
+        <InputTag
+          name="educations"
+          label="سوابق تحصیلی"
+          items={educationItems}
+          setItems={setEducationItems}
+        />
         <TextAriaInput
           name="description"
           label="معرفی و توضیحات"
