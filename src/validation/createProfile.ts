@@ -26,4 +26,5 @@ export const JobSeekerProfileCreateSchema = z.object({
   backdropImage: z.string({
     message: "لطفا تصویر بکگراند پروفایل را انتخاب کنید",
   }),
+  description: z.string().min(30, { message: "توضیحات باید طولانی تر باشد" }),
 });

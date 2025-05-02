@@ -16,6 +16,8 @@ export type JobSeekerProfileCreateState = {
     portfolioLink?: string[];
     avatar?: string[];
     backdropImage?: string[];
+    description?: string[]
+    // specializedJobs?: string[]
     // educations: string[];
     // technologies: string[]
   };
@@ -41,6 +43,7 @@ export async function JobSeekerProfileCreateAction(
     isPortfolio: formData.get("isPortfolio") === "on",
     portfolioLink: formData.get("portfolioLink"),
     salary: formData.get("salary"),
+    description: formData.get('description')
   };
 
   const result = JobSeekerProfileCreateSchema.safeParse(rawData);

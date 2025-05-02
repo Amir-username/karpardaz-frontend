@@ -11,6 +11,7 @@ import PdfFileInput from "@/ui/PdfFileInput";
 import ImageFileInput from "@/ui/ImageFileInput";
 import { JobSeekerProfileCreateAction } from "@/actions/profile/JobSeekerProfileCreateAction";
 import { useActionState } from "react";
+import TextAriaInput from "@/ui/TextAreaInput";
 
 function CreateProfilePage() {
   const [formState, action] = useActionState(JobSeekerProfileCreateAction, {
@@ -78,6 +79,7 @@ function CreateProfilePage() {
           <option value="۲۰ تا ۴۰ میلیون تومان">۲۰ تا ۴۰ م</option>
           <option value="۴۰ میلیون به بالا">۴۰ م به بالا</option>
         </SelectInput>
+
         <CheckBox
           text="امکان دورکاری"
           name="isRemote"
@@ -116,6 +118,12 @@ function CreateProfilePage() {
         />
         <InputTag name="technologies" label="تکنولوژی و ابزار های تخصصی" />
         <InputTag name="educations" label="سوابق تحصیلی" />
+        <TextAriaInput
+          name="description"
+          label="معرفی و توضیحات"
+          isValid={!!formState.errors?.description}
+          errorMessage={formState.errors?.description}
+        />
         <Button type="submit" text="ایجاد پروفایل" />
       </Form>
     </main>
