@@ -9,7 +9,7 @@ type NotHaveProfileProps = {
 function NotHaveProfile({ id, role }: NotHaveProfileProps) {
   return (
     <div className="flex justify-center items-center">
-      <div className="flex flex-col gap-4 py-64">
+      <div className="flex flex-col gap-12 py-64">
         <h3 className="text-xl text-neutral-dark">
           لطفا اول پروفایل خود را کامل کنید
         </h3>

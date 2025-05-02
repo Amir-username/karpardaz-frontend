@@ -4,13 +4,16 @@ import Form from "@/ui/Form";
 import FormHeader from "@/ui/FormHeader";
 import Input from "@/ui/Input";
 import SelectInput from "@/ui/SelectInput";
-import FileInput from "@/ui/FileInput";
 import InputTag from "@/ui/InputTag";
 import Button from "@/ui/Button";
+import PdfFileInput from "@/ui/PdfFileInput";
+import ImageFileInput from "@/ui/ImageFileInput";
+
+
 
 function CreateProfilePage() {
   return (
-    <main className="flex items-center justify-center p-8 mt-32">
+    <main className="flex items-center justify-center p-8 mt-8">
       <Form action={LogoutAction}>
         <FormHeader title="تکمیل پروفایل" subtitle="کارجو" />
         <Input name="city" placeholder="شهر" type="text" icon="house" />
@@ -45,12 +48,12 @@ function CreateProfilePage() {
         <CheckBox text="امکان دورکاری" />
         <CheckBox text="امکان کارآموزی" />
         <CheckBox text="دارای نمونه کار" />
-        <FileInput label="فایل نمونه کار" type="pdf" />
-        <FileInput label="تصویر پروفایل" type="image" />
-        <FileInput label="تصویر بکگراند پروفایل" type="image" />
+        <PdfFileInput label="فایل نمونه کار" />
+        <ImageFileInput label="تصویر پروفایل" />
+        <ImageFileInput label="تصویر بکگراند پروفایل" />
         <InputTag label="تکنولوژی و ابزار های تخصصی" />
         <InputTag label="سوابق تحصیلی" />
-        <Button  type="submit" text="ایجاد پروفایل"/>
+        <Button type="submit" text="ایجاد پروفایل" />
       </Form>
     </main>
   );
