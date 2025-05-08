@@ -14,8 +14,11 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
   const [inputText, setInputText] = useState("");
 
   const handleAddItem = (text: string) => {
-    setItems([...items, text]);
-    setIsOpen(false);
+    if (text.length) {
+      setItems([...items, text]);
+      setInputText('')
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -36,8 +39,10 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
             onChange={(e) => setInputText(e.target.value)}
             type="text"
             className="p-2 rounded-lg w-full ring-1 ring-neutral-mid"
+            value={inputText}
           />
           <button
+            type="button"
             onClick={() => handleAddItem(inputText)}
             className="px-2 bg-primary-blue text-white rounded-lg cursor-pointer"
           >

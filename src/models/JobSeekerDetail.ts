@@ -1,7 +1,7 @@
 export type JobSeekerDetailModel = {
-  id: number;
-  firstname: string;
-  lastname: string;
+  id?: number;
+  firstname?: string;
+  lastname?: string;
   position: "junior" | "senior" | "midlevel";
   experience:
     | "بدون سابقه کار"
@@ -20,7 +20,9 @@ export type JobSeekerDetailModel = {
   gender: "male" | "female" | "no difference";
   technologies: string[];
   is_portfolio: boolean;
-  jobseeker_id: number;
+  jobseeker_id?: number;
   city: string
   description: string
+  educations: string[]
+  specialized_jobs: string[]
 };
