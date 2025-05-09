@@ -2,8 +2,7 @@ import Image from "next/image";
 import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import React from "react";
 import { AdTag } from "../advertise/AdTags";
-import Button from "@/ui/Button";
-import Link from "next/link";
+import EmployerAds from "./EmployerAds";
 
 type ProfileProps = {
   name: string;
@@ -47,11 +46,11 @@ function Profile({
       )}
       <Container bg="neutral">
         <div className="flex flex-col gap-8">
-          <h1 className="text-primary-blue text-2xl">موقعیت های شغلی</h1>
+          <h1 className="text-primary-blue text-2xl text-center">
+            موقعیت های شغلی
+          </h1>
 
-          <Link href={`/profile/${role}/advertise/${id}/create`}>
-            <Button text="ایجاد آگهی" />
-          </Link>
+          {role === "employer" && <EmployerAds id={id} />}
         </div>
       </Container>
     </div>
