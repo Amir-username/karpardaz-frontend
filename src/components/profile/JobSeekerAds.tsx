@@ -21,7 +21,7 @@ async function JobSeeekerAds({ id }: { id: number }) {
         {ads.length ? (
           <JobSeekerAdList advertises={ads} />
         ) : (
-          <Link href={`/profile/jobseekr/advertise/${id}/create`}>
+          <Link href={`/profile/jobseeker/advertise/${id}/create`}>
             <Button text="ایجاد آگهی" />
           </Link>
         )}
