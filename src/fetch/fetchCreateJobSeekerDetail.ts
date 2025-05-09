@@ -1,6 +1,5 @@
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
-import axios, { AxiosError } from "axios";
-import { BASE_LINK } from "./config";
+
 
 export async function fetchCreateJobSeekerDetail(
   detail: JobSeekerDetailModel,

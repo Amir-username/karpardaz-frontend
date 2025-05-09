@@ -1,6 +1,5 @@
 "use server";
 
-import { fetchCreateJobSeekerDetail } from "@/fetch/fetchCreateJobSeekerDetail";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import { JobSeekerProfileCreateSchema } from "@/validation/createProfile";
 import { revalidatePath } from "next/cache";

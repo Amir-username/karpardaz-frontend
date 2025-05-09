@@ -14,7 +14,6 @@ function SelectInput({
   label,
   children,
   name,
-  isValid,
   value,
   setValue,
 }: SelectInputProps) {
