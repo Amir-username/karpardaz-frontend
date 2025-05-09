@@ -16,7 +16,7 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
   const handleAddItem = (text: string) => {
     if (text.length) {
       setItems([...items, text]);
-      setInputText('')
+      setInputText("");
       setIsOpen(false);
     }
   };

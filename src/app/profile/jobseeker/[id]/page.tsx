@@ -20,6 +20,8 @@ async function JobSeekerProfilePage({
         name={`${jobseeker.firstname} ${jobseeker.lastname}`}
         description={jobseeker?.description}
         technologies={jobseeker?.technologies}
+        role="jobseeker"
+        id={Number(id)}
       >
         <ProfileInfoItem content={jobseeker?.job_group} />
         <ProfileInfoItem content={jobseeker?.experience} />

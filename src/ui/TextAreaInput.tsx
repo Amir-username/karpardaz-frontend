@@ -24,7 +24,7 @@ function TextAreaInput({
           !isValid ? "ring-gray-300" : "ring-accent-coral"
         }`}
       >
-        <span className="text-neutral-mid text-sm">{label}</span>
+        <span className="text-neutral-mid text-sm px-2">{label}</span>
         <textarea
           value={value}
           onChange={setValue && ((e) => setValue(e.target.value))}

@@ -2,15 +2,26 @@ import Image from "next/image";
 import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import React from "react";
 import { AdTag } from "../advertise/AdTags";
+import Button from "@/ui/Button";
+import Link from "next/link";
 
 type ProfileProps = {
   name: string;
   children: React.ReactNode;
   description: string;
   technologies?: string[];
+  role: "employer" | "jobseeker";
+  id: number;
 };
 
-function Profile({ children, name, description, technologies }: ProfileProps) {
+function Profile({
+  children,
+  name,
+  description,
+  technologies,
+  role,
+  id,
+}: ProfileProps) {
   return (
     <div className="flex flex-col gap-8 p-8 lg:px-96">
       <Container>
@@ -34,15 +45,36 @@ function Profile({ children, name, description, technologies }: ProfileProps) {
           </ul>
         </Container>
       )}
+      <Container bg="neutral">
+        <div className="flex flex-col gap-8">
+          <h1 className="text-primary-blue text-2xl">موقعیت های شغلی</h1>
+
+          <Link href={`/profile/${role}/advertise/${id}/create`}>
+            <Button text="ایجاد آگهی" />
+          </Link>
+        </div>
+      </Container>
     </div>
   );
 }
 
 export default Profile;
 
-function Container({ children }: { children: React.ReactNode }) {
+function Container({
+  children,
+  bg = "primary",
+}: {
+  children: React.ReactNode;
+  bg?: "primary" | "neutral";
+}) {
   return (
-    <div className="flex flex-col gap-6 items-center py-8 bg-primary-blue rounded-lg">
+    <div
+      className={`flex flex-col gap-6 items-center py-8  rounded-lg ${
+        bg === "primary"
+          ? "bg-primary-blue"
+          : "bg-neutral-light ring-1 ring-primary-blue"
+      }`}
+    >
       {children}
     </div>
   );

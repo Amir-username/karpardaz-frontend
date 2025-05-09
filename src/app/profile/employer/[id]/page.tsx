@@ -3,6 +3,7 @@ import { EmployerDetail } from "@/models/EmployerDetail";
 import Profile from "@/components/profile/Profile";
 import ProfileInfoItem from "@/components/profile/ProfileInfoItem";
 import NotHaveProfile from "@/components/profile/NotHaveProfile";
+import Button from "@/ui/Button";
 
 async function EmployerProfilePage({
   params,
@@ -14,7 +15,12 @@ async function EmployerProfilePage({
 
   if (employer) {
     return (
-      <Profile name={employer.company_name} description={employer.description}>
+      <Profile
+        name={employer.company_name}
+        description={employer.description}
+        role="employer"
+        id={Number(id)}
+      >
         <ProfileInfoItem content={employer.website} />
         <ProfileInfoItem content={employer.population} />
         <ProfileInfoItem content={employer.address} />
