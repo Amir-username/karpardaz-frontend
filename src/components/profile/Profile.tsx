@@ -3,6 +3,7 @@ import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import React from "react";
 import { AdTag } from "../advertise/AdTags";
 import EmployerAds from "./EmployerAds";
+import JobSeeekerAds from "./JobSeekerAds";
 
 type ProfileProps = {
   name: string;
@@ -44,22 +45,18 @@ function Profile({
           </ul>
         </Container>
       )}
-      <Container bg="neutral">
-        <div className="flex flex-col gap-8">
-          <h1 className="text-primary-blue text-2xl text-center">
-            موقعیت های شغلی
-          </h1>
-
-          {role === "employer" && <EmployerAds id={id} />}
-        </div>
-      </Container>
+      {role === "employer" ? (
+        <EmployerAds id={id} />
+      ) : (
+        <JobSeeekerAds id={id} />
+      )}
     </div>
   );
 }
 
 export default Profile;
 
-function Container({
+export function Container({
   children,
   bg = "primary",
 }: {

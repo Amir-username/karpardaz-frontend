@@ -3,7 +3,6 @@ import { EmployerDetail } from "@/models/EmployerDetail";
 import Profile from "@/components/profile/Profile";
 import ProfileInfoItem from "@/components/profile/ProfileInfoItem";
 import NotHaveProfile from "@/components/profile/NotHaveProfile";
-import { cookies } from "next/headers";
 
 async function EmployerProfilePage({
   params,
@@ -12,10 +11,8 @@ async function EmployerProfilePage({
 }) {
   const { id } = await params;
   const employer: EmployerDetail = await fetchEmployerDetail(Number(id));
-  const cookieStore = await cookies()
-  const token = cookieStore.get('token')
 
-  if (employer && token) {
+  if (employer) {
     return (
       <Profile
         name={employer.company_name}

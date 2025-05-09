@@ -7,7 +7,7 @@ type AdvertiseListProps = {
 
 function AdvertiseList({ advertises }: AdvertiseListProps) {
   return (
-    <ul className="flex flex-col gap-8">
+    <ul className="flex flex-col gap-8 justify-center items-center">
       {advertises.map((ad) => {
         return <AdvertiseItem key={ad.id} advertise={ad} />;
       })}

@@ -21,7 +21,7 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
   useEmployerDetail(advertise.employer_id, setCompany);
 
   return (
-    <li className="flex flex-col gap-3 rounded-lg shadow-md md:w-96 w-sm ring-1 ring-gray-200">
+    <li className="flex flex-col gap-3 rounded-lg shadow-md md:w-96 w-80 ring-1 ring-gray-200">
       <div className="flex gap-3 px-3 pt-3">
         <div className="flex flex-col justify-start h-full">
           <AdAvatar />

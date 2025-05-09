@@ -3,6 +3,7 @@ import AdvertiseList from "../advertise/AdvertiseList";
 import Link from "next/link";
 import Button from "@/ui/Button";
 import { BASE_LINK } from "@/fetch/config";
+import { Container } from "./Profile";
 
 async function EmployerAds({ id }: { id: number }) {
   const res = await fetch(BASE_LINK + `employer-ads/${id}`);
@@ -10,16 +11,22 @@ async function EmployerAds({ id }: { id: number }) {
 
   const ads: AdvertiseModel[] = data;
 
-  console.log(ads);
-
-  if (ads.length !== 0) {
-    return <AdvertiseList advertises={ads} />;
-  }
-
   return (
-    <Link href={`/profile/employer/advertise/${id}/create`}>
-      <Button text="ایجاد آگهی" />
-    </Link>
+    <Container bg="neutral">
+      <div className="flex flex-col gap-8">
+        <h1 className="text-primary-blue text-2xl text-center">
+          موقعیت های شغلی
+        </h1>
+
+        {ads.length ? (
+          <AdvertiseList advertises={ads} />
+        ) : (
+          <Link href={`/profile/employer/advertise/${id}/create`}>
+            <Button text="ایجاد آگهی" />
+          </Link>
+        )}
+      </div>
+    </Container>
   );
 }
 
