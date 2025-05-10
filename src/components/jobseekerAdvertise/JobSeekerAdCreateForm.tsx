@@ -2,12 +2,9 @@
 
 import { BASE_LINK } from "@/fetch/config";
 import Button from "@/ui/Button";
-import CheckBox from "@/ui/CheckBox";
 import ClientInput from "@/ui/ClientInput";
 import Form from "@/ui/Form";
 import FormHeader from "@/ui/FormHeader";
-import InputTag from "@/ui/InputTag";
-import SelectInput from "@/ui/SelectInput";
 import TextAreaInput from "@/ui/TextAreaInput";
 import { redirect } from "next/navigation";
 import { FormEvent, useState } from "react";

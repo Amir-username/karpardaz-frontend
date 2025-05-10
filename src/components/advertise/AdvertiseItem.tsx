@@ -36,6 +36,7 @@ function AdvertiseItem({ advertise, role, token }: AdvertiseItemProps) {
               role="employer"
               id={advertise.employer_id}
               isLikeOpen={!!(token && role === "jobseeker")}
+              token={token}
             />
             <AdInfo
               city={advertise.city}

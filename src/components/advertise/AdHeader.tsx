@@ -5,8 +5,8 @@ type AdHeaderProps = {
   name?: string;
   role: "jobseeker" | "employer";
   id: number;
-  isLikeOpen: boolean;
-  token: string;
+  isLikeOpen?: boolean;
+  token?: string;
 };
 
 export default function AdHeader({
