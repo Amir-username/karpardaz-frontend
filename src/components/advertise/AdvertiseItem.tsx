@@ -13,9 +13,11 @@ import { useState } from "react";
 
 type AdvertiseItemProps = {
   advertise: AdvertiseModel;
+  role?: string;
+  token?: string;
 };
 
-function AdvertiseItem({ advertise }: AdvertiseItemProps) {
+function AdvertiseItem({ advertise, role, token }: AdvertiseItemProps) {
   const [company, setCompany] = useState<EmployerModel>();
 
   useEmployerDetail(advertise.employer_id, setCompany);
@@ -33,6 +35,7 @@ function AdvertiseItem({ advertise }: AdvertiseItemProps) {
               name={company?.name}
               role="employer"
               id={advertise.employer_id}
+              isLikeOpen={!!(token && role === "jobseeker")}
             />
             <AdInfo
               city={advertise.city}
