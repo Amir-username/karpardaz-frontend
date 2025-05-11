@@ -1,17 +1,17 @@
 import axios from "axios";
-import { BASE_LINK } from "./config";
+import { BASE_LINK } from "../config";
 
-type fetchLoginEmployerType = {
+type fetchLoginJobSeekerType = {
   username: string;
   password: string;
 };
 
-export async function fetchLoginEmployer({
+export async function fetchLoginJobSeeker({
   username,
   password,
-}: fetchLoginEmployerType) {
+}: fetchLoginJobSeekerType) {
   const res = await axios.post(
-    BASE_LINK + "employer/login/",
+    BASE_LINK + "jobseeker/login/",
     { username: username, password: password },
     {
       headers: {
@@ -27,4 +27,5 @@ export async function fetchLoginEmployer({
 
     return token;
   }
+
 }

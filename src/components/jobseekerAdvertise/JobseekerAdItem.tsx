@@ -9,7 +9,7 @@ import AdInfo from "../advertise/AdInfo";
 import AdHeader from "../advertise/AdHeader";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
-import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
+import { fetchJobSeekerDetail } from "@/fetch/jobseeker/fetchJobSeekerDetail";
 
 type JobSeekerAdItemProps = {
   advertise: JobSeekrAdModel;

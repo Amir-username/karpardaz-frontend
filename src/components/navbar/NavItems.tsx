@@ -6,8 +6,8 @@ import Link from "next/link";
 import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import { EmployerDetail } from "@/models/EmployerDetail";
-import { fetchCurrentJobSeeker } from "@/fetch/fetchCurrentJobseeker";
-import { fetchCurrentEmployer } from "@/fetch/fetchCurrentEmployer";
+import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
+import { fetchCurrentEmployer } from "@/fetch/employer/fetchCurrentEmployer";
 import { useEffect, useState } from "react";
 
 

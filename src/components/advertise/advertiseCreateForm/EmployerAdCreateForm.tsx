@@ -1,6 +1,7 @@
 "use client";
 
 import { BASE_LINK } from "@/fetch/config";
+import { fetchCreateEmployerAd } from "@/fetch/employerAdvertise/fetchCreateEmployerAd";
 import Button from "@/ui/Button";
 import CheckBox from "@/ui/CheckBox";
 import ClientInput from "@/ui/ClientInput";
@@ -72,7 +73,12 @@ function EmployerAdCreateForm({ token, role }: EmployerAdCreateFormProps) {
           : experience === "۲ تا ۴ سال"
           ? "۲ تا ۴ سال سابقه کار"
           : "۴ سال به بالا",
-      gender: gender === "آقا" ? "male" : gender === 'خانم'? 'female' : "no difference",
+      gender:
+        gender === "آقا"
+          ? "male"
+          : gender === "خانم"
+          ? "female"
+          : "no difference",
       is_remote: isRemote,
       is_internship: isInternship,
       is_portfolio: isPortfolio,
@@ -91,24 +97,8 @@ function EmployerAdCreateForm({ token, role }: EmployerAdCreateFormProps) {
       benefits: benefitsItems,
     };
 
-    const fetchCreateEmployerAd = async (accessToken: string) => {
-      const res = await fetch(BASE_LINK + "advertisements/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-
-      const data = await res.json();
-
-      console.log(data);
-    };
-
     if (role === "employer") {
-      fetchCreateEmployerAd(token);
+      fetchCreateEmployerAd(token, body);
       redirect("/");
     }
   };

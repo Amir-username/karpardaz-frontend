@@ -1,4 +1,4 @@
-import { fetchEmployerDetail } from "@/fetch/fetchEmployerDetail";
+import { fetchEmployerDetail } from "@/fetch/employer/fetchEmployerDetail";
 import { EmployerDetail } from "@/models/EmployerDetail";
 import Profile from "@/components/profile/Profile";
 import ProfileInfoItem from "@/components/profile/ProfileInfoItem";

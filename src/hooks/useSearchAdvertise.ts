@@ -1,4 +1,4 @@
-import { fetchSearchAdvertise } from "@/fetch/fetchSearchAdvertise";
+import { fetchSearchAdvertise } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import { AdvertiseModel } from "@/models/Advertise";
 import { Dispatch, SetStateAction, useEffect } from "react";
 

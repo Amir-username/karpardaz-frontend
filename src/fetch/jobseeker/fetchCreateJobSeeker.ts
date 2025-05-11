@@ -1,20 +1,24 @@
 import axios, { AxiosError } from "axios";
-import { BASE_LINK } from "./config";
+import { BASE_LINK } from "../config";
 
-type fetchCreateEmployerBody = {
-  companyName: string;
+type fetchCreateJobSeekerBody = {
+  firstname: string;
+  lastname: string;
   email: string;
+  phonenumber: string;
   password: string;
 };
 
-export async function fetchCreateEmployer(body: fetchCreateEmployerBody) {
+export async function fetchCreateJobSeeker(body: fetchCreateJobSeekerBody) {
   let status = 200;
   try {
     const res = await axios.post(
-      BASE_LINK + "employers/",
+      BASE_LINK + "jobseekers/",
       {
-        company_name: body.companyName,
+        firstname: body.firstname,
+        lastname: body.lastname,
         email: body.email,
+        phonenumber: body.phonenumber,
         password: body.password,
       },
       {
@@ -24,7 +28,6 @@ export async function fetchCreateEmployer(body: fetchCreateEmployerBody) {
         },
       }
     );
-
     status = res.status;
   } catch (error) {
     if (error instanceof AxiosError) {

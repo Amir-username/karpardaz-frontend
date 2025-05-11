@@ -1,5 +1,6 @@
 "use client";
 import { BASE_LINK } from "@/fetch/config";
+import { fetchAddEmployerDetail } from "@/fetch/details/employer/fetchEmployerDetailCreate";
 import Button from "@/ui/Button";
 import ClientInput from "@/ui/ClientInput";
 import Form from "@/ui/Form";
@@ -42,25 +43,9 @@ function EmployerDetailCreateForm({
       website: website,
     };
 
-    const fetchAddEmployerDetail = async (accessToken: string) => {
-      const res = await fetch(BASE_LINK + "employer-detail/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-
-      const data = await res.json();
-
-      console.log(data);
-    };
-
     if (role === "employer") {
-      fetchAddEmployerDetail(token);
-      redirect('/')
+      fetchAddEmployerDetail(token, body);
+      redirect("/");
     }
   };
 

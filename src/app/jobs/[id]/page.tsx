@@ -1,8 +1,8 @@
 import { AdTag } from "@/components/advertise/AdTags";
 import AdDetailHeader from "@/components/advertise/detail/AdDetailHeader";
 import AdDetailInfo from "@/components/advertise/detail/AdInfo";
-import { fetchAdvertiseDetail } from "@/fetch/fetchAdvertiseDetail";
-import { fetchEmployerDetail } from "@/fetch/fetchEmployerDetail";
+import { fetchAdvertiseDetail } from "@/fetch/employerAdvertise/fetchAdvertiseDetail";
+import { fetchEmployerDetail } from "@/fetch/employer/fetchEmployerDetail";
 import { AdvertiseModel } from "@/models/Advertise";
 import { EmployerModel } from "@/models/Employer";
 import Button from "@/ui/Button";

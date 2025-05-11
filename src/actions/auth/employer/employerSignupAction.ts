@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchCreateEmployer } from "@/fetch/fetchCreateEmployer";
+import { fetchCreateEmployer } from "@/fetch/employer/fetchCreateEmployer";
 import { employerSignupSchema } from "@/validation/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

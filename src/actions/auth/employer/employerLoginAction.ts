@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchLoginEmployer } from "@/fetch/fetchLoginEmployer";
+import { fetchLoginEmployer } from "@/fetch/employer/fetchLoginEmployer";
 import { employerLoginSchema } from "@/validation/auth";
 import { AxiosError } from "axios";
 import { revalidatePath } from "next/cache";

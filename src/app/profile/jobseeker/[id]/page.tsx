@@ -1,7 +1,7 @@
 import NotHaveProfile from "@/components/profile/NotHaveProfile";
 import Profile from "@/components/profile/Profile";
 import ProfileInfoItem from "@/components/profile/ProfileInfoItem";
-import { fetchJobSeekerDetail } from "@/fetch/fetchJobSeekerDetail";
+import { fetchJobSeekerDetail } from "@/fetch/jobseeker/fetchJobSeekerDetail";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 
 async function JobSeekerProfilePage({

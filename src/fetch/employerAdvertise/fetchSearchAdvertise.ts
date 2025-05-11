@@ -1,4 +1,4 @@
-import { BASE_LINK } from "./config";
+import { BASE_LINK } from "../config";
 
 export async function fetchSearchAdvertise(query: string, signal: AbortSignal) {
   const path = query.length >= 2 ? `jobs/search/?q=${query}` : "jobs/search/";

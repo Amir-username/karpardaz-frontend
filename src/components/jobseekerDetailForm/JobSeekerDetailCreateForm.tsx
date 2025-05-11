@@ -1,6 +1,7 @@
 "use client";
 
 import { BASE_LINK } from "@/fetch/config";
+import { fetchAddJobSeekerDetail } from "@/fetch/details/jobseeker/fetchJobSeekerDetailCreate";
 import Button from "@/ui/Button";
 import CheckBox from "@/ui/CheckBox";
 import ClientInput from "@/ui/ClientInput";
@@ -109,24 +110,9 @@ function JobSeekerDetailCreateForm({
       specialized_jobs: specializedJobsItems,
     };
 
-    const fetchAddJobSeekerDetail = async (accessToken: string) => {
-      const res = await fetch(BASE_LINK + "jobseeker-detail/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-
-      const data = await res.json();
-
-      console.log(data);
-    };
     if (role === "jobseeker") {
-      fetchAddJobSeekerDetail(token);
-      redirect('/')
+      fetchAddJobSeekerDetail(token, body);
+      redirect("/");
     }
   };
 

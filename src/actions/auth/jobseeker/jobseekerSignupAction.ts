@@ -1,6 +1,6 @@
 "use server";
 
-import { fetchCreateJobSeeker } from "@/fetch/fetchCreateJobSeeker";
+import { fetchCreateJobSeeker } from "@/fetch/jobseeker/fetchCreateJobSeeker";
 import { jobSeekerSignupSchema } from "@/validation/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
