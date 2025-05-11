@@ -56,14 +56,14 @@ function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
           <div className="flex flex-col items-center w-48 gap-4 text-sm lg:gap-3">
             <div className="w-full h-0.5 bg-gray-300 rounded-lg"></div>
             <Link
-              href={"auth/jobseeker/signup"}
+              href={"/auth/jobseeker/signup"}
               className="w-full h-full"
               onClick={() => setIsActive(false)}
             >
               <Button text="ثبت نام" type="button" h="h-9" outline />
             </Link>
             <Link
-              href={"auth/jobseeker/login"}
+              href={"/auth/jobseeker/login"}
               className="w-full h-full"
               onClick={() => setIsActive(false)}
             >

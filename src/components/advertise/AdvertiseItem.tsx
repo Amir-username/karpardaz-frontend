@@ -33,6 +33,7 @@ function AdvertiseItem({ advertise, role, token }: AdvertiseItemProps) {
             <AdHeader
               title={advertise.title}
               name={company?.name}
+              adId={advertise.id}
               role="employer"
               id={advertise.employer_id}
               isLikeOpen={!!(token && role === "jobseeker")}

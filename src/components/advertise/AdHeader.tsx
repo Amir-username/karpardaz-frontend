@@ -1,8 +1,14 @@
+import FILL_FAV from "../../../public/icons/FILL_FAV.svg";
 import Link from "next/link";
+import { useState } from "react";
+import Image from "next/image";
+import { fetchDisLikeAd } from "@/fetch/likedAdvertises/fetchDisLikeAd";
+import { fetchLikeAd } from "@/fetch/likedAdvertises/fetchLikeAd";
 
 type AdHeaderProps = {
   title: string;
   name?: string;
+  adId: number;
   role: "jobseeker" | "employer";
   id: number;
   isLikeOpen?: boolean;
@@ -12,24 +18,27 @@ type AdHeaderProps = {
 export default function AdHeader({
   title,
   name,
+  adId,
   role,
   id,
   isLikeOpen,
+  token,
 }: AdHeaderProps) {
-  // const [isLiked, setIsLiked] = useState(false)
+  const [isLiked, setIsLiked] = useState(false);
 
-  // const handleLikeOrDislike =  () => {
-  //   if (isLiked) {
-  //     setIsLiked(false)
-
-  //   }
-  //   else {
-  //     setIsLiked(true)
-  //     const fetchLikeAd = async (token: string) => {
-  //       const res = await fetch(BASE_LINK + '')
-  //     }
-  //   }
-  // }
+  const handleLikeOrDislike = () => {
+    if (isLiked) {
+      setIsLiked(false);
+      if (token) {
+        fetchDisLikeAd(token, adId);
+      }
+    } else {
+      setIsLiked(true);
+      if (token) {
+        fetchLikeAd(token, adId);
+      }
+    }
+  };
   return (
     <div className="flex justify-between w-full">
       <div className="flex flex-col justify-between h-full gap-2">
@@ -39,9 +48,15 @@ export default function AdHeader({
         </Link>
       </div>
       {isLikeOpen && (
-        <span className="cursor-pointer material-symbols-outlined text-neutral-mid">
-          favorite
-        </span>
+        <div onClick={handleLikeOrDislike}>
+          {isLiked ? (
+            <Image src={FILL_FAV} alt="fill fav icon" />
+          ) : (
+            <span className="cursor-pointer material-symbols-outlined text-neutral-mid">
+              favorite
+            </span>
+          )}
+        </div>
       )}
     </div>
   );
