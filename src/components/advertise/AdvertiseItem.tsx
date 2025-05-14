@@ -15,9 +15,15 @@ type AdvertiseItemProps = {
   advertise: AdvertiseModel;
   role?: string;
   token?: string;
+  isFav: boolean;
 };
 
-function AdvertiseItem({ advertise, role, token }: AdvertiseItemProps) {
+function AdvertiseItem({
+  advertise,
+  role,
+  token,
+  isFav = false,
+}: AdvertiseItemProps) {
   const [company, setCompany] = useState<EmployerModel>();
 
   useEmployerDetail(advertise.employer_id, setCompany);
@@ -37,6 +43,7 @@ function AdvertiseItem({ advertise, role, token }: AdvertiseItemProps) {
               role="employer"
               id={advertise.employer_id}
               isLikeOpen={!!(token && role === "jobseeker")}
+              isFav={isFav}
               token={token}
             />
             <AdInfo

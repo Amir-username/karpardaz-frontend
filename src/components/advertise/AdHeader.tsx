@@ -12,6 +12,7 @@ type AdHeaderProps = {
   role: "jobseeker" | "employer";
   id: number;
   isLikeOpen?: boolean;
+  isFav: boolean;
   token?: string;
 };
 
@@ -23,19 +24,20 @@ export default function AdHeader({
   id,
   isLikeOpen,
   token,
+  isFav = false,
 }: AdHeaderProps) {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(isFav);
 
   const handleLikeOrDislike = () => {
     if (isLiked) {
-      setIsLiked(false);
-      if (token) {
+      if (token && isFav) {
         fetchDisLikeAd(token, adId);
+        setIsLiked(false);
       }
     } else {
-      setIsLiked(true);
-      if (token) {
+      if (token && !isFav) {
         fetchLikeAd(token, adId);
+        setIsLiked(true);
       }
     }
   };
@@ -50,7 +52,7 @@ export default function AdHeader({
       {isLikeOpen && (
         <div onClick={handleLikeOrDislike}>
           {isLiked ? (
-            <Image src={FILL_FAV} alt="fill fav icon" />
+            <Image src={FILL_FAV} alt="fill fav icon" className="cursor-pointer"/>
           ) : (
             <span className="cursor-pointer material-symbols-outlined text-neutral-mid">
               favorite
