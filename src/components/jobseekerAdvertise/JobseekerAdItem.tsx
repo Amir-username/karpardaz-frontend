@@ -12,10 +12,18 @@ import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import { fetchJobSeekerDetail } from "@/fetch/jobseeker/fetchJobSeekerDetail";
 
 type JobSeekerAdItemProps = {
+  isFav: boolean;
   advertise: JobSeekrAdModel;
+  token?: string;
+  role?: string;
 };
 
-function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
+function JobSeekerAdItem({
+  advertise,
+  token,
+  role,
+  isFav,
+}: JobSeekerAdItemProps) {
   const [jobSeeker, setJobSeeker] = useState<JobSeekerDetailModel>();
 
   useEffect(() => {
@@ -27,8 +35,6 @@ function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
     fetchJobSeeker();
   }, []);
 
-  console.log(jobSeeker);
-
   return (
     <li className="flex flex-col gap-3 rounded-lg shadow-md md:w-96 w-80 ring-1 ring-gray-200">
       <div className="flex gap-3 px-3 pt-3">
@@ -38,9 +44,13 @@ function JobSeekerAdItem({ advertise }: JobSeekerAdItemProps) {
         <div className="flex-2">
           <div className="flex flex-col gap-3">
             <AdHeader
+              isLikeOpen={role === "employer"}
+              adId={advertise.id}
+              isFav={isFav}
               title={advertise.title}
               name={`${jobSeeker?.firstname} ${jobSeeker?.lastname}`}
               role="jobseeker"
+              token={token}
               id={advertise.jobseeker_id}
             />
             <AdInfo

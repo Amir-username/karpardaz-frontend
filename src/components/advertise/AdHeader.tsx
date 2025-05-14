@@ -31,16 +31,25 @@ export default function AdHeader({
   const handleLikeOrDislike = () => {
     if (isLiked) {
       if (token && isFav) {
-        fetchDisLikeAd(token, adId);
+        fetchDisLikeAd(
+          token,
+          adId,
+          role === "jobseeker" ? "employer" : "jobseeker"
+        );
         setIsLiked(false);
       }
     } else {
       if (token && !isFav) {
-        fetchLikeAd(token, adId);
+        fetchLikeAd(
+          token,
+          adId,
+          role === "jobseeker" ? "employer" : "jobseeker"
+        );
         setIsLiked(true);
       }
     }
   };
+
   return (
     <div className="flex justify-between w-full">
       <div className="flex flex-col justify-between h-full gap-2">
@@ -52,7 +61,11 @@ export default function AdHeader({
       {isLikeOpen && (
         <div onClick={handleLikeOrDislike}>
           {isLiked ? (
-            <Image src={FILL_FAV} alt="fill fav icon" className="cursor-pointer"/>
+            <Image
+              src={FILL_FAV}
+              alt="fill fav icon"
+              className="cursor-pointer"
+            />
           ) : (
             <span className="cursor-pointer material-symbols-outlined text-neutral-mid">
               favorite

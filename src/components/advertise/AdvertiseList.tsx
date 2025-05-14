@@ -2,9 +2,7 @@
 
 import { AdvertiseModel } from "@/models/Advertise";
 import AdvertiseItem from "./AdvertiseItem";
-import { useEffect, useState } from "react";
-import { BASE_LINK } from "@/fetch/config";
-import axios from "axios";
+import { useAdvertiseLike } from "@/hooks/useAdvertiseLike";
 
 type AdvertiseListProps = {
   advertises: AdvertiseModel[];
@@ -13,27 +11,7 @@ type AdvertiseListProps = {
 };
 
 function AdvertiseList({ advertises, token, role }: AdvertiseListProps) {
-  const [favAdvertises, setFavAdvertises] = useState<number[]>([]);
-
-  useEffect(() => {
-    const fetchFavAds = async (token: string) => {
-      const res = await axios.get(BASE_LINK + "jobseeker-favorites/", {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.data;
-      setFavAdvertises(data)
-    };
-
-    if (token) {
-      fetchFavAds(token);
-    }
-  }, [token]);
-
-  console.log(advertises);
-  console.log(favAdvertises);
+  const { favAdvertises } = useAdvertiseLike("jobseeker-favorites/", token);
 
   return (
     <ul className="flex flex-col gap-8 justify-center items-center">
