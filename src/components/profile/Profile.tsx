@@ -4,6 +4,13 @@ import React from "react";
 import { AdTag } from "../advertise/AdTags";
 import EmployerAds from "./EmployerAds";
 import JobSeeekerAds from "./JobSeekerAds";
+import { BASE_LINK } from "@/fetch/config";
+import { cookies } from "next/headers";
+import { JobSeekerModel } from "@/models/JobSeeker";
+import { EmployerModel } from "@/models/Employer";
+import Link from "next/link";
+import ImageFileInput from "@/ui/AvatarFileInput";
+import BackdropFileInput from "@/ui/BackdropFileInput";
 
 type ProfileProps = {
   name: string;
@@ -14,7 +21,7 @@ type ProfileProps = {
   id: number;
 };
 
-function Profile({
+async function Profile({
   children,
   name,
   description,
@@ -22,23 +29,46 @@ function Profile({
   role,
   id,
 }: ProfileProps) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+
+  const res = await fetch(BASE_LINK + `current-${role}/`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token?.value}`,
+    },
+  });
+
+  const data: JobSeekerModel | EmployerModel = await res.json();
+
   return (
-    <div className="flex flex-col gap-8 p-8 lg:px-96">
+    <div className="relative flex flex-col gap-8 p-8 lg:px-96">
       <Container>
-        <Image
-          src={DEFAULT_AVATAR}
-          alt="آواتار پیشفرض شرکت"
-          className="w-28 h-28 rounded-full ring-2 ring-neutral-mid bg-white p-1"
-        />
+        {res.status === 200 && data.id === id && (
+          <BackdropFileInput icon="add_a_photo" />
+        )}
+        <div className="relative">
+          <Image
+            src={DEFAULT_AVATAR}
+            alt="آواتار پیشفرض شرکت"
+            className="p-1 bg-white rounded-full w-28 h-28 ring-2 ring-neutral-mid"
+          />
+          {res.status === 200 && data.id === id && (
+            <ImageFileInput icon="add_a_photo" />
+          )}
+          {/* <span className="absolute p-1.5 text-white rounded-full cursor-pointer material-symbols-outlined top-20 bg-primary-blue">
+            add_a_photo
+          </span> */}
+        </div>
         <h1 className="text-2xl font-semibold text-neutral-light">{name}</h1>
         {children}
       </Container>
       <Container>
-        <p className="text-lg text-neutral-light px-8">{description}</p>
+        <p className="px-8 text-lg text-neutral-light">{description}</p>
       </Container>
       {technologies && (
         <Container>
-          <ul className="flex gap-3 items-center justify-center flex-wrap px-8">
+          <ul className="flex flex-wrap items-center justify-center gap-3 px-8">
             {technologies.map((tech, i) => {
               return <AdTag name={tech} key={i} size="lg" />;
             })}
@@ -65,7 +95,7 @@ export function Container({
 }) {
   return (
     <div
-      className={`flex flex-col gap-6 items-center py-8  rounded-lg ${
+      className={`relative flex flex-col gap-6 items-center py-8  rounded-lg ${
         bg === "primary"
           ? "bg-primary-blue"
           : "bg-neutral-light ring-1 ring-primary-blue"
