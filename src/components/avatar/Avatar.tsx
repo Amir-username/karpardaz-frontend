@@ -1,0 +1,23 @@
+import { BASE_LINK } from "@/fetch/config";
+import Image from "next/image";
+import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
+
+async function Avatar({ id, role }: { id: number; role: string }) {
+  const avatarRes = await fetch(BASE_LINK + `get-${role}-avatar/${id}`);
+
+  const buffer = await avatarRes.arrayBuffer();
+  const base64 = Buffer.from(buffer).toString("base64");
+  const mimeType = avatarRes.headers.get("content-type") || "image/jpeg";
+  const avatarSRC = `data:${mimeType};base64,${base64}`;
+  return (
+    <Image
+      src={avatarSRC ? avatarSRC : DEFAULT_AVATAR}
+      alt="آواتار پیشفرض شرکت"
+      className="p-1 bg-white rounded-full w-28 h-28 ring-2 ring-neutral-mid"
+      width={500}
+      height={300}
+    />
+  );
+}
+
+export default Avatar;

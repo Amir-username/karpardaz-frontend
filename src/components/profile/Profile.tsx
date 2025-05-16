@@ -1,5 +1,3 @@
-import Image from "next/image";
-import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import React from "react";
 import { AdTag } from "../advertise/AdTags";
 import EmployerAds from "./EmployerAds";
@@ -8,9 +6,11 @@ import { BASE_LINK } from "@/fetch/config";
 import { cookies } from "next/headers";
 import { JobSeekerModel } from "@/models/JobSeeker";
 import { EmployerModel } from "@/models/Employer";
-import Link from "next/link";
-import ImageFileInput from "@/ui/AvatarFileInput";
 import BackdropFileInput from "@/ui/BackdropFileInput";
+import Avatar from "../avatar/Avatar";
+import AvatarFileInput from "@/ui/AvatarFileInput";
+import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
+import Image, { StaticImageData } from "next/image";
 
 type ProfileProps = {
   name: string;
@@ -41,24 +41,23 @@ async function Profile({
 
   const data: JobSeekerModel | EmployerModel = await res.json();
 
+  const backdropRes = await fetch(BASE_LINK + `get-jobseeker-backdrop/${id}`);
+  const buffer = await backdropRes.arrayBuffer();
+  const base64 = Buffer.from(buffer).toString("base64");
+  const mimeType = backdropRes.headers.get("content-type") || "image/jpeg";
+  const backdropSRC = `data:${mimeType};base64,${base64}`;
+
   return (
     <div className="relative flex flex-col gap-8 p-8 lg:px-96">
-      <Container>
+      <Container image={backdropRes.status === 200 ? backdropSRC : 'empty'}>
         {res.status === 200 && data.id === id && (
-          <BackdropFileInput icon="add_a_photo" />
+          <BackdropFileInput icon="add_a_photo" token={token?.value!} />
         )}
         <div className="relative">
-          <Image
-            src={DEFAULT_AVATAR}
-            alt="آواتار پیشفرض شرکت"
-            className="p-1 bg-white rounded-full w-28 h-28 ring-2 ring-neutral-mid"
-          />
+          <Avatar id={id} role="jobseeker" />
           {res.status === 200 && data.id === id && (
-            <ImageFileInput icon="add_a_photo" />
+            <AvatarFileInput icon="add_a_photo" token={token?.value!} />
           )}
-          {/* <span className="absolute p-1.5 text-white rounded-full cursor-pointer material-symbols-outlined top-20 bg-primary-blue">
-            add_a_photo
-          </span> */}
         </div>
         <h1 className="text-2xl font-semibold text-neutral-light">{name}</h1>
         {children}
@@ -86,20 +85,37 @@ async function Profile({
 
 export default Profile;
 
+type ContainerProps = {
+  children: React.ReactNode;
+  bg?: "primary" | "neutral";
+  image?: string | "empty";
+};
+
 export function Container({
   children,
   bg = "primary",
-}: {
-  children: React.ReactNode;
-  bg?: "primary" | "neutral";
-}) {
+  image = "empty",
+}: ContainerProps) {
+  if (image === "empty") {
+    return (
+      <div
+        className={`relative flex flex-col items-center gap-6 py-8 rounded-lg ${
+          bg === "primary" ? "bg-primary-blue" : "bg-neutral-light"
+        }`}
+      >
+        {children}
+      </div>
+    );
+  }
   return (
     <div
-      className={`relative flex flex-col gap-6 items-center py-8  rounded-lg ${
-        bg === "primary"
-          ? "bg-primary-blue"
-          : "bg-neutral-light ring-1 ring-primary-blue"
-      }`}
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      className={`relative flex flex-col items-center gap-6 py-8 rounded-lg`}
     >
       {children}
     </div>

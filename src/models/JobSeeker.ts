@@ -5,4 +5,5 @@ export type JobSeekerModel = {
   email: string;
   phonenumber: string;
   city: string
+  avatar: string
 };

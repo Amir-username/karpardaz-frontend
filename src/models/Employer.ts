@@ -1,4 +1,5 @@
 export type EmployerModel = {
     id: number,
-    name: string
+    name: string,
+    avatar: string
 }
