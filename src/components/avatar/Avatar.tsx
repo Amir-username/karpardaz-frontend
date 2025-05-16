@@ -9,9 +9,10 @@ async function Avatar({ id, role }: { id: number; role: string }) {
   const base64 = Buffer.from(buffer).toString("base64");
   const mimeType = avatarRes.headers.get("content-type") || "image/jpeg";
   const avatarSRC = `data:${mimeType};base64,${base64}`;
+
   return (
     <Image
-      src={avatarSRC ? avatarSRC : DEFAULT_AVATAR}
+      src={avatarRes.status === 200 ? avatarSRC : DEFAULT_AVATAR}
       alt="آواتار پیشفرض شرکت"
       className="p-1 bg-white rounded-full w-28 h-28 ring-2 ring-neutral-mid"
       width={500}

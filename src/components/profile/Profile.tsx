@@ -9,8 +9,6 @@ import { EmployerModel } from "@/models/Employer";
 import BackdropFileInput from "@/ui/BackdropFileInput";
 import Avatar from "../avatar/Avatar";
 import AvatarFileInput from "@/ui/AvatarFileInput";
-import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
-import Image, { StaticImageData } from "next/image";
 
 type ProfileProps = {
   name: string;
@@ -49,7 +47,7 @@ async function Profile({
 
   return (
     <div className="relative flex flex-col gap-8 p-8 lg:px-96">
-      <Container image={backdropRes.status === 200 ? backdropSRC : 'empty'}>
+      <Container image={backdropRes.status === 200 ? backdropSRC : "empty"}>
         {res.status === 200 && data.id === id && (
           <BackdropFileInput icon="add_a_photo" token={token?.value!} />
         )}
@@ -115,9 +113,11 @@ export function Container({
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className={`relative flex flex-col items-center gap-6 py-8 rounded-lg`}
+      className={`relative rounded-lg`}
     >
-      {children}
+      <div style={{
+        background: "rgba(0,0,0,0.6)",
+      }} className="flex flex-col items-center gap-6 h-full py-8">{children}</div>
     </div>
   );
 }

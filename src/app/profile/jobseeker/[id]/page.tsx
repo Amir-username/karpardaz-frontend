@@ -24,8 +24,10 @@ async function JobSeekerProfilePage({
         id={Number(id)}
       >
         <ProfileInfoItem content={jobseeker?.job_group} />
-        <ProfileInfoItem content={jobseeker?.experience} />
-        <ProfileInfoItem content={jobseeker?.salary} />
+        {!(jobseeker.experience === "بدون سابقه کار") && (
+          <ProfileInfoItem content={jobseeker?.experience} />
+        )}
+        <ProfileInfoItem content={jobseeker?.position} />
       </Profile>
     );
   }
