@@ -39,7 +39,7 @@ async function Profile({
 
   const data: JobSeekerModel | EmployerModel = await res.json();
 
-  const backdropRes = await fetch(BASE_LINK + `get-jobseeker-backdrop/${id}`);
+  const backdropRes = await fetch(BASE_LINK + `get-${role}-backdrop/${id}`);
   const buffer = await backdropRes.arrayBuffer();
   const base64 = Buffer.from(buffer).toString("base64");
   const mimeType = backdropRes.headers.get("content-type") || "image/jpeg";
@@ -52,7 +52,7 @@ async function Profile({
           <BackdropFileInput icon="add_a_photo" token={token?.value!} />
         )}
         <div className="relative">
-          <Avatar id={id} role="jobseeker" />
+          <Avatar id={id} role={role} />
           {res.status === 200 && data.id === id && (
             <AvatarFileInput icon="add_a_photo" token={token?.value!} />
           )}
@@ -115,9 +115,14 @@ export function Container({
       }}
       className={`relative rounded-lg`}
     >
-      <div style={{
-        background: "rgba(0,0,0,0.6)",
-      }} className="flex flex-col items-center gap-6 h-full py-8">{children}</div>
+      <div
+        style={{
+          background: "rgba(0,0,0,0.6)",
+        }}
+        className="flex flex-col items-center gap-6 h-full py-8"
+      >
+        {children}
+      </div>
     </div>
   );
 }

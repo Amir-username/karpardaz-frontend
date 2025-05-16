@@ -41,7 +41,12 @@ export async function JobSeekerLoginAction(
         path: "/",
       });
 
-      cookieStore.set("role", "jobseeker");
+      cookieStore.set("role", "jobseeker", {
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 60 * 60 * 24 * 7,
+        path: "/",
+      });
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {

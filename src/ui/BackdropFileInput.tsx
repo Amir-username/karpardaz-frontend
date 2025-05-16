@@ -6,16 +6,17 @@ import { useRef } from "react";
 type BackdropInputProps = {
   icon: string;
   token: string;
+  role: "jobseeker" | "employer";
 };
 
-function BackdropFileInput({ icon, token }: BackdropInputProps) {
+function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadBackdrop = () => {
     console.log(fileInputRef.current?.files![0]);
     const formData = new FormData();
     const fetchUpload = async (token: string, formData: FormData) => {
-      const res = await fetch(BASE_LINK + "jobseeker-backdrop/upload/", {
+      const res = await fetch(BASE_LINK + `${role}-backdrop/upload/`, {
         method: "POST",
         headers: {
           accept: "application/json",
