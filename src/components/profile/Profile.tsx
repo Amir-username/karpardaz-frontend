@@ -49,12 +49,20 @@ async function Profile({
     <div className="relative flex flex-col gap-8 p-8 lg:px-96">
       <Container image={backdropRes.status === 200 ? backdropSRC : "empty"}>
         {res.status === 200 && data.id === id && (
-          <BackdropFileInput icon="add_a_photo" token={token?.value!} />
+          <BackdropFileInput
+            icon="add_a_photo"
+            token={token?.value!}
+            role={role}
+          />
         )}
         <div className="relative">
           <Avatar id={id} role={role} />
           {res.status === 200 && data.id === id && (
-            <AvatarFileInput icon="add_a_photo" token={token?.value!} />
+            <AvatarFileInput
+              icon="add_a_photo"
+              token={token?.value!}
+              role={role}
+            />
           )}
         </div>
         <h1 className="text-2xl font-semibold text-neutral-light">{name}</h1>
