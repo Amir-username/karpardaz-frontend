@@ -1,6 +1,7 @@
 import NotHaveProfile from "@/components/profile/NotHaveProfile";
 import Profile from "@/components/profile/Profile";
 import ProfileInfoItem from "@/components/profile/ProfileInfoItem";
+import Resume from "@/components/resume/Resume";
 import { fetchJobSeekerDetail } from "@/fetch/jobseeker/fetchJobSeekerDetail";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 
@@ -28,6 +29,7 @@ async function JobSeekerProfilePage({
           <ProfileInfoItem content={jobseeker?.experience} />
         )}
         <ProfileInfoItem content={jobseeker?.position} />
+        <Resume id={Number(id)} />;
       </Profile>
     );
   }
