@@ -29,7 +29,7 @@ async function JobSeekerProfilePage({
           <ProfileInfoItem content={jobseeker?.experience} />
         )}
         <ProfileInfoItem content={jobseeker?.position} />
-        <Resume id={Number(id)} />;
+        <Resume id={Number(id)} />
       </Profile>
     );
   }

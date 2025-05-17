@@ -1,6 +1,18 @@
 import { BASE_LINK } from "@/fetch/config";
+import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
+import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
+import { Span } from "next/dist/trace";
+import { cookies } from "next/headers";
+import UploadResume from "./UploadResume";
 
 async function Resume({ id }: { id: number }) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+
+  const curentJobseeker: JobSeekerDetailModel = await fetchCurrentJobSeeker(
+    token?.value!
+  );
+
   const res = await fetch(BASE_LINK + `get-resume/${id}`);
   if (res.status === 200)
     return (
@@ -10,6 +22,11 @@ async function Resume({ id }: { id: number }) {
         </div>
       </a>
     );
+  else if (curentJobseeker) {
+    if (curentJobseeker.id === id) {
+      return <UploadResume token={token?.value!} />;
+    }
+  }
 }
 
 export default Resume;
