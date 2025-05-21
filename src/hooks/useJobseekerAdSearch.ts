@@ -1,9 +1,11 @@
+import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import { fetchSearchJobSeekerAds } from "@/fetch/jobseeker/fetchSearchJobseekerAds";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function useJobSeekerSearchAds(
   searchInput: string,
+  filters: FilterType,
   setJobsData: Dispatch<SetStateAction<JobSeekrAdModel[]>>
 ) {
   useEffect(() => {
@@ -12,6 +14,7 @@ export function useJobSeekerSearchAds(
       // try {
       const adsData = await fetchSearchJobSeekerAds(
         searchInput,
+        filters,
         controller.signal
       );
       setJobsData(adsData);
@@ -34,5 +37,14 @@ export function useJobSeekerSearchAds(
       controller.abort();
       clearTimeout(debounceTimer);
     };
-  }, [searchInput]);
+  }, [
+    searchInput,
+    filters.isInternship,
+    filters.isPortfolio,
+    filters.isRemote,
+    filters.experience,
+    filters.salary,
+    filters.gender,
+    filters.position,
+  ]);
 }

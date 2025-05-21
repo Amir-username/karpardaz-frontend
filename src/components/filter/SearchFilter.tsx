@@ -18,7 +18,6 @@ export default function SearchFilter({
   const [isInternship, setIsInternship] = useState<boolean>(false);
   const [isRemote, setIsRemote] = useState<boolean>(false);
   const [isPortfolio, setIsPortfolio] = useState<boolean>(false);
-  const [city, setCity] = useState<string>("");
   const [salary, setSalary] = useState<string>("");
   const [experience, setExperience] = useState<string>("");
   const [gender, setGender] = useState<string>("");
@@ -30,7 +29,6 @@ export default function SearchFilter({
       isInternship: isInternship,
       isRemote: isRemote,
       isPortfolio: isPortfolio,
-      city: city,
       salary: salary,
       experience: experience,
       gender: gender,
@@ -73,12 +71,6 @@ export default function SearchFilter({
             setActive={setIsPortfolio}
           />
         </div>
-        <ClientInput
-          placeholder="شهر"
-          icon="house"
-          value={city}
-          setValue={setCity}
-        />
         <div className="flex flex-col gap-3 w-96">
           <SelectInput
             label="حقوق"

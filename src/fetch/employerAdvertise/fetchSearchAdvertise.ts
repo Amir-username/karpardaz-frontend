@@ -6,9 +6,7 @@ import {
 } from "@/models/filterTypes";
 import { BASE_LINK } from "../config";
 
-// jobs/search/?q=[string]&is_internship=[bool]&is_remote=[bool]&is_portfolio=[bool]
-
-type SearchParams = {
+export type SearchParams = {
   q?: string;
   is_internship?: boolean;
   is_remote?: boolean;
@@ -21,7 +19,7 @@ type SearchParams = {
 };
 
 // Utility to build the query string
-function buildQuery(params: SearchParams): string {
+export function buildQuery(params: SearchParams): string {
   const searchParams = new URLSearchParams();
   if (params.q) searchParams.append("search_q", params.q);
   if (params.is_internship !== undefined)
@@ -61,7 +59,6 @@ export async function fetchSearchAdvertise(
   filters: FilterType,
   signal: AbortSignal
 ) {
-  // const path = query.length >= 2 ? `jobs/search/?q=${query}` : "jobs/search/";
   const searchParams: SearchParams = {
     q: query,
     is_internship: filters.isInternship ? filters.isInternship : undefined,
