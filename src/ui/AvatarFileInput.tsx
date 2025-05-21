@@ -6,16 +6,17 @@ import { useRef } from "react";
 type AvatarInputProps = {
   icon: string;
   token: string;
+  role: 'jobseeker' | 'employer'
 };
 
-function AvatarFileInput({ icon, token }: AvatarInputProps) {
+function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadAvatar = () => {
     console.log(fileInputRef.current?.files![0]);
     const formData = new FormData();
     const fetchUpload = async (token: string, formData: FormData) => {
-      const res = await fetch(BASE_LINK + "jobseeker-avatar/upload/", {
+      const res = await fetch(BASE_LINK + `${role}-avatar/upload/`, {
         method: "POST",
         headers: {
           accept: "application/json",
