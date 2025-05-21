@@ -1,16 +1,18 @@
 "use client";
 
+import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import { useSearchAdvertise } from "@/hooks/useSearchAdvertise";
 import { AdvertiseModel } from "@/models/Advertise";
 import { Dispatch, SetStateAction, useState } from "react";
 type SearchBoxProps = {
   setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>;
+  filters: FilterType;
 };
 
-function SearchBox({ setJobsData }: SearchBoxProps) {
+function SearchBox({ setJobsData, filters }: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useSearchAdvertise(searchInput, setJobsData);
+  useSearchAdvertise(searchInput, filters, setJobsData);
 
   return (
     <div className="relative w-full rounded-lg">

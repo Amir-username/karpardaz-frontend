@@ -5,6 +5,13 @@ import AdvertiseList from "../advertise/AdvertiseList";
 import SearchBox from "./SearchBox";
 import { useState } from "react";
 import SearchFilter from "../filter/SearchFilter";
+import {
+  ExperienceType,
+  GenderType,
+  PositionType,
+  SalaryType,
+} from "@/models/filterTypes";
+import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 
 type JobsResultProps = {
   token?: string;
@@ -13,22 +20,13 @@ type JobsResultProps = {
 
 function JobsResult({ token, role }: JobsResultProps) {
   const [jobsData, setJobsData] = useState<AdvertiseModel[]>([]);
-  const [isInternship, setIsInternship] = useState<boolean>(false);
-  const [isRemote, setIsRemote] = useState<boolean>(false);
-  const [isPortfolio, setIsPortfolio] = useState<boolean>(false);
+  const [filters, setFilters] = useState<FilterType>({});
 
   return (
     <main className="flex flex-col gap-12">
       <header className="flex flex-col gap-5">
-        <SearchBox setJobsData={setJobsData} />
-        <SearchFilter
-          isInternship={isInternship}
-          isRemote={isRemote}
-          isPortfolio={isPortfolio}
-          setIsInternship={setIsInternship}
-          setIsRemote={setIsRemote}
-          setIsPortfolio={setIsPortfolio}
-        />
+        <SearchBox setJobsData={setJobsData} filters={filters} />
+        <SearchFilter filters={filters} setFilters={setFilters} />
       </header>
       {jobsData ? (
         <AdvertiseList advertises={jobsData} token={token} role={role} />
