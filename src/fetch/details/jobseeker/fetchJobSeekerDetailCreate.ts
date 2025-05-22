@@ -1,6 +1,6 @@
 import { BASE_LINK } from "@/fetch/config";
 
-type BodyType = {};
+type BodyType = object;
 
 export const fetchAddJobSeekerDetail = async (
   accessToken: string,

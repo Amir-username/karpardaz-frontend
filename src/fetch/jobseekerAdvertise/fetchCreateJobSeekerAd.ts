@@ -1,8 +1,6 @@
 import { BASE_LINK } from "../config";
 
-type BodyType = {};
-
-export const fetchAddJobSeekerAd = async (accessToken: string, body: BodyType) => {
+export const fetchAddJobSeekerAd = async (accessToken: string, body: object) => {
   const res = await fetch(BASE_LINK + "jobseeker-ads/", {
     method: "POST",
     headers: {

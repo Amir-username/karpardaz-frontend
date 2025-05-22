@@ -1,7 +1,6 @@
 import { BASE_LINK } from "@/fetch/config";
 import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
-import { Span } from "next/dist/trace";
 import { cookies } from "next/headers";
 import UploadResume from "./UploadResume";
 
@@ -10,7 +9,7 @@ async function Resume({ id }: { id: number }) {
   const token = cookieStore.get("token");
 
   const curentJobseeker: JobSeekerDetailModel = await fetchCurrentJobSeeker(
-    token?.value!
+    token?.value
   );
 
   const res = await fetch(BASE_LINK + `get-resume/${id}`);
@@ -24,7 +23,7 @@ async function Resume({ id }: { id: number }) {
     );
   else if (curentJobseeker) {
     if (curentJobseeker.id === id) {
-      return <UploadResume token={token?.value!} />;
+      return <UploadResume token={token?.value} />;
     }
   }
 }

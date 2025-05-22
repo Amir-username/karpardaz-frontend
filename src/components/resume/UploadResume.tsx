@@ -3,7 +3,7 @@
 import { BASE_LINK } from "@/fetch/config";
 import { useRef } from "react";
 
-function UploadResume({ token }: { token: string }) {
+function UploadResume({ token }: { token?: string }) {
   const resumeRef = useRef<HTMLInputElement>(null);
 
   const handleUplaodResume = () => {
@@ -24,7 +24,7 @@ function UploadResume({ token }: { token: string }) {
     };
     if (resumeRef.current?.files) {
       formData.append("file", resumeRef.current.files[0]);
-      fetchUpload(token, formData);
+      fetchUpload(token!, formData);
     }
   };
 

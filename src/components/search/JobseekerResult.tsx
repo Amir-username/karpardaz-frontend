@@ -23,7 +23,7 @@ function JobSeekerResult({ token, role }: JobSeekerResultProps) {
           filters={filters}
           setJobseekerAds={setJobSeekerAds}
         />
-        <SearchFilter filters={filters} setFilters={setFilters} />
+        <SearchFilter setFilters={setFilters} />
       </header>
       {jobSeekerAds ? (
         <JobSeekerAdList advertises={jobSeekerAds} token={token} role={role} />

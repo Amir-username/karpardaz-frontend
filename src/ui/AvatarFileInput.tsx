@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 type AvatarInputProps = {
   icon: string;
-  token: string;
+  token?: string;
   role: 'jobseeker' | 'employer'
 };
 
@@ -30,7 +30,7 @@ function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
     };
     if (fileInputRef.current?.files) {
       formData.append("file", fileInputRef.current.files[0]);
-      fetchUpload(token, formData);
+      fetchUpload(token!, formData);
     }
   };
 

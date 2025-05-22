@@ -5,12 +5,6 @@ import AdvertiseList from "../advertise/AdvertiseList";
 import SearchBox from "./SearchBox";
 import { useState } from "react";
 import SearchFilter from "../filter/SearchFilter";
-import {
-  ExperienceType,
-  GenderType,
-  PositionType,
-  SalaryType,
-} from "@/models/filterTypes";
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 
 type JobsResultProps = {
@@ -26,7 +20,7 @@ function JobsResult({ token, role }: JobsResultProps) {
     <main className="flex flex-col gap-12">
       <header className="flex flex-col gap-5">
         <SearchBox setJobsData={setJobsData} filters={filters} />
-        <SearchFilter filters={filters} setFilters={setFilters} />
+        <SearchFilter setFilters={setFilters} />
       </header>
       {jobsData ? (
         <AdvertiseList advertises={jobsData} token={token} role={role} />
