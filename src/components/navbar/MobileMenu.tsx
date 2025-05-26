@@ -50,6 +50,14 @@ function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
             آگهی کارجویان
           </li>
         </Link>
+        <Link href={"/"}>
+          <li
+            className="text-xl text-neutral-dark"
+            onClick={() => setIsActive(false)}
+          >
+            درخواست های من
+          </li>
+        </Link>
         {token ? (
           <LogoutButton token={token} />
         ) : (

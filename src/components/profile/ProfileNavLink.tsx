@@ -63,26 +63,13 @@ export default function ProfileNavLink({
               >
                 پروفایل
               </DropDownItem>
-              <DropDownItem>درخواست های من</DropDownItem>
+              <DropDownItem link="/requests/jobseeker/my-requests/">
+                درخواست های من
+              </DropDownItem>
               <DropDownItem>
                 <LogoutButton token={token} />
               </DropDownItem>
             </DropDownMenu>
-            {/* <ul
-              className={`${
-                !isOpen && "hidden"
-              } absolute top-14 rounded-lg shadow-sm flex flex-col gap-2`}
-            >
-              <li className="text-sm hover:bg-gray-200 p-3 rounded-lg">
-                پروفایل
-              </li>
-              <li className="text-sm hover:bg-gray-200 p-3 rounded-lg">
-                درخواست های من
-              </li>
-              <li className="text-sm p-3 rounded-lg">
-                <LogoutButton token={token} />
-              </li>
-            </ul> */}
           </div>
         </>
       ) : // </Link>
