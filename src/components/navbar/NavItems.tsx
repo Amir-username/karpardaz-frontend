@@ -9,7 +9,7 @@ import { EmployerDetail } from "@/models/EmployerDetail";
 import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
 import { fetchCurrentEmployer } from "@/fetch/employer/fetchCurrentEmployer";
 import { useEffect, useState } from "react";
-
+import ProfileNavLink from "../profile/ProfileNavLink";
 
 type NavItemsProps = {
   token: string | undefined;
@@ -43,8 +43,6 @@ function NavItems({ token, role }: NavItemsProps) {
     }
   }, [role, token]);
 
-
-
   return (
     <ul className="items-center hidden gap-2 pl-8 md:flex lg:gap-4">
       <Link href={"/jobs"}>
@@ -53,43 +51,12 @@ function NavItems({ token, role }: NavItemsProps) {
       <Link href={"/jobseeker-ads"}>
         <li>آگهی کارجویان</li>
       </Link>
-      <li>
-        {currentJobSeeker || currentEmployer ? (
-          <Link
-            href={
-              role === "jobseeker"
-                ? `/profile/jobseeker/${currentJobSeeker?.id}`
-                : `/profile/employer/${currentEmployer?.id}`
-            }
-          >
-            <div className="flex gap-3 pr-8 items-center cursor-pointer">
-              <h3 className="text-lg">
-                {role === "jobseeker"
-                  ? currentJobSeeker!.firstname +
-                    " " +
-                    currentJobSeeker!.lastname
-                  : role === "employer"
-                  ? currentEmployer!.company_name
-                  : "نام کاربر"}
-              </h3>
-              <Image
-                src={DEFAULT_AVATAR}
-                alt="آواتار پیشفرض شرکت"
-                className="w-12 h-12 rounded-full ring-2 ring-neutral-mid"
-              />
-            </div>
-          </Link>
-        ) : !token ? (
-          <div className="flex items-center w-48 gap-2 text-sm lg:gap-3">
-            <Link href={"/auth/jobseeker/signup"} className="w-full h-full">
-              <Button text="ثبت نام" type="button" h="h-9" outline />
-            </Link>
-            <Link href={"/auth/jobseeker/login"} className="w-full h-full">
-              <Button text="ورود" type="button" h="h-9" />
-            </Link>
-          </div>
-        ) : null}
-      </li>
+      <ProfileNavLink
+        currentEmployer={currentEmployer}
+        currentJobSeeker={currentJobSeeker}
+        role={role}
+        token={token}
+      />
     </ul>
   );
 }

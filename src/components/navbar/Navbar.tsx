@@ -15,9 +15,9 @@ async function Navbar() {
       <div className="flex">
         <NavItems token={token?.value} role={role?.value} />
         <NavButtons token={token?.value} />
-        <div className="md:flex hidden pl-8 items-center">
+        {/* <div className="md:flex hidden pl-8 items-center">
           <LogoutButton token={token?.value} />
-        </div>
+        </div> */}
       </div>
     </nav>
   );
