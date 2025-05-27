@@ -17,10 +17,13 @@ export default async function MyRequestsPage() {
 
   const data = await res.json();
 
-  return (
-    <div className="flex flex-col gap-16 mt-8 items-center justify-center">
-      <h1 className="text-xl lg:text-3xl text-primary-blue font-bold">درخواست های من</h1>
-      <RequestList requests={data} />
-    </div>
-  );
+  if (role?.value === "jobseeker")
+    return (
+      <div className="flex flex-col gap-16 mt-8 items-center justify-center">
+        <h1 className="text-xl lg:text-3xl text-primary-blue font-bold">
+          درخواست های من
+        </h1>
+        <RequestList requests={data} />
+      </div>
+    );
 }

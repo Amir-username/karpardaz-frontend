@@ -6,6 +6,10 @@ import { fetchEmployerDetail } from "@/fetch/employer/fetchEmployerDetail";
 import { AdvertiseModel } from "@/models/Advertise";
 import { EmployerModel } from "@/models/Employer";
 import Button from "@/ui/Button";
+import { AdRequestModel } from "@/models/AdRequest";
+import { BASE_LINK } from "@/fetch/config";
+import SendResumeButton from "@/components/advertise/detail/SendResumeButton";
+import { cookies } from "next/headers";
 
 async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -16,6 +20,21 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
     id: companyData.id,
     name: companyData.company_name,
   };
+
+  const requestRes = await fetch(
+    BASE_LINK + `advertise-requests/${advertise.id}`
+  );
+  const requests: AdRequestModel[] = await requestRes.json();
+
+  const isRequested =
+    requests.length &&
+    requests.map((req) => {
+      if (req.advertise_id === advertise.id) return true;
+    });
+
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+  const role = cookieStore.get("role");
 
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 shadow-lg h-full rounded-lg">
@@ -62,9 +81,18 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
             return <AdTag name={tech} key={i} size="lg" />;
           })}
         </div>
-        <div className="w-full">
-          <Button text="ارسال رزومه" h="h-16" />
-        </div>
+
+        {isRequested ? (
+          <div className="flex items-center justify-center rounded-lg text-neutral-dark w-full bg-gray-300 p-2 h-16">
+            رزومه قبلا ارسال شده
+          </div>
+        ) : (
+          <SendResumeButton
+            token={token?.value}
+            role={role?.value}
+            adID={advertise.id}
+          />
+        )}
       </main>
     </div>
   );
