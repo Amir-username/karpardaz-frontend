@@ -63,7 +63,7 @@ export default function ProfileNavLink({
               >
                 پروفایل
               </DropDownItem>
-              <DropDownItem link="/requests/jobseeker/my-requests/">
+              <DropDownItem link={`/requests/${role}/my-requests/`}>
                 درخواست های من
               </DropDownItem>
               <DropDownItem>
