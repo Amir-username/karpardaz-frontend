@@ -51,7 +51,7 @@ async function Profile({
         {res.status === 200 && data.id === id && (
           <BackdropFileInput
             icon="add_a_photo"
-            token={token?.value!}
+            token={token?.value}
             role={role}
           />
         )}
@@ -60,7 +60,7 @@ async function Profile({
           {res.status === 200 && data.id === id && (
             <AvatarFileInput
               icon="add_a_photo"
-              token={token?.value!}
+              token={token?.value}
               role={role}
             />
           )}

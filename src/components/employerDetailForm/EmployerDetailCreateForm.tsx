@@ -1,5 +1,4 @@
 "use client";
-import { BASE_LINK } from "@/fetch/config";
 import { fetchAddEmployerDetail } from "@/fetch/details/employer/fetchEmployerDetailCreate";
 import Button from "@/ui/Button";
 import ClientInput from "@/ui/ClientInput";

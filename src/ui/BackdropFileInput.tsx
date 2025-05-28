@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 type BackdropInputProps = {
   icon: string;
-  token: string;
+  token?: string;
   role: "jobseeker" | "employer";
 };
 
@@ -30,7 +30,7 @@ function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
     };
     if (fileInputRef.current?.files) {
       formData.append("file", fileInputRef.current.files[0]);
-      fetchUpload(token, formData);
+      fetchUpload(token!, formData);
     }
   };
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { BASE_LINK } from "@/fetch/config";
 import { fetchCreateEmployerAd } from "@/fetch/employerAdvertise/fetchCreateEmployerAd";
 import Button from "@/ui/Button";
 import CheckBox from "@/ui/CheckBox";

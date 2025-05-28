@@ -1,9 +1,3 @@
-import {
-  ExperienceType,
-  GenderType,
-  PositionType,
-  SalaryType,
-} from "@/models/filterTypes";
 import React, { Dispatch, SetStateAction } from "react";
 
 type SelectInputProps = {

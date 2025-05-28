@@ -2,17 +2,14 @@
 import { useState, Dispatch, SetStateAction } from "react";
 import FilterTag from "./FilterTag";
 import SelectInput from "@/ui/SelectInput";
-import ClientInput from "@/ui/ClientInput";
 import Button from "@/ui/Button";
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 
 type SearchFilterProps = {
-  filters: FilterType;
   setFilters: Dispatch<SetStateAction<FilterType>>;
 };
 
 export default function SearchFilter({
-  filters,
   setFilters,
 }: SearchFilterProps) {
   const [isInternship, setIsInternship] = useState<boolean>(false);

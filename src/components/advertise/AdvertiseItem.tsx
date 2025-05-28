@@ -9,8 +9,7 @@ import AdTags from "./AdTags";
 import Link from "next/link";
 import { useEmployerDetail } from "@/hooks/useEmployerDetail";
 import { EmployerModel } from "@/models/Employer";
-import { useEffect, useState } from "react";
-import { BASE_LINK } from "@/fetch/config";
+import { useState } from "react";
 
 type AdvertiseItemProps = {
   advertise: AdvertiseModel;

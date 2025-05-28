@@ -1,6 +1,6 @@
 import { BASE_LINK } from "../config";
 
-export async function fetchCurrentJobSeeker(token: string) {
+export async function fetchCurrentJobSeeker(token?: string) {
   try {
     const res = await fetch(BASE_LINK + "current-jobseeker/", {
       method: "GET",
