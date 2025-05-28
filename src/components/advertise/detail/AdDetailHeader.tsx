@@ -7,8 +7,8 @@ import Link from "next/link";
 type AdDetailHeaderProps = {
   title: string;
   subtitle: string;
-  id: number
-  role: 'jobseeker' | 'employer'
+  id: number;
+  role: "jobseeker" | "employer";
 };
 
 function AdDetailHeader({ title, subtitle, role, id }: AdDetailHeaderProps) {
@@ -23,11 +23,11 @@ function AdDetailHeader({ title, subtitle, role, id }: AdDetailHeaderProps) {
         <div className="flex flex-col gap-2">
           <AdTitle title={title} />
           <Link href={`/profile/${role}/${id}`}>
-          <AdSubtitle title={subtitle} />
+            <AdSubtitle title={subtitle} />
           </Link>
         </div>
       </div>
-      <div className="flex items-center">
+      <div className={`${role === "employer" && "hidden"} flex items-center`}>
         <span
           style={{
             fontSize: "36px",

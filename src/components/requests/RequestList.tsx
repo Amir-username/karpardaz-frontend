@@ -6,9 +6,10 @@ export default function RequestList({
 }: {
   requests: AdRequestModel[];
 }) {
+  const reversedRequests: AdRequestModel[] = requests.reverse();
   return (
     <ul className="flex flex-col gap-3">
-      {requests.map((req) => {
+      {reversedRequests.map((req) => {
         return <RequestItem key={req.id} request={req} />;
       })}
     </ul>

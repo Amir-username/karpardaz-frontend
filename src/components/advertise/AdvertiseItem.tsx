@@ -57,7 +57,7 @@ function AdvertiseItem({
           </div>
         </div>
       </div>
-      <Link href={`jobs/${advertise.id}`}>
+      <Link href={`/jobs/${advertise.id}`}>
         <Button text="مشاهده" card />
       </Link>
     </li>

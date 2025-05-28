@@ -33,11 +33,14 @@ export default function SendResumeButton({
     };
     if (role === "jobseeker") {
       fetchSendResume(token!);
-      redirect('/jobs')
+      redirect("/jobs");
     }
   };
   return (
-    <div onClick={handleSendResume} className="w-full">
+    <div
+      onClick={handleSendResume}
+      className={`${role === "employer" && "hidden"} w-full`}
+    >
       <Button text="ارسال رزومه" h="h-16" />
     </div>
   );

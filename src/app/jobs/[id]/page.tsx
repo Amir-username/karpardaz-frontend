@@ -5,11 +5,14 @@ import { fetchAdvertiseDetail } from "@/fetch/employerAdvertise/fetchAdvertiseDe
 import { fetchEmployerDetail } from "@/fetch/employer/fetchEmployerDetail";
 import { AdvertiseModel } from "@/models/Advertise";
 import { EmployerModel } from "@/models/Employer";
-import Button from "@/ui/Button";
 import { AdRequestModel } from "@/models/AdRequest";
 import { BASE_LINK } from "@/fetch/config";
 import SendResumeButton from "@/components/advertise/detail/SendResumeButton";
 import { cookies } from "next/headers";
+import AdAvatar from "@/components/advertise/AdAvater";
+import { JobSeekerModel } from "@/models/JobSeeker";
+import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
+import AdRequestJobSeekers from "@/components/requests/AdRequestJobSeekers";
 
 async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -35,6 +38,17 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
   const role = cookieStore.get("role");
+
+  const jobseekersRes = await fetch(
+    BASE_LINK + `get-adrequest-jobseekers/${advertise.id}`,
+    {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token?.value}`,
+      },
+    }
+  );
+  const jobseekers: JobSeekerDetailModel[] = await jobseekersRes.json();
 
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 shadow-lg h-full rounded-lg">
@@ -82,7 +96,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
           })}
         </div>
 
-        {isRequested ? (
+        {isRequested && role?.value === "jobseeker" ? (
           <div className="flex items-center justify-center rounded-lg text-neutral-dark w-full bg-gray-300 p-2 h-16">
             رزومه قبلا ارسال شده
           </div>
@@ -93,6 +107,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
             adID={advertise.id}
           />
         )}
+        {jobseekers.length && <AdRequestJobSeekers jobseekers={jobseekers} />}
       </main>
     </div>
   );
