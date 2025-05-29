@@ -1,7 +1,7 @@
 export type AdRequestModel = {
   id: number;
-  advertise_id: number;
-  jobseeker_id: number;
+  advertise_id?: number;
+  jobseeker_id?: number;
   status:
     | "در صف بررسی"
     | "توسط کارفرما دیده شد"

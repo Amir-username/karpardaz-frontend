@@ -22,7 +22,7 @@ export default async function MyRequestsPage() {
         <h1 className="text-xl lg:text-3xl text-primary-blue font-bold">
           درخواست های من
         </h1>
-        <RequestList requests={data} />
+        <RequestList requests={data} role={"jobseeker"} />
       </div>
     );
 }
