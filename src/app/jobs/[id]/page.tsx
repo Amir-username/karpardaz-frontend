@@ -105,7 +105,13 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
             adID={advertise.id}
           />
         )}
-        {jobseekers.length && <AdRequestJobSeekers jobseekers={jobseekers} />}
+        {jobseekers.length && (
+          <AdRequestJobSeekers
+            jobseekers={jobseekers}
+            advertiseID={Number(id)}
+            token={token?.value}
+          />
+        )}
       </main>
     </div>
   );

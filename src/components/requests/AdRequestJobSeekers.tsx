@@ -5,8 +5,12 @@ import RequestStatusSelect from "./RequestStatusSelect";
 
 export default function AdRequestJobSeekers({
   jobseekers,
+  advertiseID,
+  token,
 }: {
   jobseekers: JobSeekerDetailModel[];
+  advertiseID: number;
+  token?: string;
 }) {
   return (
     <>
@@ -31,7 +35,7 @@ export default function AdRequestJobSeekers({
                   </h6>
                 </div>
               </div>
-              <RequestStatusSelect />
+              <RequestStatusSelect advertiseID={advertiseID} token={token} />
             </li>
           );
         })}

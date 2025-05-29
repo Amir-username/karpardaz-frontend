@@ -12,15 +12,34 @@ type StatusType =
   | "تایید برای مصاحبه"
   | "رد شده";
 
-function RequestStatusSelect() {
-  const [status, setStatus] = useState<StatusType | string>("در صف بررسی");
+function RequestStatusSelect({
+  advertiseID,
+  token,
+}: {
+  advertiseID: number;
+  token?: string;
+}) {
+  const [status, setStatus] = useState<string>("در صف بررسی");
 
   useEffect(() => {
     const fetchChangeStatus = async () => {
-      const res = await axios.patch(
-        BASE_LINK + `change-request-status/?request_id=${1}&status=${status}`
+      const res = await fetch(
+        BASE_LINK +
+          `change-request-status/?request_id=${advertiseID}&status=${status}`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
+      console.log(res.status);
     };
+
+    if (token) {
+      fetchChangeStatus();
+    }
   }, [status]);
 
   return (
