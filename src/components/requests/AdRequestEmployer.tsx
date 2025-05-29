@@ -1,11 +1,11 @@
-import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
+import { EmployerDetail } from "@/models/EmployerDetail";
 import AdAvatar from "../advertise/AdAvater";
 import Link from "next/link";
 
-export default function AdRequestJobSeekers({
-  jobseekers,
+export default function AdRequestEmployers({
+  employers,
 }: {
-  jobseekers: JobSeekerDetailModel[];
+  employers: EmployerDetail[];
 }) {
   return (
     <>
@@ -13,18 +13,15 @@ export default function AdRequestJobSeekers({
         درخواست ها
       </h2>
       <ul className="flex flex-col gap-3 p-4">
-        {jobseekers.map((jobseeker) => {
+        {employers.map((employer) => {
           return (
-            <Link
-              key={jobseeker.id}
-              href={`/profile/jobseeker/${jobseeker.id}`}
-            >
+            <Link key={employer.id} href={`/profile/employer/${employer.id}`}>
               <li className="flex gap-3 hover:bg-gray-200 cursor-pointer px-4 py-2 ring-1 ring-gray-300 rounded-lg">
-                <AdAvatar id={jobseeker.id!} role="jobseeker" />
+                <AdAvatar id={employer.id!} role="employer" />
                 <div className="flex flex-col">
-                  <h3 className="text-lg text-neutral-dark">{`${jobseeker.firstname} ${jobseeker.lastname}`}</h3>
+                  <h3 className="text-lg text-neutral-dark">{`${employer.company_name}`}</h3>
                   <h6 className="text-gray-500 text-sm">
-                    {jobseeker.experience}
+                    {employer.population}
                   </h6>
                 </div>
               </li>

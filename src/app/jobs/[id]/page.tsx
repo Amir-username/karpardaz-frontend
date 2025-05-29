@@ -9,8 +9,6 @@ import { AdRequestModel } from "@/models/AdRequest";
 import { BASE_LINK } from "@/fetch/config";
 import SendResumeButton from "@/components/advertise/detail/SendResumeButton";
 import { cookies } from "next/headers";
-import AdAvatar from "@/components/advertise/AdAvater";
-import { JobSeekerModel } from "@/models/JobSeeker";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import AdRequestJobSeekers from "@/components/requests/AdRequestJobSeekers";
 

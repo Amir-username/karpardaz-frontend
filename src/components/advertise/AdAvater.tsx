@@ -15,13 +15,17 @@ export default function AdAvatar({ id, role }: AdAvatarProps) {
 
   useEffect(() => {
     const fetchAvatar = async (id: number, role: "jobseeker" | "employer") => {
-      const avatarRes = await fetch(BASE_LINK + `get-${role}-avatar/${id}`);
+      try {
+        const avatarRes = await fetch(BASE_LINK + `get-${role}-avatar/${id}`);
 
-      const buffer = await avatarRes.arrayBuffer();
-      const base64 = Buffer.from(buffer).toString("base64");
-      const mimeType = avatarRes.headers.get("content-type") || "image/jpeg";
-      const avatarImage = `data:${mimeType};base64,${base64}`;
-      setAvatarSRC(avatarRes.status === 200 ? avatarImage : "empty");
+        const buffer = await avatarRes.arrayBuffer();
+        const base64 = Buffer.from(buffer).toString("base64");
+        const mimeType = avatarRes.headers.get("content-type") || "image/jpeg";
+        const avatarImage = `data:${mimeType};base64,${base64}`;
+        setAvatarSRC(avatarRes.status === 200 ? avatarImage : "empty");
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchAvatar(id, role);

@@ -11,7 +11,7 @@ type JobSeekerAdListProps = {
 };
 
 function JobSeekerAdList({ advertises, token, role }: JobSeekerAdListProps) {
-  const { favAdvertises } = useAdvertiseLike("employer-favorites/", token);
+  const { favAdvertises } = useAdvertiseLike("employer-favorites/", token, role);
   return (
     <ul className="flex flex-col gap-8">
       {advertises.map((ad) => {
