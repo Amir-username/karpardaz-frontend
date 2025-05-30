@@ -27,7 +27,7 @@ export default async function RequestItem({
       : request.status === "توسط کارفرما دیده شد"
       ? "text-yellow-600"
       : "text-neutral-mid"
-  }  text-sm`;
+  }  text-sm font-bold`;
 
   if (role === "jobseeker") {
     const advertise: AdvertiseModel = await fetchAdvertiseDetail(

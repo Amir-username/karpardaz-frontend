@@ -15,11 +15,13 @@ type StatusType =
 function RequestStatusSelect({
   advertiseID,
   token,
+  jobseekerID,
 }: {
   advertiseID: number;
   token?: string;
+  jobseekerID?: number;
 }) {
-  const [status, setStatus] = useState<string>("در صف بررسی");
+  const [status, setStatus] = useState<string>("");
 
   useEffect(() => {
     const fetchChangeStatus = async () => {
@@ -27,7 +29,7 @@ function RequestStatusSelect({
         BASE_LINK +
           `change-request-status/?request_id=${advertiseID}&status=${status}`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -37,8 +39,30 @@ function RequestStatusSelect({
       console.log(res.status);
     };
 
+    const fetchGetStatus = async () => {
+      const res = await fetch(
+        BASE_LINK +
+          `get-request-status/${jobseekerID}?advertise_id=${advertiseID}`,
+        {
+          headers: {
+            accept: "Application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await res.json();
+      if (res.status === 200) {
+        setStatus(data);
+      }
+    };
+
     if (token) {
-      fetchChangeStatus();
+      if (status === "") {
+        fetchGetStatus();
+      } else {
+        fetchChangeStatus();
+      }
     }
   }, [status]);
 
