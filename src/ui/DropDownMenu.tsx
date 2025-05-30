@@ -1,15 +1,31 @@
+"use client";
+
+import { useClickOutside } from "@/hooks/useClickOutside";
 import Link from "next/link";
-import React from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
+
+type DropDownMenuProps = {
+  children: React.ReactNode;
+  isOpen: boolean;
+  setIsOpenAction: Dispatch<SetStateAction<boolean>>;
+};
 
 export default function DropDownMenu({
   children,
   isOpen,
-}: {
-  children: React.ReactNode;
-  isOpen: boolean;
-}) {
+  setIsOpenAction,
+}: DropDownMenuProps) {
+  const dropdownRef = useRef<HTMLUListElement>(null);
+
+  const callback = () => {
+    setIsOpenAction(false);
+  };
+
+  useClickOutside(dropdownRef, callback);
+
   return (
     <ul
+      ref={dropdownRef}
       className={`${
         !isOpen && "hidden"
       } absolute top-16 rounded-lg shadow-sm flex flex-col gap-2`}

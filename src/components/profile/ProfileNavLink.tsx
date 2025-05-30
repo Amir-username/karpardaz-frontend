@@ -53,7 +53,7 @@ export default function ProfileNavLink({
               alt="آواتار پیشفرض شرکت"
               className="w-12 h-12 rounded-full ring-2 ring-neutral-mid"
             />
-            <DropDownMenu isOpen={isOpen}>
+            <DropDownMenu isOpen={isOpen} setIsOpenAction={setIsOpen} >
               <DropDownItem
                 link={
                   role === "jobseeker"
