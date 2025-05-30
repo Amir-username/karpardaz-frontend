@@ -1,5 +1,6 @@
 import JobsResult from "@/components/search/JobsResult";
 import { cookies } from "next/headers";
+import { Suspense } from "react";
 
 async function Page() {
   const cookieStore = await cookies();
