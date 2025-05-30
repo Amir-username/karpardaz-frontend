@@ -63,7 +63,7 @@ function JobSeekerAdItem({
           </div>
         </div>
       </div>
-      <Link href={`jobseeker-ads/${advertise.id}`}>
+      <Link href={`/jobseeker-ads/${advertise.id}`}>
         <Button text="مشاهده" card />
       </Link>
     </li>
