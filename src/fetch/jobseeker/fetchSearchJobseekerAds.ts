@@ -8,6 +8,7 @@ import {
 export async function fetchSearchJobSeekerAds(
   query: string,
   filters: FilterType,
+  pageNumber: number,
   signal: AbortSignal
 ) {
   const searchParams: SearchParams = {
@@ -21,12 +22,16 @@ export async function fetchSearchJobSeekerAds(
     position: filters.position,
   };
   const params = buildQuery(searchParams);
-  const res = await fetch(BASE_LINK + `jobseeker-ads/search/?${params}`, {
-    headers: {
-      accept: "application/json",
-    },
-    signal: signal,
-  });
+  const res = await fetch(
+    BASE_LINK +
+      `jobseeker-ads/search/?${params}&offset=${pageNumber}&limit=2`,
+    {
+      headers: {
+        accept: "application/json",
+      },
+      signal: signal,
+    }
+  );
   if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
   const data = await res.json();

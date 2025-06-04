@@ -7,12 +7,17 @@ import { Dispatch, SetStateAction, useState } from "react";
 type SearchBoxProps = {
   setJobseekerAds: Dispatch<SetStateAction<JobSeekrAdModel[]>>;
   filters: FilterType;
+  pageNumber: number;
 };
 
-function JobSeekerAdSearchBox({ setJobseekerAds, filters }: SearchBoxProps) {
+function JobSeekerAdSearchBox({
+  setJobseekerAds,
+  filters,
+  pageNumber,
+}: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useJobSeekerSearchAds(searchInput, filters, setJobseekerAds);
+  useJobSeekerSearchAds(searchInput, pageNumber, filters, setJobseekerAds);
 
   return (
     <div className="relative w-full rounded-lg">

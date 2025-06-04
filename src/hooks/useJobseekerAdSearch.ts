@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function useJobSeekerSearchAds(
   searchInput: string,
+  pageNumber: number,
   filters: FilterType,
   setJobsData: Dispatch<SetStateAction<JobSeekrAdModel[]>>
 ) {
@@ -15,6 +16,7 @@ export function useJobSeekerSearchAds(
       const adsData = await fetchSearchJobSeekerAds(
         searchInput,
         filters,
+        pageNumber,
         controller.signal
       );
       setJobsData(adsData);
@@ -46,5 +48,6 @@ export function useJobSeekerSearchAds(
     filters.salary,
     filters.gender,
     filters.position,
+    pageNumber
   ]);
 }
