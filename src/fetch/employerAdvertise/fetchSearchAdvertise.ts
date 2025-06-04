@@ -16,6 +16,8 @@ export type SearchParams = {
   experience?: ExperienceType | string;
   gender?: GenderType | string;
   position?: PositionType | string;
+  offset?: number;
+  limit?: number;
 };
 
 // Utility to build the query string
@@ -37,10 +39,7 @@ export function buildQuery(params: SearchParams): string {
   if (params.gender !== undefined && !(params.gender.length === 0))
     searchParams.append("gender", String(params.gender));
   if (params.position !== undefined && !(params.position.length === 0))
-    searchParams.append(
-      "position",
-      String(params.position)
-    );
+    searchParams.append("position", String(params.position));
   return searchParams.toString();
 }
 
@@ -56,6 +55,7 @@ export type FilterType = {
 };
 export async function fetchSearchAdvertise(
   query: string,
+  pageNumber: number,
   filters: FilterType,
   signal: AbortSignal
 ) {
@@ -69,14 +69,19 @@ export async function fetchSearchAdvertise(
     experience: filters.experience,
     gender: filters.gender,
     position: filters.position,
+    // offset: pageNumber,
+    // limit: 3
   };
   const params = buildQuery(searchParams);
-  const res = await fetch(BASE_LINK + `jobs/search/?${params}`, {
-    headers: {
-      accept: "application/json",
-    },
-    signal: signal,
-  });
+  const res = await fetch(
+    BASE_LINK + `jobs/search/?${params}&offset=${pageNumber}&limit=5`,
+    {
+      headers: {
+        accept: "application/json",
+      },
+      signal: signal,
+    }
+  );
   if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
   const data = await res.json();

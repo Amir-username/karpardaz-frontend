@@ -6,13 +6,14 @@ import { AdvertiseModel } from "@/models/Advertise";
 import { Dispatch, SetStateAction, useState } from "react";
 type SearchBoxProps = {
   setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>;
+  pageNumber: number
   filters: FilterType;
 };
 
-function SearchBox({ setJobsData, filters }: SearchBoxProps) {
+function SearchBox({ setJobsData, filters, pageNumber }: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useSearchAdvertise(searchInput, filters, setJobsData);
+  useSearchAdvertise(searchInput, pageNumber, filters, setJobsData);
 
   return (
     <div className="relative w-full rounded-lg">
