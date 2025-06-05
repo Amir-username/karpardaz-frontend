@@ -9,12 +9,13 @@ type SearchBoxProps = {
   setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>;
   filters: FilterType;
   pagination: paginationType
+  setTotalPages: Dispatch<SetStateAction<number>>
 };
 
-function SearchBox({ setJobsData, filters, pagination }: SearchBoxProps) {
+function SearchBox({ setJobsData, filters, pagination, setTotalPages }: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useSearchAdvertise(searchInput, pagination, filters, setJobsData);
+  useSearchAdvertise(searchInput, pagination, filters, setJobsData, setTotalPages);
 
   return (
     <div className="relative w-full rounded-lg">

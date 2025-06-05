@@ -8,17 +8,19 @@ import { paginationType } from "./JobsResult";
 type SearchBoxProps = {
   setJobseekerAds: Dispatch<SetStateAction<JobSeekrAdModel[]>>;
   filters: FilterType;
-  pagination: paginationType
+  pagination: paginationType;
+  setTotalPages: Dispatch<SetStateAction<number>>;
 };
 
 function JobSeekerAdSearchBox({
   setJobseekerAds,
   filters,
   pagination,
+  setTotalPages
 }: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useJobSeekerSearchAds(searchInput, pagination, filters, setJobseekerAds);
+  useJobSeekerSearchAds(searchInput, pagination, filters, setJobseekerAds, setTotalPages);
 
   return (
     <div className="relative w-full rounded-lg">

@@ -6,6 +6,7 @@ import {
 } from "@/models/filterTypes";
 import { BASE_LINK } from "../config";
 import { paginationType } from "@/components/search/JobsResult";
+import { Dispatch, SetStateAction } from "react";
 
 export type SearchParams = {
   q?: string;
@@ -58,7 +59,8 @@ export async function fetchSearchAdvertise(
   query: string,
   pagination: paginationType,
   filters: FilterType,
-  signal: AbortSignal
+  signal: AbortSignal,
+  setTotalPages: Dispatch<SetStateAction<number>>
 ) {
   const searchParams: SearchParams = {
     q: query,
@@ -87,6 +89,7 @@ export async function fetchSearchAdvertise(
   if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
   const data = await res.json();
+  setTotalPages(data.total_pages)
 
   return data;
 }

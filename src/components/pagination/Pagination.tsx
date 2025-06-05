@@ -4,15 +4,15 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { paginationType } from "../search/JobsResult";
 
 type PaginationProps = {
-  pagination: paginationType;
   setPaginationAction: Dispatch<SetStateAction<paginationType>>;
+  totalPages: number
 };
 
 export default function Pagination({
-  pagination,
   setPaginationAction,
+  totalPages
 }: PaginationProps) {
-  const [pageNumber, setPageNumberAction] = useState(0);
+  const [pageNumber, setPageNumberAction] = useState(1);
 
   const handlePrev = () => {
     setPaginationAction((pag) => {
@@ -30,13 +30,13 @@ export default function Pagination({
 
   return (
     <div className="flex gap-2 justify-center">
-      <PaginationItem onClick={handlePrev} active={!!(pageNumber + 1 > 1)}>
+      <PaginationItem onClick={handlePrev} active={!!(pageNumber > 1)}>
         قبلی
       </PaginationItem>
       <PaginationItem active>
-        <span className="font-bold mt-1">{pageNumber + 1}</span>
+        <span className="font-bold mt-1">{pageNumber}</span>
       </PaginationItem>
-      <PaginationItem onClick={handleNext} active={!!(pageNumber + 1 < 2)}>
+      <PaginationItem onClick={handleNext} active={!!(pageNumber < totalPages)}>
         بعدی
       </PaginationItem>
     </div>

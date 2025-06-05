@@ -25,6 +25,7 @@ function JobsResult({ token, role }: JobsResultProps) {
     offset: 0,
     limit: 3,
   });
+  const [totalPages, setTotalPages] = useState(1);
 
   return (
     <main className="flex flex-col gap-12">
@@ -33,6 +34,7 @@ function JobsResult({ token, role }: JobsResultProps) {
           setJobsData={setJobsData}
           pagination={pagination}
           filters={filters}
+          setTotalPages={setTotalPages}
         />
         <SearchFilter setFilters={setFilters} />
       </header>
@@ -41,7 +43,7 @@ function JobsResult({ token, role }: JobsResultProps) {
       ) : (
         <div>not found</div>
       )}
-      <Pagination pagination={pagination} setPaginationAction={setPagination} />
+      <Pagination totalPages={totalPages} setPaginationAction={setPagination} />
     </main>
   );
 }

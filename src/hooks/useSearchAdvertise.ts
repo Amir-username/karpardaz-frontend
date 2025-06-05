@@ -10,7 +10,8 @@ export function useSearchAdvertise(
   searchInput: string,
   pagination: paginationType,
   filters: FilterType,
-  setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>
+  setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>,
+  setTotalPages: Dispatch<SetStateAction<number>>
 ) {
   useEffect(() => {
     const controller = new AbortController();
@@ -20,9 +21,10 @@ export function useSearchAdvertise(
         searchInput,
         pagination,
         filters,
-        controller.signal
+        controller.signal,
+        setTotalPages
       );
-      setJobsData(jobsData);
+      setJobsData(jobsData.advertises);
       // } catch (error) {
       //   if (error instanceof Error) {
       //     if (error.name === "AbortError") {

@@ -5,12 +5,14 @@ import {
   SearchParams,
   buildQuery,
 } from "../employerAdvertise/fetchSearchAdvertise";
+import { Dispatch, SetStateAction } from "react";
 
 export async function fetchSearchJobSeekerAds(
   query: string,
   filters: FilterType,
   pagination: paginationType,
-  signal: AbortSignal
+  signal: AbortSignal,
+  setTotalPages: Dispatch<SetStateAction<number>>
 ) {
   const searchParams: SearchParams = {
     q: query,
@@ -36,6 +38,7 @@ export async function fetchSearchJobSeekerAds(
   if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
   const data = await res.json();
+  setTotalPages(data.total_pages);
 
   return data;
 }

@@ -8,7 +8,8 @@ export function useJobSeekerSearchAds(
   searchInput: string,
   pagination: paginationType,
   filters: FilterType,
-  setJobsData: Dispatch<SetStateAction<JobSeekrAdModel[]>>
+  setJobsData: Dispatch<SetStateAction<JobSeekrAdModel[]>>,
+  setTotalPages: Dispatch<SetStateAction<number>>
 ) {
   useEffect(() => {
     const controller = new AbortController();
@@ -18,9 +19,10 @@ export function useJobSeekerSearchAds(
         searchInput,
         filters,
         pagination,
-        controller.signal
+        controller.signal,
+        setTotalPages
       );
-      setJobsData(adsData);
+      setJobsData(adsData.advertises);
       // } catch (error) {
       //   if (error instanceof Error) {
       //     if (error.name === "AbortError") {
@@ -49,6 +51,6 @@ export function useJobSeekerSearchAds(
     filters.salary,
     filters.gender,
     filters.position,
-    pagination
+    pagination,
   ]);
 }
