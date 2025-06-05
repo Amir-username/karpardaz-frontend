@@ -1,3 +1,4 @@
+import { paginationType } from "@/components/search/JobsResult";
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import { fetchSearchJobSeekerAds } from "@/fetch/jobseeker/fetchSearchJobseekerAds";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
@@ -5,7 +6,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function useJobSeekerSearchAds(
   searchInput: string,
-  pageNumber: number,
+  pagination: paginationType,
   filters: FilterType,
   setJobsData: Dispatch<SetStateAction<JobSeekrAdModel[]>>
 ) {
@@ -16,7 +17,7 @@ export function useJobSeekerSearchAds(
       const adsData = await fetchSearchJobSeekerAds(
         searchInput,
         filters,
-        pageNumber,
+        pagination,
         controller.signal
       );
       setJobsData(adsData);
@@ -48,6 +49,6 @@ export function useJobSeekerSearchAds(
     filters.salary,
     filters.gender,
     filters.position,
-    pageNumber
+    pagination
   ]);
 }

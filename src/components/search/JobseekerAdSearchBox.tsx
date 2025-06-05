@@ -4,20 +4,21 @@ import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import { useJobSeekerSearchAds } from "@/hooks/useJobseekerAdSearch";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { Dispatch, SetStateAction, useState } from "react";
+import { paginationType } from "./JobsResult";
 type SearchBoxProps = {
   setJobseekerAds: Dispatch<SetStateAction<JobSeekrAdModel[]>>;
   filters: FilterType;
-  pageNumber: number;
+  pagination: paginationType
 };
 
 function JobSeekerAdSearchBox({
   setJobseekerAds,
   filters,
-  pageNumber,
+  pagination,
 }: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useJobSeekerSearchAds(searchInput, pageNumber, filters, setJobseekerAds);
+  useJobSeekerSearchAds(searchInput, pagination, filters, setJobseekerAds);
 
   return (
     <div className="relative w-full rounded-lg">

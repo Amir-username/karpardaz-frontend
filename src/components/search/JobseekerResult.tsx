@@ -7,6 +7,7 @@ import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import SearchFilter from "../filter/SearchFilter";
 import Pagination from "../pagination/Pagination";
+import { paginationType } from "./JobsResult";
 
 type JobSeekerResultProps = {
   token?: string;
@@ -16,14 +17,17 @@ type JobSeekerResultProps = {
 function JobSeekerResult({ token, role }: JobSeekerResultProps) {
   const [jobSeekerAds, setJobSeekerAds] = useState<JobSeekrAdModel[]>([]);
   const [filters, setFilters] = useState<FilterType>({});
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pagination, setPaginationAction] = useState<paginationType>({
+    offset: 0,
+    limit: 3,
+  });
 
   return (
     <main className="flex flex-col gap-12">
       <header className="flex flex-col gap-5">
         <JobSeekerAdSearchBox
           filters={filters}
-          pageNumber={pageNumber}
+          pagination={pagination}
           setJobseekerAds={setJobSeekerAds}
         />
         <SearchFilter setFilters={setFilters} />
@@ -33,7 +37,7 @@ function JobSeekerResult({ token, role }: JobSeekerResultProps) {
       ) : (
         <div>not found</div>
       )}
-      <Pagination pageNumber={pageNumber} setPageNumberAction={setPageNumber} />
+      <Pagination pagination={pagination} setPaginationAction={setPaginationAction} />
     </main>
   );
 }

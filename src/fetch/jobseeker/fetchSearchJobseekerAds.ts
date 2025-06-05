@@ -1,3 +1,4 @@
+import { paginationType } from "@/components/search/JobsResult";
 import { BASE_LINK } from "../config";
 import {
   FilterType,
@@ -8,7 +9,7 @@ import {
 export async function fetchSearchJobSeekerAds(
   query: string,
   filters: FilterType,
-  pageNumber: number,
+  pagination: paginationType,
   signal: AbortSignal
 ) {
   const searchParams: SearchParams = {
@@ -24,7 +25,7 @@ export async function fetchSearchJobSeekerAds(
   const params = buildQuery(searchParams);
   const res = await fetch(
     BASE_LINK +
-      `jobseeker-ads/search/?${params}&offset=${pageNumber}&limit=2`,
+      `jobseeker-ads/search/?${params}&offset=${pagination.offset}&limit=${pagination.limit}`,
     {
       headers: {
         accept: "application/json",
