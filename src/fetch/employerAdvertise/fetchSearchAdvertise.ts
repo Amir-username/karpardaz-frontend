@@ -5,6 +5,7 @@ import {
   SalaryType,
 } from "@/models/filterTypes";
 import { BASE_LINK } from "../config";
+import { paginationType } from "@/components/search/JobsResult";
 
 export type SearchParams = {
   q?: string;
@@ -55,7 +56,7 @@ export type FilterType = {
 };
 export async function fetchSearchAdvertise(
   query: string,
-  pageNumber: number,
+  pagination: paginationType,
   filters: FilterType,
   signal: AbortSignal
 ) {
@@ -74,7 +75,8 @@ export async function fetchSearchAdvertise(
   };
   const params = buildQuery(searchParams);
   const res = await fetch(
-    BASE_LINK + `jobs/search/?${params}&offset=${pageNumber}&limit=5`,
+    BASE_LINK +
+      `jobs/search/?${params}&offset=${pagination.offset}&limit=${pagination.limit}`,
     {
       headers: {
         accept: "application/json",

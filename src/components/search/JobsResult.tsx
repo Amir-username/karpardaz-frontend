@@ -8,6 +8,11 @@ import SearchFilter from "../filter/SearchFilter";
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import Pagination from "../pagination/Pagination";
 
+export type paginationType = {
+  offset: number;
+  limit: number;
+};
+
 type JobsResultProps = {
   token?: string;
   role?: string;
@@ -16,14 +21,17 @@ type JobsResultProps = {
 function JobsResult({ token, role }: JobsResultProps) {
   const [jobsData, setJobsData] = useState<AdvertiseModel[]>([]);
   const [filters, setFilters] = useState<FilterType>({});
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pagination, setPagination] = useState<paginationType>({
+    offset: 0,
+    limit: 3,
+  });
 
   return (
     <main className="flex flex-col gap-12">
       <header className="flex flex-col gap-5">
         <SearchBox
           setJobsData={setJobsData}
-          pageNumber={pageNumber}
+          pagination={pagination}
           filters={filters}
         />
         <SearchFilter setFilters={setFilters} />
@@ -33,7 +41,7 @@ function JobsResult({ token, role }: JobsResultProps) {
       ) : (
         <div>not found</div>
       )}
-      <Pagination pageNumber={pageNumber} setPageNumberAction={setPageNumber} />
+      <Pagination pagination={pagination} setPaginationAction={setPagination} />
     </main>
   );
 }

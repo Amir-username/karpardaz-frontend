@@ -1,3 +1,4 @@
+import { paginationType } from "@/components/search/JobsResult";
 import {
   FilterType,
   fetchSearchAdvertise,
@@ -7,7 +8,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function useSearchAdvertise(
   searchInput: string,
-  pageNumber: number,
+  pagination: paginationType,
   filters: FilterType,
   setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>
 ) {
@@ -17,7 +18,7 @@ export function useSearchAdvertise(
       // try {
       const jobsData = await fetchSearchAdvertise(
         searchInput,
-        pageNumber,
+        pagination,
         filters,
         controller.signal
       );
@@ -51,6 +52,6 @@ export function useSearchAdvertise(
     filters.salary,
     filters.gender,
     filters.position,
-    pageNumber
+    pagination
   ]);
 }

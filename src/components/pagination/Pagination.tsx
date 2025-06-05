@@ -1,21 +1,30 @@
-'use client'
+"use client";
 
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { paginationType } from "../search/JobsResult";
 
 type PaginationProps = {
-  pageNumber: number;
-  setPageNumberAction: Dispatch<SetStateAction<number>>;
+  pagination: paginationType;
+  setPaginationAction: Dispatch<SetStateAction<paginationType>>;
 };
 
 export default function Pagination({
-  pageNumber,
-  setPageNumberAction,
+  pagination,
+  setPaginationAction,
 }: PaginationProps) {
+  const [pageNumber, setPageNumberAction] = useState(0);
+
   const handlePrev = () => {
+    setPaginationAction((pag) => {
+      return { ...pag, offset: pag.offset - pag.limit };
+    });
     setPageNumberAction((number) => number - 1);
   };
 
   const handleNext = () => {
+    setPaginationAction((pag) => {
+      return { ...pag, offset: pag.offset + pag.limit };
+    });
     setPageNumberAction((number) => number + 1);
   };
 
