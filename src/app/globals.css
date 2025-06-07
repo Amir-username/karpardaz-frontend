@@ -1,18 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
 @import "tailwindcss";
-
 
 /* LightMode Colors */
 @theme {
-    --color-primary-blue: #2A3F54;
-    --color-secondary-blue: #6C9EB8;
-    --color-accent-coral: #FF6B6B;
-    --color-neutral-light: #F5F5F5;
-    --color-neutral-mid: #B0B0B0;
-    --color-neutral-dark: #333333;
+  --color-primary-blue: #2a3f54;
+  --color-secondary-blue: #6c9eb8;
+  --color-accent-coral: #ff6b6b;
+  --color-neutral-light: #f5f5f5;
+  --color-neutral-mid: #b0b0b0;
+  --color-neutral-dark: #333333;
 }
 
 /* fonts */
 @theme {
-    --font-vazir: "Vazirmatn", sans-serif;
+  --font-vazir: "Vazirmatn", sans-serif;
+  --font-lalezar: "Lalezar", sans-serif;
+}
+
+
+
+@keyframes fade-in-right {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-right {
+  animation: fade-in-right 1s cubic-bezier(0.47, 0, 0.745, 0.715) 200ms both;
 }
