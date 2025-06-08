@@ -28,7 +28,7 @@ export default function DropDownMenu({
       ref={dropdownRef}
       className={`${
         !isOpen && "hidden"
-      } absolute top-16 rounded-lg shadow-sm flex flex-col gap-2`}
+      } absolute top-16 rounded-b-lg shadow-sm flex flex-col gap-2 bg-neutral-light`}
     >
       {children}
     </ul>
