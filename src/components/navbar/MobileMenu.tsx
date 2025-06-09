@@ -18,7 +18,7 @@ function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
     <div
       className={`${
         isActive ? "felx" : "hidden"
-      } absolute top-0 bottom-0 z-50 flex-col w-screen md:hidden bg-neutral-light`}
+      } absolute top-0 bottom-0 right-0 z-50 flex-col w-full md:hidden bg-neutral-light`}
     >
       <div
         onClick={handleCloseMenu}
