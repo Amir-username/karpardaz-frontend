@@ -18,13 +18,10 @@ async function EmployerAds({ id }: { id: number }) {
           موقعیت های شغلی
         </h1>
 
-        {ads.length ? (
-          <AdvertiseList advertises={ads} />
-        ) : (
-          <Link href={`/profile/employer/advertise/${id}/create`}>
-            <Button text="ایجاد آگهی" />
-          </Link>
-        )}
+        {ads.length && <AdvertiseList advertises={ads} />}
+        <Link href={`/profile/employer/advertise/${id}/create`}>
+          <Button text="ایجاد آگهی" />
+        </Link>
       </div>
     </Container>
   );
