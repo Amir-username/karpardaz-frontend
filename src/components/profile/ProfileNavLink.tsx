@@ -53,7 +53,13 @@ export default function ProfileNavLink({
               alt="آواتار پیشفرض شرکت"
               className="w-12 h-12 rounded-full ring-2 ring-neutral-mid"
             />
-            <DropDownMenu isOpen={isOpen} setIsOpenAction={setIsOpen} >
+            <DropDownMenu isOpen={isOpen} setIsOpenAction={setIsOpen}>
+              {role === "jobseeker" && (
+                <DropDownItem link={`/recommends/`}>پیشنهاد ها</DropDownItem>
+              )}
+              <DropDownItem link={`/requests/${role}/my-requests/`}>
+                درخواست های من
+              </DropDownItem>
               <DropDownItem
                 link={
                   role === "jobseeker"
@@ -62,9 +68,6 @@ export default function ProfileNavLink({
                 }
               >
                 پروفایل
-              </DropDownItem>
-              <DropDownItem link={`/requests/${role}/my-requests/`}>
-                درخواست های من
               </DropDownItem>
               <DropDownItem>
                 <LogoutButton token={token} />
