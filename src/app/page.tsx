@@ -20,9 +20,15 @@ export default async function Home() {
   return (
     <main className="flex-col gap-4 flex justify-center">
       <HeroHeader />
-      <Carousel header="تازه ترین آگهی ها">
+      <Carousel link="/jobs" header="تازه ترین آگهی ها">
         {advertises.slice(0, 7).map((ad) => {
-          return <CarouselItem key={ad.id} title={ad.title} />;
+          return (
+            <CarouselItem
+              key={ad.id}
+              title={ad.title}
+              link={`/jobs/${ad.id}/`}
+            />
+          );
         })}
       </Carousel>
       <Carousel header="لیست کارفرما">
@@ -33,6 +39,7 @@ export default async function Home() {
               title={em.company_name}
               id={em.id}
               role="employer"
+              link={`/profile/employer/${em.id}/`}
             />
           );
         })}
@@ -45,10 +52,14 @@ export default async function Home() {
               title={`${jobseeker.firstname} ${jobseeker.lastname}`}
               role="jobseeker"
               id={jobseeker.id}
+              link={`/profile/jobseeker/${jobseeker.id}/`}
             />
           );
         })}
       </Carousel>
+      <footer className="w-full bg-neutral-dark p-32 flex items-center justify-center h-96">
+        <h1 className="text-neutral-light">صفحه گیتهاب</h1>
+      </footer>
     </main>
   );
 }

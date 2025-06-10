@@ -3,7 +3,7 @@ import DeveloperILL from "../../../public/Illustrations/DeveloperILL.svg";
 
 export default function HeroHeader() {
   return (
-    <header className="bg-primary-blue flex flex-col lg:flex-row gap-8 py-32 px-12 lg:py-40 items-center text-center justify-center lg:px-64 text-neutral-light">
+    <header className="bg-primary-blue flex flex-col lg:flex-row gap-8 py-32 px-8 lg:py-40 items-center text-center justify-center lg:px-64 text-neutral-light">
       <Image
         className="fade-in-right w-48 h-48 lg:w-[250px] lg:h-[250px]"
         // width={250}
