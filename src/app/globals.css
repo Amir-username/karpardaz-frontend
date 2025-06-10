@@ -34,3 +34,8 @@
 .fade-in-right {
   animation: fade-in-right 1s cubic-bezier(0.47, 0, 0.745, 0.715) 200ms both;
 }
+
+
+#no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

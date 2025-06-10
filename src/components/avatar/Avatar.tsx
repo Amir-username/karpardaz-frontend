@@ -14,9 +14,9 @@ async function Avatar({ id, role }: { id: number; role: string }) {
     <Image
       src={avatarRes.status === 200 ? avatarSRC : DEFAULT_AVATAR}
       alt="آواتار پیشفرض شرکت"
-      className="p-1 bg-white rounded-full w-28 h-28 ring-2 ring-neutral-mid"
-      width={500}
-      height={300}
+      className="p-1 bg-white rounded-full w-[96px] h-[96px] ring-2 ring-neutral-mid object-fill"
+      width={96}
+      height={96}
     />
   );
 }
