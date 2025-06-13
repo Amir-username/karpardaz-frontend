@@ -53,10 +53,10 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
           {items.map((item, i) => {
             return (
               <span
-                className="rounded-lg bg-primary-blue text-white px-2 py-1"
+                className={`rounded-lg bg-primary-blue text-white px-2 py-1`}
                 key={i}
               >
-                {item}
+                {item.length > 12 ? item.slice(0, 12) + '...' : item}
               </span>
             );
           })}

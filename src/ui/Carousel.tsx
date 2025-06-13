@@ -19,7 +19,7 @@ export default function Carousel({ header, children, link }: CarouselProps) {
           </header>
         </Link>
       ) : (
-        <header className="w-fit bg-gray-300 flex text-xl lg:text-2xl px-1 text-primary-blue">
+        <header className="w-fit flex text-xl lg:text-2xl px-1 text-primary-blue">
           {header}
         </header>
       )}

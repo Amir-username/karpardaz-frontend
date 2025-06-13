@@ -2,7 +2,6 @@
 
 import { BASE_LINK } from "@/fetch/config";
 import Button from "@/ui/Button";
-import axios from "axios";
 import { redirect } from "next/navigation";
 
 export default function SendResumeButton({
