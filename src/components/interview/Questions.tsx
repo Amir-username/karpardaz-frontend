@@ -2,6 +2,7 @@
 
 import { fetchCreateInterview } from "@/fetch/interview/fetchCreateInterview";
 import InputTag from "@/ui/InputTag";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 function Questions({
@@ -15,6 +16,7 @@ function Questions({
 
   const handleCreateInterview = () => {
     fetchCreateInterview(token, advertiseID, questions);
+    redirect(`/jobs/${advertiseID}/`);
   };
 
   return (

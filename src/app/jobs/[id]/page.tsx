@@ -11,7 +11,7 @@ import SendResumeButton from "@/components/advertise/detail/SendResumeButton";
 import { cookies } from "next/headers";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import AdRequestJobSeekers from "@/components/requests/AdRequestJobSeekers";
-import Link from "next/link";
+import Interview from "@/components/interview/Iterview";
 
 async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -96,8 +96,10 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
         </div>
 
         {isRequested && role?.value === "jobseeker" ? (
-          <div className="flex items-center justify-center rounded-lg text-neutral-dark w-full bg-gray-300 p-2 h-16">
-            رزومه قبلا ارسال شده
+          <div className="lg:px-8">
+            <div className="flex items-center justify-center rounded-lg text-neutral-dark w-full bg-gray-300 p-2 h-16">
+              رزومه قبلا ارسال شده
+            </div>
           </div>
         ) : (
           <SendResumeButton
@@ -114,14 +116,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
           />
         ) : null}
       </main>
-      <section className="flex gap-6 items-center justify-center p-8 flex-col">
-        <h1 className="text-2xl text-primary-blue">مصاحبه آنلاین</h1>
-        <Link href={`/interview/${advertise.id}/create/`}>
-          <div className="bg-primary-blue px-3 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
-            ایجاد مصاحبه
-          </div>
-        </Link>
-      </section>
+      <Interview advertiseID={advertise.id} />
     </div>
   );
 }
