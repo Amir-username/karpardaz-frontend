@@ -12,6 +12,9 @@ import { cookies } from "next/headers";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import AdRequestJobSeekers from "@/components/requests/AdRequestJobSeekers";
 import Interview from "@/components/interview/Iterview";
+import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
+import { fetchGetInterview } from "@/fetch/interview/fetchGetInterview";
+import { InterviewType } from "@/components/interview/Answer";
 
 async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -48,6 +51,16 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
     }
   );
   const jobseekers: JobSeekerDetailModel[] = await jobseekersRes.json();
+
+  const jobseeker: JobSeekerDetailModel = await fetchCurrentJobSeeker(
+    token?.value
+  );
+
+  const interview: InterviewType = await fetchGetInterview(Number(id));
+
+  const isAnswer = interview.jobseeker_ids.includes(jobseeker.id!)
+
+  console.log(isAnswer);
 
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 shadow-lg h-full rounded-lg">
@@ -116,7 +129,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
           />
         ) : null}
       </main>
-      <Interview advertiseID={advertise.id} />
+      {!isAnswer && <Interview advertiseID={advertise.id} />}
     </div>
   );
 }

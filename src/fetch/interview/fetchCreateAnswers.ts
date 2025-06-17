@@ -7,7 +7,7 @@ export async function fetchCreateAnswers(
   answers: string[]
 ) {
   const res = await axios.post(
-    BASE_LINK + `create-answers/?interview_id=${interviewID}`,
+    BASE_LINK + `create-answers/${interviewID}`,
     answers,
     {
       headers: {
