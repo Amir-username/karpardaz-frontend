@@ -39,7 +39,7 @@ export default function ProfileNavLink({
             onClick={() => setIsOpen((o) => !o)}
             // onMouseEnter={() => setIsOpen(true)}
             // onMouseLeave={() => setIsOpen(false)}
-            className="relative flex gap-3 pr-8 items-center cursor-pointer"
+            className="relative flex items-center gap-3 pr-8 cursor-pointer"
           >
             <h3 className="text-lg">
               {role === "jobseeker"

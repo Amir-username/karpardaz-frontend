@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import Brand from "./Brand";
-import NavItems from "./NavItems";
-import NavButtons from "./navButtons";
+import NavContents from "./NavContents";
 
 async function Navbar() {
   const cookieStore = await cookies();
@@ -9,15 +8,9 @@ async function Navbar() {
   const role = cookieStore.get("role");
 
   return (
-    <nav className="flex items-center justify-between h-20 gap-2 py-3 bg-neutral-light">
+    <nav className="sticky top-0 z-50 flex items-center justify-between w-full h-20 gap-2 py-3 shadow-xs bg-neutral-light">
       <Brand text="کارپرداز" />
-      <div className="flex">
-        <NavItems token={token?.value} role={role?.value} />
-        <NavButtons token={token?.value} />
-        {/* <div className="md:flex hidden pl-8 items-center">
-          <LogoutButton token={token?.value} />
-        </div> */}
-      </div>
+      <NavContents token={token?.value} role={role?.value} />
     </nav>
   );
 }

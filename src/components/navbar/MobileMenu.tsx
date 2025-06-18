@@ -7,9 +7,10 @@ type MobileMenuProps = {
   setIsActive: Dispatch<SetStateAction<boolean>>;
   isActive: boolean;
   token?: string;
+  role?: string
 };
 
-function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
+function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
   const handleCloseMenu = () => {
     setIsActive(false);
   };
@@ -22,7 +23,7 @@ function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
     >
       <div
         onClick={handleCloseMenu}
-        className="flex items-center justify-start p-8"
+        className="z-50 flex items-center justify-start p-8 bg-neutral-light"
       >
         <span
           style={{
@@ -33,7 +34,7 @@ function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
           close
         </span>
       </div>
-      <ul className="flex flex-col items-center justify-center gap-8 my-40">
+      <ul className="flex flex-col items-center h-screen gap-8 py-40 bg-neutral-light">
         <Link href={"jobs/"}>
           <li
             className="text-xl text-neutral-dark"
@@ -56,6 +57,14 @@ function MobileMenu({ isActive, setIsActive, token }: MobileMenuProps) {
             onClick={() => setIsActive(false)}
           >
             درخواست های من
+          </li>
+        </Link>
+        <Link href={`/profile/${role}/1`}>
+          <li
+            className="text-xl text-neutral-dark"
+            onClick={() => setIsActive(false)}
+          >
+            پروفایل
           </li>
         </Link>
         {token ? (

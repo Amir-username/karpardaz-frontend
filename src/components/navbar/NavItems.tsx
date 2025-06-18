@@ -43,10 +43,10 @@ function NavItems({ token, role }: NavItemsProps) {
   return (
     <ul className="items-center hidden gap-2 pl-8 md:flex lg:gap-4">
       <Link href={"/jobs"}>
-        <li>فرصت های شغلی</li>
+        <li className="hover:text-black text-neutral-dark">فرصت های شغلی</li>
       </Link>
       <Link href={"/jobseeker-ads"}>
-        <li>آگهی کارجویان</li>
+        <li className="hover:text-black text-neutral-dark">آگهی کارجویان</li>
       </Link>
       <ProfileNavLink
         currentEmployer={currentEmployer}

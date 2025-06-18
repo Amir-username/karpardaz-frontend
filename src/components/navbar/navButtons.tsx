@@ -5,15 +5,17 @@ import NavMenuButton from "./NavMenuButton";
 
 type NavButtonsProps = {
   token?: string;
+  role?: string
 };
 
-function NavButtons({ token }: NavButtonsProps) {
+function NavButtons({ token, role }: NavButtonsProps) {
   const [isActiveMobileMenu, setIsActiveMobileMenu] = useState<boolean>(false);
   return (
     <>
       <NavMenuButton setIsActive={setIsActiveMobileMenu} />
       <MobileMenu
         token={token}
+        role={role}
         isActive={isActiveMobileMenu}
         setIsActive={setIsActiveMobileMenu}
       />
