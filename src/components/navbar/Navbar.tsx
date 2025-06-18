@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import Brand from "./Brand";
 import NavItems from "./NavItems";
 import NavButtons from "./navButtons";
-import LogoutButton from "./LogoutButton";
 
 async function Navbar() {
   const cookieStore = await cookies();

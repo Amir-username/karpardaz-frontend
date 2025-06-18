@@ -1,12 +1,9 @@
 "use client";
 
 import { fetchCreateAnswers } from "@/fetch/interview/fetchCreateAnswers";
-import ClientInput from "@/ui/ClientInput";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import AnswerItem from "./AnswerItem";
-import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
-import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 
 export type InterviewType = {
   id: number;
@@ -49,7 +46,6 @@ export default function Answer({
       {questions[pageNumber] ? (
         <AnswerItem
           question={questions[pageNumber]}
-          answers={answers}
           setAnswersAction={setAnswers}
           setPageNumberAction={setPageNumber}
         />

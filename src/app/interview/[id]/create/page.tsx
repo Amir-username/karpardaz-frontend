@@ -12,7 +12,7 @@ async function CreateInterviewPage({
 
   return (
     <main className="flex items-center justify-center pt-20">
-      <Questions token={token?.value!} advertiseID={Number(id)} />
+      {token && <Questions token={token?.value} advertiseID={Number(id)} />}
     </main>
   );
 }

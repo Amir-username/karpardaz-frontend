@@ -22,13 +22,8 @@ export default function SendResumeButton({
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await res.json();
-      //   console.log(data);
-      //   const res = await axios.post(
-      //     BASE_LINK + `ad-request/?advertise_id=${adID}`,
-
-      //   );
-      //   const data = await res.data;
+      console.log(res);
+      // const data = await res.json();
     };
     if (role === "jobseeker") {
       fetchSendResume(token!);

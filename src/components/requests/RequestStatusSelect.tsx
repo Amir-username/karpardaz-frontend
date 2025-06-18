@@ -2,15 +2,14 @@
 
 import { BASE_LINK } from "@/fetch/config";
 import SelectInput from "@/ui/SelectInput";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
-type StatusType =
-  | "در صف بررسی"
-  | "توسط کارفرما دیده شد"
-  | "تایید اولیه"
-  | "تایید برای مصاحبه"
-  | "رد شده";
+// type StatusType =
+//   | "در صف بررسی"
+//   | "توسط کارفرما دیده شد"
+//   | "تایید اولیه"
+//   | "تایید برای مصاحبه"
+//   | "رد شده";
 
 function RequestStatusSelect({
   advertiseID,

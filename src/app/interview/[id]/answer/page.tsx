@@ -16,9 +16,9 @@ export default async function AnswerPage({
 
   return (
     <main className="flex items-center justify-center pt-20">
-      {role?.value === "jobseeker" && (
+      {(token && role?.value === "jobseeker") && (
         <Answer
-          token={token?.value!}
+          token={token?.value}
           interview={interview}
           advertiseID={Number(id)}
         />

@@ -4,10 +4,7 @@ import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import AdAvatar from "../advertise/AdAvater";
 import Link from "next/link";
 import RequestStatusSelect from "./RequestStatusSelect";
-import { useEffect, useState } from "react";
-import { AdvertiseModel } from "@/models/Advertise";
-import { BASE_LINK } from "@/fetch/config";
-import { AdRequestModel } from "@/models/AdRequest";
+
 
 type AdRequestJobSeekersItemProps = {
   jobseeker: JobSeekerDetailModel;

@@ -5,13 +5,11 @@ import { Dispatch, SetStateAction, useState } from "react";
 type AnswerItemProps = {
   question: string;
   setPageNumberAction: Dispatch<SetStateAction<number>>;
-  answers: string[];
   setAnswersAction: Dispatch<SetStateAction<string[]>>;
 };
 
 export default function AnswerItem({
   question,
-  answers,
   setAnswersAction,
   setPageNumberAction,
 }: AnswerItemProps) {

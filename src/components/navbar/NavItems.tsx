@@ -1,9 +1,6 @@
 "use client";
 
-import Button from "@/ui/Button";
-import Image from "next/image";
 import Link from "next/link";
-import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import { EmployerDetail } from "@/models/EmployerDetail";
 import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
