@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
+import menuSVG from '../../../public/icons/menu.svg'
+import Image from "next/image";
 
 type NavMenuButtonProps = {
   setIsActive: Dispatch<SetStateAction<boolean>>;
@@ -11,14 +13,7 @@ function NavMenuButton({ setIsActive }: NavMenuButtonProps) {
 
   return (
     <div onClick={handleOpenMenu} className="flex items-center pl-8 md:hidden">
-      <span
-        style={{
-          fontSize: "36px",
-        }}
-        className="material-symbols-outlined text-neutral-dark"
-      >
-        menu
-      </span>
+      <Image src={menuSVG} alt="menu" width={36} height={36} />
     </div>
   );
 }

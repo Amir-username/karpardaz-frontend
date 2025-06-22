@@ -5,17 +5,31 @@ import { useSearchAdvertise } from "@/hooks/useSearchAdvertise";
 import { AdvertiseModel } from "@/models/Advertise";
 import { Dispatch, SetStateAction, useState } from "react";
 import { paginationType } from "./JobsResult";
+import searchSVG from "../../../public/icons/search.svg";
+import Image from "next/image";
+
 type SearchBoxProps = {
   setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>;
   filters: FilterType;
-  pagination: paginationType
-  setTotalPages: Dispatch<SetStateAction<number>>
+  pagination: paginationType;
+  setTotalPages: Dispatch<SetStateAction<number>>;
 };
 
-function SearchBox({ setJobsData, filters, pagination, setTotalPages }: SearchBoxProps) {
+function SearchBox({
+  setJobsData,
+  filters,
+  pagination,
+  setTotalPages,
+}: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
-  useSearchAdvertise(searchInput, pagination, filters, setJobsData, setTotalPages);
+  useSearchAdvertise(
+    searchInput,
+    pagination,
+    filters,
+    setJobsData,
+    setTotalPages
+  );
 
   return (
     <div className="relative w-full rounded-lg">
@@ -26,9 +40,11 @@ function SearchBox({ setJobsData, filters, pagination, setTotalPages }: SearchBo
         placeholder="جستجوی آگهی"
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      <span className="absolute material-symbols-outlined right-2 top-3 text-neutral-mid">
-        search
-      </span>
+      <Image
+        alt=""
+        src={searchSVG}
+        className="absolute right-2 top-3"
+      />
     </div>
   );
 }

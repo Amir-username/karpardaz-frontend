@@ -58,9 +58,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
 
   const interview: InterviewType = await fetchGetInterview(Number(id));
 
-  const isAnswer = interview.jobseeker_ids.includes(jobseeker.id!)
-
-  console.log(isAnswer);
+  // const isAnswer = interview.jobseeker_ids.includes(jobseeker.id!)
 
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 shadow-lg h-full rounded-lg">
@@ -129,7 +127,9 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
           />
         ) : null}
       </main>
-      {!isAnswer && <Interview advertiseID={advertise.id} />}
+      {interview && !interview.jobseeker_ids.includes(jobseeker.id!) && (
+        <Interview advertiseID={advertise.id} />
+      )}
     </div>
   );
 }

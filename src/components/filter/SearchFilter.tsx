@@ -4,14 +4,14 @@ import FilterTag from "./FilterTag";
 import SelectInput from "@/ui/SelectInput";
 import Button from "@/ui/Button";
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
+import arrowDownSVG from "../../../public/icons/arrow_down.svg";
+import Image from "next/image";
 
 type SearchFilterProps = {
   setFilters: Dispatch<SetStateAction<FilterType>>;
 };
 
-export default function SearchFilter({
-  setFilters,
-}: SearchFilterProps) {
+export default function SearchFilter({ setFilters }: SearchFilterProps) {
   const [isInternship, setIsInternship] = useState<boolean>(false);
   const [isRemote, setIsRemote] = useState<boolean>(false);
   const [isPortfolio, setIsPortfolio] = useState<boolean>(false);
@@ -42,13 +42,12 @@ export default function SearchFilter({
         className="cursor-pointer flex gap-2"
       >
         <span className="text-neutral-mid text-sm">فیلتر ها</span>
-        <span
-          className={`material-symbols-outlined text-neutral-mid duration-400 ${
-            isOpen && "rotate-180"
-          }`}
-        >
-          arrow_drop_down
-        </span>
+        <Image
+          className={`duration-400 ${isOpen && "rotate-180"}
+          `}
+          alt="arrow down icon"
+          src={arrowDownSVG}
+        />
       </section>
       <div className={`flex flex-col gap-3 ${!isOpen && "hidden"}`}>
         <div className={"flex gap-2 flex-wrap"}>

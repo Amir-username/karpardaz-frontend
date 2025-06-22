@@ -8,6 +8,7 @@ import FormHeader from "@/ui/FormHeader";
 import Input from "@/ui/Input";
 import { useActionState } from "react";
 
+
 function JobSeekerSignupForm() {
   const [formState, action] = useActionState(JobSeekerSignupAction, {
     errors: {},
@@ -21,7 +22,7 @@ function JobSeekerSignupForm() {
           type="text"
           name="firstname"
           placeholder="نام"
-          icon="person"
+          icon='person'
           isValid={!!formState.errors?.firstname}
           errorMessage={formState?.errors?.firstname}
         />

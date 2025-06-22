@@ -2,12 +2,14 @@ import Button from "@/ui/Button";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import LogoutButton from "./LogoutButton";
+import Image from "next/image";
+import closeSVG from "../../../public/icons/close.svg";
 
 type MobileMenuProps = {
   setIsActive: Dispatch<SetStateAction<boolean>>;
   isActive: boolean;
   token?: string;
-  role?: string
+  role?: string;
 };
 
 function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
@@ -25,14 +27,15 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
         onClick={handleCloseMenu}
         className="z-50 flex items-center justify-start p-8 bg-neutral-light"
       >
-        <span
+        {/* <span
           style={{
             fontSize: "36px",
           }}
           className="material-symbols-outlined text-neutral-dark"
         >
           close
-        </span>
+        </span> */}
+        <Image src={closeSVG} alt="menu" width={36} height={36} />
       </div>
       <ul className="flex flex-col items-center h-screen gap-8 py-40 bg-neutral-light">
         <Link href={"jobs/"}>
