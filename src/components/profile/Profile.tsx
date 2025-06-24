@@ -127,7 +127,7 @@ export function Container({
         style={{
           background: "rgba(0,0,0,0.6)",
         }}
-        className="flex flex-col items-center gap-6 h-full py-8"
+        className="flex flex-col items-center gap-6 h-full py-8 rounded-lg"
       >
         {children}
       </div>

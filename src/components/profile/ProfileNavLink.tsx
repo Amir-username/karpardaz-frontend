@@ -4,11 +4,11 @@ import { EmployerDetail } from "@/models/EmployerDetail";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import Image from "next/image";
 import Link from "next/link";
-import DEFAULT_AVATAR from "../../../public/images/company_default_avatar.png";
 import Button from "@/ui/Button";
 import { useState } from "react";
 import LogoutButton from "../navbar/LogoutButton";
 import DropDownMenu, { DropDownItem } from "@/ui/DropDownMenu";
+import personSVG from "../../../public/icons/person.svg";
 
 type ProfileNavLinkProps = {
   currentJobSeeker: JobSeekerDetailModel | undefined;
@@ -39,20 +39,16 @@ export default function ProfileNavLink({
             onClick={() => setIsOpen((o) => !o)}
             // onMouseEnter={() => setIsOpen(true)}
             // onMouseLeave={() => setIsOpen(false)}
-            className="relative flex items-center gap-3 pr-8 cursor-pointer"
+            className="relative flex items-center gap-3 px-4 py-2 mr-2 cursor-pointer ring-1 ring-gray-300 rounded-lg"
           >
-            <h3 className="text-lg">
+            <Image src={personSVG} alt="آواتار پیشفرض شرکت" />
+            <h3 className="text-lg text-primary-blue">
               {role === "jobseeker"
                 ? currentJobSeeker!.firstname + " " + currentJobSeeker!.lastname
                 : role === "employer"
                 ? currentEmployer!.company_name
                 : "نام کاربر"}
             </h3>
-            <Image
-              src={DEFAULT_AVATAR}
-              alt="آواتار پیشفرض شرکت"
-              className="w-12 h-12 rounded-full ring-2 ring-neutral-mid"
-            />
             <DropDownMenu isOpen={isOpen} setIsOpenAction={setIsOpen}>
               {role === "jobseeker" && (
                 <DropDownItem link={`/recommends/`}>پیشنهاد ها</DropDownItem>

@@ -35,7 +35,7 @@ function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
   };
 
   return (
-    <div>
+    <div className="rounded-lg">
       <input
         onChange={handleUploadBackdrop}
         type="file"
@@ -48,7 +48,7 @@ function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
         style={{
           fontSize: "32px",
         }}
-        className="absolute p-2 cursor-pointer material-symbols-outlined right-6 top-6 text-neutral-mid"
+        className="absolute p-2 rounded-lg cursor-pointer material-symbols-outlined right-6 top-6 text-neutral-mid"
       >
         {icon}
       </span>

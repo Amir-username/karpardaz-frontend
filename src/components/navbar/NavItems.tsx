@@ -7,6 +7,7 @@ import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
 import { fetchCurrentEmployer } from "@/fetch/employer/fetchCurrentEmployer";
 import { useEffect, useState } from "react";
 import ProfileNavLink from "../profile/ProfileNavLink";
+import { usePathname } from "next/navigation";
 
 type NavItemsProps = {
   token: string | undefined;
@@ -17,6 +18,8 @@ function NavItems({ token, role }: NavItemsProps) {
   const [currentJobSeeker, setCurrentJobSeeker] =
     useState<JobSeekerDetailModel>();
   const [currentEmployer, setCurrentEmployer] = useState<EmployerDetail>();
+
+  const pathName = usePathname();
 
   useEffect(() => {
     const fetchJobSeeker = async () => {
@@ -43,10 +46,26 @@ function NavItems({ token, role }: NavItemsProps) {
   return (
     <ul className="items-center hidden gap-2 pl-8 md:flex lg:gap-4">
       <Link href={"/jobs"}>
-        <li className="hover:text-black text-neutral-dark">فرصت های شغلی</li>
+        <li
+          className={`${
+            pathName === "/jobs"
+              ? "text-primary-blue"
+              : "hover:text-primary-blue text-gray-500"
+          }`}
+        >
+          فرصت های شغلی
+        </li>
       </Link>
       <Link href={"/jobseeker-ads"}>
-        <li className="hover:text-black text-neutral-dark">آگهی کارجویان</li>
+        <li
+          className={`${
+            pathName === "/jobseeker-ads"
+              ? "text-primary-blue"
+              : "hover:text-primary-blue text-gray-500"
+          }`}
+        >
+          آگهی کارجویان
+        </li>
       </Link>
       <ProfileNavLink
         currentEmployer={currentEmployer}
