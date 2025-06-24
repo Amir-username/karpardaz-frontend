@@ -39,10 +39,10 @@ export default function ProfileNavLink({
             onClick={() => setIsOpen((o) => !o)}
             // onMouseEnter={() => setIsOpen(true)}
             // onMouseLeave={() => setIsOpen(false)}
-            className="relative flex items-center gap-3 px-4 py-2 mr-2 cursor-pointer ring-1 ring-gray-300 rounded-lg"
+            className="relative flex items-center gap-3 px-4 py-2 mr-2 rounded-lg cursor-pointer ring-1 ring-gray-300"
           >
             <Image src={personSVG} alt="آواتار پیشفرض شرکت" />
-            <h3 className="text-lg text-primary-blue">
+            <h3 className="text-lg text-neutral-700">
               {role === "jobseeker"
                 ? currentJobSeeker!.firstname + " " + currentJobSeeker!.lastname
                 : role === "employer"
