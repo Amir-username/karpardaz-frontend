@@ -45,10 +45,10 @@ export function DropDownItem({
   if (link)
     return (
       <Link href={link}>
-        <li className="text-sm hover:bg-gray-200 p-3 w-32 rounded-lg">{children}</li>
+        <li className="w-32 p-3 text-sm rounded-lg hover:bg-gray-200">{children}</li>
       </Link>
     );
   return (
-    <li className="text-sm hover:bg-gray-200 p-3 rounded-lg">{children}</li>
+    <li className="p-3 text-sm rounded-lg hover:bg-gray-200">{children}</li>
   );
 }
