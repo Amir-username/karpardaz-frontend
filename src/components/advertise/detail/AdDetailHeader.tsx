@@ -13,7 +13,7 @@ type AdDetailHeaderProps = {
 
 function AdDetailHeader({ title, subtitle, role, id }: AdDetailHeaderProps) {
   return (
-    <div className="flex justify-between p-8 bg-primary-blue rounded-lg">
+    <div className="flex justify-between p-8 bg-primary-blue dark:bg-neutral-dark rounded-lg">
       <div className="flex gap-4 md:gap-8 ">
         <Image
           src={DEFAULT_AVATAR}

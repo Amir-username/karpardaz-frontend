@@ -22,7 +22,7 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
   };
 
   return (
-    <div className="flex items-center w-full px-4 py-3 text-sm rounded-lg bg-gray-50 text-neutral-dark ring-1 ring-gray-300">
+    <div className="flex items-center w-full px-4 py-3 text-sm rounded-lg bg-gray-50 dark:bg-neutral-dark text-neutral-dark ring-1 ring-gray-300 dark:ring-neutral-dark">
       <div className="flex flex-col w-full gap-6">
         <div className="flex items-center justify-between w-full">
           <span className="text-sm text-neutral-mid">{label}</span>
@@ -38,13 +38,13 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
             name={name}
             onChange={(e) => setInputText(e.target.value)}
             type="text"
-            className="p-2 rounded-lg w-full ring-1 ring-neutral-mid"
+            className="w-full p-2 rounded-lg ring-1 ring-neutral-mid dark:ring-neutral-600 dark:text-neutral-light"
             value={inputText}
           />
           <button
             type="button"
             onClick={() => handleAddItem(inputText)}
-            className="px-2 bg-primary-blue text-white rounded-lg cursor-pointer"
+            className="px-2 text-white rounded-lg cursor-pointer bg-primary-blue dark:bg-primary-blue-dark"
           >
             ثبت
           </button>
@@ -53,10 +53,10 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
           {items.map((item, i) => {
             return (
               <span
-                className={`rounded-lg bg-primary-blue text-white px-2 py-1`}
+                className={`rounded-lg bg-primary-blue dark:bg-primary-blue-dark text-white px-2 py-1`}
                 key={i}
               >
-                {item.length > 12 ? item.slice(0, 12) + '...' : item}
+                {item.length > 12 ? item.slice(0, 12) + "..." : item}
               </span>
             );
           })}

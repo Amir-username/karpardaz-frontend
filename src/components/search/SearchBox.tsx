@@ -34,17 +34,13 @@ function SearchBox({
   return (
     <div className="relative w-full rounded-lg">
       <input
-        className="w-80 lg:w-96 h-12 px-4 pr-10 text-sm rounded-lg bg-gray-50 text-neutral-dark placeholder:text-neutral-mid ring-1 ring-gray-300"
+        className="w-80 lg:w-96 h-12 px-4 pr-10 text-sm rounded-lg bg-gray-50 dark:bg-neutral-dark text-neutral-dark dark:text-neutral-light placeholder:text-neutral-mid ring-1 ring-gray-300 dark:ring-neutral-dark"
         type="search"
         name="search"
         placeholder="جستجوی آگهی"
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      <Image
-        alt=""
-        src={searchSVG}
-        className="absolute right-2 top-3"
-      />
+      <Image alt="" src={searchSVG} className="absolute right-2 top-3" />
     </div>
   );
 }

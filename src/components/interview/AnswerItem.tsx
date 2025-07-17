@@ -26,12 +26,12 @@ export default function AnswerItem({
   return (
     <>
       <section className="flex flex-col gap-4 w-80">
-        <h1 className="text-lg text-primary-blue">{question}</h1>
+        <h1 className="text-lg text-primary-blue dark:text-neutral-light">{question}</h1>
         <ClientInput value={answer} setValue={setAnswer} placeholder="پاسخ" />
       </section>
       <button
         onClick={handleAnswer}
-        className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue"
+        className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue dark:bg-primary-blue-dark"
       >
         ثبت و ادامه
       </button>

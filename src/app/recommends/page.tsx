@@ -15,9 +15,9 @@ async function RecommendsPage() {
     );
   
     return (
-      <div className="container flex items-center justify-center mx-auto py-12 bg-neutral-light">
+      <div className="container flex items-center justify-center mx-auto py-12 bg-neutral-light dark:bg-neutral-950">
         <main className="flex flex-col gap-12">
-          <h1 className="text-primary-blue text-2xl text-center">
+          <h1 className="text-primary-blue dark:text-neutral-light text-2xl text-center">
             آگهی های پیشنهادی
           </h1>
           <AdvertiseList

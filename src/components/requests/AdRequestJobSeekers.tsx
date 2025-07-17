@@ -12,7 +12,7 @@ export default function AdRequestJobSeekers({
 }) {
   return (
     <>
-      <h2 className="w-full px-8 text-2xl text-center text-primary-blue">
+      <h2 className="w-full px-8 text-2xl text-center text-primary-blue dark:text-neutral-light">
         درخواست ها
       </h2>
       <ul className="flex flex-col gap-3 p-4">

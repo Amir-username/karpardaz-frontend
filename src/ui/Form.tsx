@@ -11,7 +11,7 @@ function Form({ children, action, onFormSubmit }: FormProps) {
     return (
       <form
         onSubmit={(e) => onFormSubmit(e)}
-        className="flex flex-col items-center justify-center w-full gap-4 p-8 rounded-lg bg-neutral-light md:w-sm ring-1 ring-gray-300"
+        className="flex flex-col items-center justify-center w-full gap-4 p-8 rounded-lg bg-neutral-light dark:bg-neutral-900 md:w-sm ring-1 ring-gray-300 dark:ring-neutral-900"
       >
         {children}
       </form>
@@ -20,7 +20,7 @@ function Form({ children, action, onFormSubmit }: FormProps) {
   return (
     <form
       action={action}
-      className="flex flex-col items-center justify-center w-full gap-4 p-8 rounded-lg bg-neutral-light md:w-sm ring-1 ring-gray-300"
+      className="flex flex-col items-center justify-center w-full gap-4 p-8 rounded-lg bg-neutral-light dark:bg-neutral-900 md:w-sm ring-1 ring-gray-300 dark:ring-neutral-900"
     >
       {children}
     </form>

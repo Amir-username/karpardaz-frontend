@@ -19,7 +19,7 @@ export default async function RequestItem({
 }) {
   const statusStyle = `${
     request.status === "تایید اولیه"
-      ? "text-secondary-blue"
+      ? "text-secondary-blue dark:text-primary-blue-dark"
       : request.status === "تایید برای مصاحبه"
       ? "text-green-500"
       : request.status === "رد شده"
@@ -37,10 +37,10 @@ export default async function RequestItem({
       advertise.employer_id
     );
     return (
-      <li className="gap-8 lg:w-96 w-72 rounded-lg shadow-sm ring-1 ring-gray-200 flex flex-col justify-between">
+      <li className="gap-8 lg:w-96 w-72 rounded-lg shadow-sm ring-1 ring-gray-200 dark:ring-neutral-dark flex flex-col justify-between">
         <div className="flex flex-col gap-8 p-4">
-          <h3 className="text-xl text-neutral-dark">{advertise.title}</h3>
-          <h6 className="text-gray-500">{employer.company_name}</h6>
+          <h3 className="text-xl text-neutral-dark dark:text-neutral-light">{advertise.title}</h3>
+          <h6 className="text-gray-500 dark:text-neutral-mid">{employer.company_name}</h6>
           <span className={statusStyle}>{request.status}</span>
         </div>
         <Link href={`/jobs/${advertise.id}`}>
@@ -58,10 +58,10 @@ export default async function RequestItem({
       advertise.jobseeker_id
     );
     return (
-      <li className="gap-8 lg:w-96 w-72 rounded-lg shadow-sm ring-1 ring-gray-200 flex flex-col justify-between">
+      <li className="gap-8 lg:w-96 w-72 rounded-lg shadow-sm ring-1 ring-gray-200 dark:ring-neutral-dark flex flex-col justify-between">
         <div className="flex flex-col gap-8 p-4">
-          <h3 className="text-xl text-neutral-dark">{advertise.title}</h3>
-          <h6 className="text-gray-500">{`${jobseeker.firstname} ${jobseeker.lastname}`}</h6>
+          <h3 className="text-xl text-neutral-dark dark:text-neutral-light">{advertise.title}</h3>
+          <h6 className="text-gray-500 dark:text-neutral-mid">{`${jobseeker.firstname} ${jobseeker.lastname}`}</h6>
           <span className={statusStyle}>{request.status}</span>
         </div>
         <Link href={`/jobseeker-ads/${advertise.id}`}>

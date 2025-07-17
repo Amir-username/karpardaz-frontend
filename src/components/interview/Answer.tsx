@@ -55,9 +55,9 @@ export default function Answer({
             {questions.map((q, i) => {
               return (
                 <li key={i} className="flex flex-col gap-6">
-                  <h1 className="text-xl text-primary-blue">{q}</h1>
+                  <h1 className="text-xl text-primary-blue dark:text-neutral-light">{q}</h1>
                   <div className="flex gap-3">
-                    <h4 className="text-sm text-neutral-mid">پاسخ شما</h4>
+                    <h4 className="text-sm text-neutral-mid dark:text-neutral-light">پاسخ شما</h4>
                     <p>{answers[i]}</p>
                   </div>
                 </li>
@@ -66,7 +66,7 @@ export default function Answer({
           </ul>
           <button
             onClick={handleCreateAnswers}
-            className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue"
+            className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue dark:bg-primary-blue-dark"
           >
             ثبت پاسخ ها
           </button>

@@ -13,14 +13,16 @@ export default function AdInfo({
 }: AdInfoProps) {
   return (
     <div className="flex flex-col gap-1">
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-500 dark:text-neutral-mid">
         {city} - {salary}
       </p>
       <div className="flex gap-1">
-        {isRemote && <p className="text-xs text-gray-500">امکان دورکاری</p>}
-        {(isRemote && isInternship) && <span className="text-xs text-gray-500">-</span>}
+        {isRemote && <p className="text-xs text-gray-500 dark:text-neutral-mid">امکان دورکاری</p>}
+        {isRemote && isInternship && (
+          <span className="text-xs text-gray-500 dark:text-neutral-mid">-</span>
+        )}
         {isInternship && (
-          <p className="text-xs text-gray-500">امکان کارآموزی</p>
+          <p className="text-xs text-gray-500 dark:text-neutral-mid">امکان کارآموزی</p>
         )}
       </div>
     </div>

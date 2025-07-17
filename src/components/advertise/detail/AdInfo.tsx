@@ -9,7 +9,7 @@ function AdDetailInfo({ text, icon }: AdInfoProps) {
       <span className="material-symbols-outlined text-neutral-secondary">
         {icon}
       </span>
-      <h3 className="md:text-lg text-neutral-dark">{text}</h3>
+      <h3 className="md:text-lg text-neutral-dark dark:text-neutral-light">{text}</h3>
     </div>
   );
 }

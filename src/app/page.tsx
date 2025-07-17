@@ -18,7 +18,7 @@ export default async function Home() {
   const jobseekers: JobSeekerDetailModel[] = jsData;
 
   return (
-    <main className="flex-col gap-4 flex justify-center">
+    <main className="flex flex-col justify-center gap-4">
       <HeroHeader />
       <Carousel link="/jobs" header="تازه ترین آگهی ها">
         {advertises.slice(0, 7).map((ad) => {
@@ -57,7 +57,7 @@ export default async function Home() {
           );
         })}
       </Carousel>
-      <footer className="w-full bg-neutral-dark p-32 flex items-center justify-center h-96">
+      <footer className="flex items-center justify-center w-full p-32 bg-neutral-dark dark:bg-black h-96">
         <h1 className="text-neutral-light">صفحه گیتهاب</h1>
       </footer>
     </main>

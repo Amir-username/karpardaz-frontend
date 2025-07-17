@@ -53,9 +53,9 @@ export default function AdHeader({
   return (
     <div className="flex justify-between w-full">
       <div className="flex flex-col justify-between h-full gap-2">
-        <h3 className="font-semibold text-neutral-dark">{title}</h3>
+        <h3 className="font-semibold text-neutral-dark dark:text-neutral-light dark:font-normal">{title}</h3>
         <Link href={`profile/${role}/${id}`}>
-          <h6 className="text-sm text-gray-700">{name ? name : "نام"}</h6>
+          <h6 className="text-sm text-gray-700 dark:text-neutral-mid">{name ? name : "نام"}</h6>
         </Link>
       </div>
       {isLikeOpen && (

@@ -18,8 +18,8 @@ export default async function MyRequestsPage() {
 
   if (role?.value === "jobseeker")
     return (
-      <div className="flex flex-col gap-16 mt-8 items-center justify-center">
-        <h1 className="text-xl lg:text-3xl text-primary-blue font-bold">
+      <div className="flex flex-col gap-16 mt-8 items-center justify-center dark:bg-neutral-950">
+        <h1 className="text-xl lg:text-3xl text-primary-blue dark:text-neutral-light dark:font-normal font-bold">
           درخواست های من
         </h1>
         <RequestList requests={data} role={"jobseeker"} />

@@ -7,7 +7,7 @@ async function Page() {
   const role = cookieStore.get("role");
 
   return (
-    <div className="container flex items-center justify-center mx-auto py-12 bg-neutral-light">
+    <div className="container flex items-center justify-center py-12 mx-auto bg-neutral-light dark:bg-neutral-950">
       <JobsResult token={token?.value} role={role?.value} />
     </div>
   );

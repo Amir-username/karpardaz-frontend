@@ -28,7 +28,7 @@ export default function DropDownMenu({
       ref={dropdownRef}
       className={`${
         !isOpen && "hidden"
-      } absolute top-12 left-0.5 py-2 rounded-b-lg shadow-sm flex flex-col gap-2 bg-neutral-light`}
+      } absolute top-12 left-0.5 py-2 rounded-b-lg shadow-sm flex flex-col gap-2 bg-neutral-light dark:bg-neutral-950`}
     >
       {children}
     </ul>
@@ -45,10 +45,14 @@ export function DropDownItem({
   if (link)
     return (
       <Link href={link}>
-        <li className="w-32 p-3 text-sm rounded-lg hover:bg-gray-200">{children}</li>
+        <li className="w-32 p-3 text-sm rounded-lg hover:bg-gray-200 dark:text-neutral-light hover:dark:bg-neutral-dark">
+          {children}
+        </li>
       </Link>
     );
   return (
-    <li className="p-3 text-sm rounded-lg hover:bg-gray-200">{children}</li>
+    <li className="p-3 text-sm rounded-lg hover:bg-gray-200 hover:dark:bg-neutral-dark dark:text-neutral-light">
+      {children}
+    </li>
   );
 }

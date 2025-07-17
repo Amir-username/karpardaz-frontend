@@ -13,8 +13,8 @@ import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import AdRequestJobSeekers from "@/components/requests/AdRequestJobSeekers";
 import Interview from "@/components/interview/Iterview";
 import { fetchCurrentJobSeeker } from "@/fetch/jobseeker/fetchCurrentJobseeker";
-import { fetchGetInterview } from "@/fetch/interview/fetchGetInterview";
-import { InterviewType } from "@/components/interview/Answer";
+import { fetchCurrentEmployer } from "@/fetch/employer/fetchCurrentEmployer";
+import { EmployerDetail } from "@/models/EmployerDetail";
 
 async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -56,20 +56,24 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
     token?.value
   );
 
-  const interview: InterviewType = await fetchGetInterview(Number(id));
+  // const interview: InterviewType = await fetchGetInterview(Number(id));
 
   // const isAnswer = interview.jobseeker_ids.includes(jobseeker.id!)
 
+  const currEmployer: EmployerDetail = await fetchCurrentEmployer(
+    token?.value!
+  );
+
   return (
     <div className="flex flex-col lg:mx-96 my-8 mx-4 shadow-lg h-full rounded-lg">
-      <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-4 dark:bg-neutral-900">
         <AdDetailHeader
           title={advertise.title}
           subtitle={company.name}
           role="employer"
           id={advertise.employer_id}
         />
-        <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
+        <div className="flex justify-center py-4 w-full bg-gray-200 dark:bg-neutral-900 rounded-lg">
           <div className="grid grid-cols-2 gap-2">
             <AdDetailInfo text={advertise.city} icon="location_city" />
             <AdDetailInfo text={advertise.salary} icon="payments" />
@@ -97,7 +101,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
             })}
           </div>
         </div>
-        <p className="px-8 text-lg leading-8 py-8 text-neutral-dark">
+        <p className="px-8 text-lg leading-8 py-8 text-neutral-dark dark:text-neutral-light">
           {advertise.description}
         </p>
         <div className="flex flex-wrap gap-4 justify-center pb-8">
@@ -108,7 +112,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
 
         {isRequested && role?.value === "jobseeker" ? (
           <div className="lg:px-8">
-            <div className="flex items-center justify-center rounded-lg text-neutral-dark w-full bg-gray-300 p-2 h-16">
+            <div className="flex items-center justify-center rounded-lg text-neutral-dark dark:text-neutral-light w-full bg-gray-300 dark:bg-neutral-dark mb-8 p-2 h-16">
               رزومه قبلا ارسال شده
             </div>
           </div>
@@ -127,9 +131,25 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
           />
         ) : null}
       </main>
-      {interview && !interview.jobseeker_ids.includes(jobseeker.id!) && (
-        <Interview advertiseID={advertise.id} />
-      )}
+      {/* {interview && !interview.jobseeker_ids.includes(jobseeker.id!) && ( */}
+      <section className="flex gap-6 items-center justify-center p-8 flex-col">
+        <h1 className="text-2xl text-primary-blue dark:text-neutral-light">مصاحبه آنلاین</h1>
+        {role?.value &&
+          (role.value === "jobseeker" ? (
+            <Interview
+              user_id={jobseeker.id!}
+              advertise={advertise}
+              role={role.value}
+            />
+          ) : (
+            <Interview
+              user_id={currEmployer.id}
+              advertise={advertise}
+              role={role.value}
+            />
+          ))}
+        {/* )} */}
+      </section>
     </div>
   );
 }

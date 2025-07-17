@@ -49,8 +49,8 @@ function NavItems({ token, role }: NavItemsProps) {
         <li
           className={`${
             pathName === "/jobs"
-              ? "text-primary-blue"
-              : "hover:text-primary-blue text-gray-500"
+              ? "text-primary-blue dark:text-white"
+              : "hover:text-primary-blue hover:dark:text-gray-100 text-gray-600 dark:text-gray-300"
           }`}
         >
           فرصت های شغلی
@@ -60,8 +60,8 @@ function NavItems({ token, role }: NavItemsProps) {
         <li
           className={`${
             pathName === "/jobseeker-ads"
-              ? "text-primary-blue"
-              : "hover:text-primary-blue text-gray-500"
+              ? "text-primary-blue dark:text-white"
+              : "hover:text-primary-blue hover:dark:text-gray-100 text-gray-500 dark:text-gray-300"
           }`}
         >
           آگهی کارجویان

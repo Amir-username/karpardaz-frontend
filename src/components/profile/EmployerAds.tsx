@@ -14,7 +14,7 @@ async function EmployerAds({ id }: { id: number }) {
   return (
     <Container bg="neutral">
       <div className="flex flex-col gap-8">
-        <h1 className="text-primary-blue text-2xl text-center">
+        <h1 className="text-primary-blue dark:text-neutral-light text-2xl text-center">
           موقعیت های شغلی
         </h1>
 

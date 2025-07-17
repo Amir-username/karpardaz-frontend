@@ -21,7 +21,7 @@ function Questions({
 
   return (
     <div className="flex flex-col items-center justify-center gap-12 pt-20 px-8 lg:w-xl">
-      <h1 className="text-2xl lg:text-3xl text-primary-blue">ایجاد مصاحبه</h1>
+      <h1 className="text-2xl lg:text-3xl text-primary-blue dark:text-neutral-light">ایجاد مصاحبه</h1>
       <InputTag
         label="ایجاد سوال"
         name="questiontag"
@@ -30,7 +30,7 @@ function Questions({
       />
       <button
         onClick={handleCreateInterview}
-        className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue"
+        className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue dark:bg-primary-blue-dark"
       >
         ثبت
       </button>

@@ -1,29 +1,57 @@
 import { fetchGetInterview } from "@/fetch/interview/fetchGetInterview";
 import Link from "next/link";
+import { InterviewType } from "./Answer";
+import { AdvertiseModel } from "@/models/Advertise";
 
 export default async function Interview({
-  advertiseID,
+  advertise,
+  role,
+  user_id,
 }: {
-  advertiseID: number;
+  advertise: AdvertiseModel;
+  role: string;
+  user_id: number;
 }) {
-  const interview = await fetchGetInterview(advertiseID);
+  const interview: InterviewType = await fetchGetInterview(advertise.id);
 
-  return (
-    <section className="flex gap-6 items-center justify-center p-8 flex-col">
-      <h1 className="text-2xl text-primary-blue">مصاحبه آنلاین</h1>
-      {interview ? (
-        <Link href={`/interview/${advertiseID}/answer/`}>
-          <div className="bg-primary-blue px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
-            شرکت در مصاحبه
-          </div>
-        </Link>
-      ) : (
-        <Link href={`/interview/${advertiseID}/create/`}>
-          <div className="bg-primary-blue px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
-            ایجاد مصاحبه
-          </div>
-        </Link>
-      )}
-    </section>
-  );
+  if (role === "employer") {
+    if (!interview) {
+      if (user_id === advertise.employer_id) {
+        return (
+          <Link href={`/interview/${advertise.id}/create/`}>
+            <div className="bg-primary-blue dark:bg-primary-blue-dark px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
+              ایجاد مصاحبه
+            </div>
+          </Link>
+        );
+      }
+      else {
+        return null
+      }
+    }
+
+    return (
+      <div className="bg-primary-blue dark:bg-primary-blue-dark px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
+        مشاهده مصاحبه
+      </div>
+    );
+  }
+
+  if (role === "jobseeker") {
+    if (!interview) {
+      return <div className="text-neutral-mid">مصاحبه ای وجود ندارد</div>;
+    }
+
+    if (interview && interview.jobseeker_ids.includes(user_id)) {
+      return <div className="text-green-500">قبلا در این مصاحبه شرکت کرده اید</div>;
+    }
+
+    return (
+      <Link href={`/interview/${advertise.id}/answer/`}>
+        <div className="bg-primary-blue bg-primary-blue-dark px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
+          شرکت در مصاحبه
+        </div>
+      </Link>
+    );
+  }
 }

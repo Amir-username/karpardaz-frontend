@@ -106,7 +106,7 @@ export function Container({
     return (
       <div
         className={`relative flex flex-col items-center gap-6 py-8 rounded-lg ${
-          bg === "primary" ? "bg-primary-blue" : "bg-neutral-light"
+          bg === "primary" ? "bg-primary-blue dark:bg-neutral-900" : "bg-neutral-light dark:bg-neutral-900"
         }`}
       >
         {children}

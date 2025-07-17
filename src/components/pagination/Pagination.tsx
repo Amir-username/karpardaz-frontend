@@ -5,12 +5,12 @@ import { paginationType } from "../search/JobsResult";
 
 type PaginationProps = {
   setPaginationAction: Dispatch<SetStateAction<paginationType>>;
-  totalPages: number
+  totalPages: number;
 };
 
 export default function Pagination({
   setPaginationAction,
-  totalPages
+  totalPages,
 }: PaginationProps) {
   const [pageNumber, setPageNumberAction] = useState(1);
 
@@ -54,7 +54,9 @@ function PaginationItem({ active, children, onClick }: PaginationItemProps) {
     <span
       onClick={active ? onClick : undefined}
       className={`${
-        !active ? "bg-secondary-blue" : "bg-primary-blue"
+        !active
+          ? "bg-secondary-blue dark:bg-neutral-950 dark:ring-1 dark:ring-neutral-dark"
+          : "bg-primary-blue dark:bg-neutral-dark dark:ring-1 dark:ring-neutral-dark"
       } p-2 cursor-pointer w-12 flex text-sm items-center justify-center text-center text-neutral-light rounded-lg`}
     >
       {children}
