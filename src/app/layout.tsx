@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "کارپرداز",
@@ -13,7 +14,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className="dark">
+    <html lang="fa" dir="rtl">
       <head>
         <link
           rel="stylesheet"

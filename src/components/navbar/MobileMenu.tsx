@@ -20,12 +20,12 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
   return (
     <div
       className={`${
-        isActive ? "felx" : "hidden"
-      } absolute top-0 bottom-0 right-0 z-50 flex-col w-full md:hidden bg-neutral-light`}
+        isActive ? "fesx" : "hidden"
+      } absolute top-0 bottom-0 right-0 z-50 flex-col w-full md:hidden bg-neutral-light dark:bg-neutral-900`}
     >
       <div
         onClick={handleCloseMenu}
-        className="z-50 flex items-center justify-start p-8 bg-neutral-light"
+        className="z-50 flex items-center justify-start p-8 bg-neutral-light dark:bg-neutral-900"
       >
         {/* <span
           style={{
@@ -37,10 +37,10 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
         </span> */}
         <Image src={closeSVG} alt="menu" width={36} height={36} />
       </div>
-      <ul className="flex flex-col items-center h-screen gap-8 py-40 bg-neutral-light">
+      <ul className="flex flex-col items-center h-screen gap-8 py-40 bg-neutral-light dark:bg-neutral-900">
         <Link href={"jobs/"}>
           <li
-            className="text-xl text-neutral-dark"
+            className="text-xl text-neutral-dark dark:text-neutral-light"
             onClick={() => setIsActive(false)}
           >
             فرصت های شغلی
@@ -48,7 +48,7 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
         </Link>
         <Link href={"/jobseeker-ads"}>
           <li
-            className="text-xl text-neutral-dark"
+            className="text-xl text-neutral-dark dark:text-neutral-light"
             onClick={() => setIsActive(false)}
           >
             آگهی کارجویان
@@ -56,7 +56,7 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
         </Link>
         <Link href={"/"}>
           <li
-            className="text-xl text-neutral-dark"
+            className="text-xl text-neutral-dark dark:text-neutral-light"
             onClick={() => setIsActive(false)}
           >
             درخواست های من
@@ -64,7 +64,7 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
         </Link>
         <Link href={`/profile/${role}/1`}>
           <li
-            className="text-xl text-neutral-dark"
+            className="text-xl text-neutral-dark dark:text-neutral-light"
             onClick={() => setIsActive(false)}
           >
             پروفایل
@@ -74,13 +74,13 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
           <LogoutButton token={token} />
         ) : (
           <div className="flex flex-col items-center w-48 gap-4 text-sm lg:gap-3">
-            <div className="w-full h-0.5 bg-gray-300 rounded-lg"></div>
+            <div className="w-full h-0.5 bg-gray-300 dark:bg-neutral-dark rounded-lg"></div>
             <Link
               href={"/auth/jobseeker/signup"}
               className="w-full h-full"
               onClick={() => setIsActive(false)}
             >
-              <Button text="ثبت نام" type="button" h="h-9" outline />
+              <Button text="ثبت نام" type="button" h="h-9" />
             </Link>
             <Link
               href={"/auth/jobseeker/login"}

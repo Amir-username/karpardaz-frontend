@@ -7,7 +7,7 @@ function LogoutButton({ token }: { token?: string }) {
         <span className="material-symbols-outlined text-neutral-mid">
           logout
         </span>
-        <span>خروج</span>
+        <span className="dark:text-neutral-light">خروج</span>
       </button>
     </form>
   );
