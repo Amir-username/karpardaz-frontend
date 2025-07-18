@@ -6,6 +6,10 @@ import { AdvertiseModel } from "@/models/Advertise";
 import { EmployerDetail } from "@/models/EmployerDetail";
 import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import Carousel, { CarouselItem } from "@/ui/Carousel";
+import Image from "next/image";
+
+import github from "../../public/icons/github.svg";
+import email from "../../public/icons/Emailicon.png";
 
 export default async function Home() {
   const adData = await fetchAdvertisements();
@@ -57,8 +61,17 @@ export default async function Home() {
           );
         })}
       </Carousel>
-      <footer className="flex items-center justify-center w-full p-32 bg-neutral-dark dark:bg-black h-96">
-        <h1 className="text-neutral-light">صفحه گیتهاب</h1>
+      <footer className="flex items-center justify-center w-full p-16 bg-gray-200 dark:bg-black h-64">
+        <div className="flex flex-col gap-2">
+          <div dir="ltr" className="flex gap-2 items-center">
+            <Image className="dark:bg-neutral-light dark:rounded-full" src={github} width={32} height={32} alt="github icon" />
+            <a href="https://github.com/Amir-username" className="dark:text-neutral-light">https://github.com/Amir-username</a>
+          </div>
+          <div dir="ltr" className="flex gap-2 items-center">
+            <Image src={email} width={32} height={32} alt="github icon" />
+            <a className="dark:text-neutral-light">najiamirdesktop@gmail.com</a>
+          </div>
+        </div>
       </footer>
     </main>
   );
