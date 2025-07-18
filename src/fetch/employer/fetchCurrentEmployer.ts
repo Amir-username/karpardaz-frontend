@@ -1,19 +1,21 @@
 import { BASE_LINK } from "../config";
 
-export async function fetchCurrentEmployer(token: string) {
-  try {
-    const res = await fetch(BASE_LINK + "current-employer/", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+export async function fetchCurrentEmployer(token?: string) {
+  if (token) {
+    try {
+      const res = await fetch(BASE_LINK + "current-employer/", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    return data;
-  } catch (error) {
-    console.log(error);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

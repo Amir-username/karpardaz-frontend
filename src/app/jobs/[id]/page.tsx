@@ -61,7 +61,7 @@ async function JobPage({ params }: { params: Promise<{ id: string }> }) {
   // const isAnswer = interview.jobseeker_ids.includes(jobseeker.id!)
 
   const currEmployer: EmployerDetail = await fetchCurrentEmployer(
-    token?.value!
+    token?.value
   );
 
   return (
