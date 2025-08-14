@@ -10,62 +10,95 @@ import Image from "next/image";
 
 import github from "../../public/icons/github.svg";
 import email from "../../public/icons/Emailicon.png";
+import { fetchData } from "@/fetch/fetchData";
+
+type AdvertisesResType = {
+  total_pages: number;
+  advertises: AdvertiseModel[];
+};
 
 export default async function Home() {
-  const adData = await fetchAdvertisements();
-  const advertises: AdvertiseModel[] = adData.advertises;
+  const { data: adData } = await fetchData<AdvertisesResType>(
+    fetchAdvertisements
+  );
+  const advertises: AdvertiseModel[] = adData ? adData.advertises : [];
 
-  const emData = await fetchEmplyoers();
-  const employers: EmployerDetail[] = emData;
+  const { data: emData } = await fetchData<EmployerDetail[]>(fetchEmplyoers);
+  const employers: EmployerDetail[] = emData ? emData : [];
 
-  const jsData = await fetchJobSeekers();
-  const jobseekers: JobSeekerDetailModel[] = jsData;
+  const { data: jsData } = await fetchData<JobSeekerDetailModel[]>(
+    fetchJobSeekers
+  );
+  const jobseekers: JobSeekerDetailModel[] = jsData ? jsData : [];
 
   return (
     <main className="flex flex-col justify-center gap-4">
       <HeroHeader />
-      <Carousel link="/jobs" header="تازه ترین آگهی ها">
-        {advertises.slice(0, 7).map((ad) => {
-          return (
-            <CarouselItem
-              key={ad.id}
-              title={ad.title}
-              link={`/jobs/${ad.id}/`}
-            />
-          );
-        })}
-      </Carousel>
-      <Carousel header="لیست کارفرما">
-        {employers.slice(0, 7).map((em) => {
-          return (
-            <CarouselItem
-              key={em.id}
-              title={em.company_name}
-              id={em.id}
-              role="employer"
-              link={`/profile/employer/${em.id}/`}
-            />
-          );
-        })}
-      </Carousel>
-      <Carousel header="لیست کارجو">
-        {jobseekers.slice(0, 7).map((jobseeker) => {
-          return (
-            <CarouselItem
-              key={jobseeker.id}
-              title={`${jobseeker.firstname} ${jobseeker.lastname}`}
-              role="jobseeker"
-              id={jobseeker.id}
-              link={`/profile/jobseeker/${jobseeker.id}/`}
-            />
-          );
-        })}
-      </Carousel>
+      {advertises ? (
+        <Carousel link="/jobs" header="تازه ترین آگهی ها">
+          {advertises?.slice(0, 7).map((ad) => {
+            return (
+              <CarouselItem
+                key={ad.id}
+                title={ad.title}
+                link={`/jobs/${ad.id}/`}
+              />
+            );
+          })}
+        </Carousel>
+      ) : (
+        <ErrorCarousel />
+      )}
+      {employers ? (
+        <Carousel header="لیست کارفرما">
+          {employers.slice(0, 7).map((em) => {
+            return (
+              <CarouselItem
+                key={em.id}
+                title={em.company_name}
+                id={em.id}
+                role="employer"
+                link={`/profile/employer/${em.id}/`}
+              />
+            );
+          })}
+        </Carousel>
+      ) : (
+        <ErrorCarousel />
+      )}
+      {jobseekers ? (
+        <Carousel header="لیست کارجو">
+          {jobseekers.slice(0, 7).map((jobseeker) => {
+            return (
+              <CarouselItem
+                key={jobseeker.id}
+                title={`${jobseeker.firstname} ${jobseeker.lastname}`}
+                role="jobseeker"
+                id={jobseeker.id}
+                link={`/profile/jobseeker/${jobseeker.id}/`}
+              />
+            );
+          })}
+        </Carousel>
+      ) : (
+        <ErrorCarousel />
+      )}
       <footer className="flex items-center justify-center w-full p-16 bg-gray-200 dark:bg-black h-64">
         <div className="flex flex-col gap-2">
           <div dir="ltr" className="flex gap-2 items-center">
-            <Image className="dark:bg-neutral-light dark:rounded-full" src={github} width={32} height={32} alt="github icon" />
-            <a href="https://github.com/Amir-username" className="dark:text-neutral-light">https://github.com/Amir-username</a>
+            <Image
+              className="dark:bg-neutral-light dark:rounded-full"
+              src={github}
+              width={32}
+              height={32}
+              alt="github icon"
+            />
+            <a
+              href="https://github.com/Amir-username"
+              className="dark:text-neutral-light"
+            >
+              https://github.com/Amir-username
+            </a>
           </div>
           <div dir="ltr" className="flex gap-2 items-center">
             <Image src={email} width={32} height={32} alt="github icon" />
@@ -74,5 +107,13 @@ export default async function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+export function ErrorCarousel() {
+  return (
+    <div className="w-full text-center text-red-700 bg-red-200 p-4">
+      خطا در دریافت اطلاعات
+    </div>
   );
 }
