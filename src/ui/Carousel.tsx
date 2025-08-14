@@ -11,7 +11,7 @@ type CarouselProps = {
 
 export default function Carousel({ header, children, link }: CarouselProps) {
   return (
-    <div className="flex flex-col w-full gap-4 px-8 py-4 fade-in-right">
+    <div className="flex flex-col w-full gap-4 px-8 py-4 fade-in-view">
       {link ? (
         <Link href={link}>
           <header className="flex px-1 text-xl w-fit lg:text-2xl text-primary-blue dark:text-neutral-light">

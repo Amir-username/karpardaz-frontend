@@ -36,7 +36,7 @@ export default async function Home() {
       <HeroHeader />
       {advertises ? (
         <Carousel link="/jobs" header="تازه ترین آگهی ها">
-          {advertises?.slice(0, 7).map((ad) => {
+          {advertises?.slice(0, 6).map((ad) => {
             return (
               <CarouselItem
                 key={ad.id}
@@ -51,7 +51,7 @@ export default async function Home() {
       )}
       {employers ? (
         <Carousel header="لیست کارفرما">
-          {employers.slice(0, 7).map((em) => {
+          {employers.slice(0, 6).map((em) => {
             return (
               <CarouselItem
                 key={em.id}
@@ -68,7 +68,7 @@ export default async function Home() {
       )}
       {jobseekers ? (
         <Carousel header="لیست کارجو">
-          {jobseekers.slice(0, 7).map((jobseeker) => {
+          {jobseekers.slice(0, 6).map((jobseeker) => {
             return (
               <CarouselItem
                 key={jobseeker.id}

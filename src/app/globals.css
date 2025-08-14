@@ -43,6 +43,36 @@
   animation: fade-in-right 1s cubic-bezier(0.47, 0, 0.745, 0.715) 200ms both;
 }
 
+
+
+.fade-out-view {
+  /* scale: 100%; opacity: 100%; */
+  animation: fade-out-view linear forwards;
+  animation-timeline: view();
+  animation-range: exit 100px;
+}
+
+@keyframes fade-out-view {
+  to {
+    scale: 0;
+    opacity: 0;
+  }
+}
+
+.fade-in-view {
+  scale: 0.7; opacity: 0.7;
+  animation: fade-in-view linear forwards;
+  animation-timeline: view();
+  animation-range: entry 100px;
+}
+
+@keyframes fade-in-view {
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
 #no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -64,3 +94,5 @@
     background-position: 0% 50%;
   }
 }
+
+
