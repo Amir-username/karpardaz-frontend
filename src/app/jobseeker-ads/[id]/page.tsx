@@ -60,7 +60,7 @@ async function JobSeekerAdDetailPage({
           role="jobseeker"
           id={advertise.jobseeker_id}
         />
-        <div className="flex justify-center py-4 w-full bg-gray-200 rounded-lg">
+        <div className="flex justify-center py-4 w-full bg-gray-200 dark:bg-neutral-900 rounded-lg">
           <div className="grid grid-cols-2">
             <AdDetailInfo text={jobseeker.city} icon="house" />
             <AdDetailInfo text={jobseeker.salary} icon="payments" />
@@ -77,7 +77,7 @@ async function JobSeekerAdDetailPage({
             )}
           </div>
         </div>
-        <p className="px-8 text-lg leading-8 py-8 text-neutral-dark">
+        <p className="px-8 text-lg leading-8 py-8 text-neutral-dark dark:text-neutral-light">
           {advertise.description}
         </p>
         <div className="flex flex-wrap gap-4 justify-center pb-8">
@@ -92,7 +92,7 @@ async function JobSeekerAdDetailPage({
           درخواست قبلا ارسال شده
         </div>
       ) : (
-        <CollaborationButton />
+        <CollaborationButton adID={advertise.id} role={role?.value} token={token?.value}/>
       )}
       {employers.length && <AdRequestEmployers employers={employers} />}
     </div>
