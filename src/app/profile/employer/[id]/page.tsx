@@ -10,7 +10,8 @@ async function EmployerProfilePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const employer: EmployerDetail = await fetchEmployerDetail(Number(id));
+  const idNum = Number(id)
+  const employer: EmployerDetail = await fetchEmployerDetail(idNum);
 
   if (employer) {
     return (
