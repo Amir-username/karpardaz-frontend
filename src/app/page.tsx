@@ -31,8 +31,6 @@ export default async function Home() {
   );
   const jobseekers: JobSeekerDetailModel[] = jsData ? jsData : [];
 
-  console.log(employers);
-
   return (
     <main className="flex flex-col justify-center gap-4">
       <HeroHeader />
