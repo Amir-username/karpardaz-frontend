@@ -114,22 +114,22 @@ function EmployerAdCreateForm({ token, role }: EmployerAdCreateFormProps) {
           // isValid={!!formState.errors?.city}
           // errorMessage={formState.errors?.city}
         />
-        <ClientInput
+        {/* <ClientInput
           placeholder="شهر"
           icon="house"
           value={city}
           setValue={setCity}
           // isValid={!!formState.errors?.city}
           // errorMessage={formState.errors?.city}
-        />
-        <ClientInput
+        /> */}
+        {/* <ClientInput
           placeholder="گروه شغلی"
           icon="work"
           value={jobGroup}
           setValue={setJobGroup}
           // isValid={!!formState.errors?.jobGroup}
           // errorMessage={formState.errors?.jobGroup}
-        />
+        /> */}
         <SelectInput
           label="جنسیت"
           name="gender"

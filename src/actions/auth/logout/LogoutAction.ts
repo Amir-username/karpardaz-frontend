@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 export async function LogoutAction() {
   const cookieStore = await cookies();
@@ -10,5 +10,5 @@ export async function LogoutAction() {
   cookieStore.delete("role");
 
   revalidatePath('/')
-  redirect('/')
+  // redirect('/')
 }

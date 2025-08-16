@@ -26,7 +26,7 @@ export default function ProfileNavLink({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <li>
-      {currentJobSeeker || currentEmployer ? (
+      {token ? (
         // <Link
         //   href={
         //     role === "jobseeker"
