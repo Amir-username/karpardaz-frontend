@@ -35,7 +35,7 @@ function JobSeekerAdCreateForm({
   };
 
   return (
-    <main className="flex items-center justify-center p-8 mt-32">
+    <main className="flex items-center justify-center p-8 mt-20">
       <Form onFormSubmit={handleFormSubmit}>
         <FormHeader title="ایجاد آگهی" subtitle="کارجو" />
         <ClientInput

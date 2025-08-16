@@ -28,8 +28,8 @@ export async function EmployerSignupAction(
     const status = await fetchCreateEmployer(result.data);
     if (status == 200) {
       console.log(status);
-      revalidatePath("/auth/jobseeker/login");
-      redirect("/auth/jobseeker/login");
+      revalidatePath("/auth/employer/login");
+      redirect("/auth/employer/login");
     } else {
       return {
         errors: {
