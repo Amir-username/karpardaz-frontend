@@ -31,10 +31,12 @@ export default async function Home() {
   );
   const jobseekers: JobSeekerDetailModel[] = jsData ? jsData : [];
 
+  console.log(employers);
+
   return (
     <main className="flex flex-col justify-center gap-4">
       <HeroHeader />
-      {advertises ? (
+      {advertises.length > 0 ? (
         <Carousel link="/jobs" header="تازه ترین آگهی ها">
           {advertises?.slice(0, 6).map((ad) => {
             return (
@@ -49,7 +51,7 @@ export default async function Home() {
       ) : (
         <ErrorCarousel />
       )}
-      {employers ? (
+      {employers.length > 0 ? (
         <Carousel header="لیست کارفرما">
           {employers.slice(0, 6).map((em) => {
             return (
@@ -66,7 +68,7 @@ export default async function Home() {
       ) : (
         <ErrorCarousel />
       )}
-      {jobseekers ? (
+      {jobseekers.length > 0 ? (
         <Carousel header="لیست کارجو">
           {jobseekers.slice(0, 6).map((jobseeker) => {
             return (

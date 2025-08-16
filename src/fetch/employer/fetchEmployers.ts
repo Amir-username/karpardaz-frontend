@@ -6,6 +6,4 @@ export async function fetchEmplyoers() {
     const data = await res.json();
     return data;
   }
-
-  return "something went wrong";
 }
