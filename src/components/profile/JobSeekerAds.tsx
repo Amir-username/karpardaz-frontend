@@ -18,7 +18,7 @@ async function JobSeeekerAds({ id }: { id: number }) {
           موقعیت های شغلی
         </h1>
 
-        {ads.length && <JobSeekerAdList advertises={ads} />}
+        {ads.length > 0 && <JobSeekerAdList advertises={ads} />}
         <Link href={`/profile/jobseeker/advertise/${id}/create`}>
           <Button text="ایجاد آگهی" />
         </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import { BASE_LINK } from "@/fetch/config";
+import { redirect, usePathname } from "next/navigation";
 import { useRef } from "react";
 
 type AvatarInputProps = {
@@ -11,6 +12,8 @@ type AvatarInputProps = {
 
 function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const pathName = usePathname()
 
   const handleUploadAvatar = () => {
     console.log(fileInputRef.current?.files![0]);
@@ -31,6 +34,7 @@ function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
     if (fileInputRef.current?.files) {
       formData.append("file", fileInputRef.current.files[0]);
       fetchUpload(token!, formData);
+      redirect(pathName)
     }
   };
 
