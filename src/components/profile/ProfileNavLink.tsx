@@ -44,10 +44,13 @@ export default function ProfileNavLink({
             <Image src={personSVG} alt="آواتار پیشفرض شرکت" />
             <h3 className="text-lg text-neutral-700 dark:text-neutral-light">
               {role === "jobseeker"
-                ? currentJobSeeker!.firstname + " " + currentJobSeeker!.lastname
+                ? currentJobSeeker &&
+                  currentJobSeeker!.firstname + " " + currentJobSeeker!.lastname
                 : role === "employer"
-                ? currentEmployer!.company_name
-                : "نام کاربر"}
+                ? currentEmployer
+                  ? currentEmployer!.company_name
+                  : "نام کاربر"
+                : ""}
             </h3>
             <DropDownMenu isOpen={isOpen} setIsOpenAction={setIsOpen}>
               {role === "jobseeker" && (
