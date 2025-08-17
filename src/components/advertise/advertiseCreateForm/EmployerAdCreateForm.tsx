@@ -64,14 +64,7 @@ function EmployerAdCreateForm({ token, role }: EmployerAdCreateFormProps) {
           : position === "میدلول"
           ? "midlevel"
           : "senior",
-      experience:
-        experience === "بدون سابقه"
-          ? "بدون سابقه کار"
-          : experience === "۱ تا ۲ سال"
-          ? "۱ تا ۲ سال سابفه کار"
-          : experience === "۲ تا ۴ سال"
-          ? "۲ تا ۴ سال سابقه کار"
-          : "۴ سال به بالا",
+      experience: experience,
       gender:
         gender === "آقا"
           ? "male"
@@ -81,16 +74,7 @@ function EmployerAdCreateForm({ token, role }: EmployerAdCreateFormProps) {
       is_remote: isRemote,
       is_internship: isInternship,
       is_portfolio: isPortfolio,
-      salary:
-        salary === "۵ تا ۱۰ م"
-          ? "۵ تا ۱۰ میلیون تومان"
-          : salary === "۱۰ تا ۲۰ م"
-          ? "۱۰ تا ۲۰ میلیون تومان"
-          : salary === "۲۰ تا ۴۰ م"
-          ? "۲۰ تا ۴۰ میلیون تومان"
-          : salary === "۴۰ م به بالا"
-          ? "۴۰ میلیون به بالا"
-          : "توافقی",
+      salary: salary,
       description: description,
       technologies: technologieItems,
       benefits: benefitsItems,
