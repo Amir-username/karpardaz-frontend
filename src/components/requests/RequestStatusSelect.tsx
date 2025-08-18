@@ -26,7 +26,7 @@ function RequestStatusSelect({
     const fetchChangeStatus = async () => {
       const res = await fetch(
         BASE_LINK +
-          `change-request-status/?request_id=${advertiseID}&status=${status}`,
+          `change-request-status/?request_id=${jobseekerID}&status=${status}`,
         {
           method: "POST",
           headers: {
