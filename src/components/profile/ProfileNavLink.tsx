@@ -69,7 +69,7 @@ export default function ProfileNavLink({
                 پروفایل
               </DropDownItem>
               <DropDownItem>
-                <LogoutButton token={token} />
+                <LogoutButton />
               </DropDownItem>
             </DropDownMenu>
           </div>

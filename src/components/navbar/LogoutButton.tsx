@@ -2,7 +2,7 @@
 
 import { LogoutAction } from "@/actions/auth/logout/LogoutAction";
 
-function LogoutButton({ token }: { token?: string }) {
+function LogoutButton() {
   const onLogout = async () => {
     await LogoutAction()
   }

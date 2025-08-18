@@ -4,9 +4,6 @@ import { JobSeekerDetailModel } from "@/models/JobSeekerDetail";
 import AdAvatar from "../advertise/AdAvater";
 import Link from "next/link";
 import RequestStatusSelect from "./RequestStatusSelect";
-import { useEffect } from "react";
-import { BASE_LINK } from "@/fetch/config";
-
 
 type AdRequestJobSeekersItemProps = {
   jobseeker: JobSeekerDetailModel;
@@ -30,7 +27,9 @@ export default function AdRequestJobSeekersItem({
           <Link href={`/profile/jobseeker/${jobseeker.id}`}>
             <h3 className="text-lg cursor-pointer text-neutral-dark dark:text-neutral-light">{`${jobseeker.firstname} ${jobseeker.lastname}`}</h3>
           </Link>
-          <h6 className="text-sm text-gray-500 dark:text-neutral-mid">{jobseeker.experience}</h6>
+          <h6 className="text-sm text-gray-500 dark:text-neutral-mid">
+            {jobseeker.experience}
+          </h6>
         </div>
       </div>
       <RequestStatusSelect

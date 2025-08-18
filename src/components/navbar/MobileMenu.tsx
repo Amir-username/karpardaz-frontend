@@ -71,7 +71,7 @@ function MobileMenu({ isActive, setIsActive, token, role }: MobileMenuProps) {
           </li>
         </Link>
         {token ? (
-          <LogoutButton token={token} />
+          <LogoutButton />
         ) : (
           <div className="flex flex-col items-center w-48 gap-4 text-sm lg:gap-3">
             <div className="w-full h-0.5 bg-gray-300 dark:bg-neutral-dark rounded-lg"></div>
