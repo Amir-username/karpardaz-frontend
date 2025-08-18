@@ -81,28 +81,12 @@ function JobSeekerDetailCreateForm({
           : position === "میدلول"
           ? "midlevel"
           : "senior",
-      experience:
-        experience === "بدون سابقه"
-          ? "بدون سابقه کار"
-          : experience === "۱ تا ۲ سال"
-          ? "۱ تا ۲ سال سابفه کار"
-          : experience === "۲ تا ۴ سال"
-          ? "۲ تا ۴ سال سابقه کار"
-          : "۴ سال به بالا",
+      experience: experience,
       gender: gender === "آقا" ? "male" : "female",
       is_remote: isRemote,
       is_internship: isInternship,
       is_portfolio: isPortfolio,
-      salary:
-        salary === "۵ تا ۱۰ م"
-          ? "۵ تا ۱۰ میلیون تومان"
-          : salary === "۱۰ تا ۲۰ م"
-          ? "۱۰ تا ۲۰ میلیون تومان"
-          : salary === "۲۰ تا ۴۰ م"
-          ? "۲۰ تا ۴۰ میلیون تومان"
-          : salary === "۴۰ م به بالا"
-          ? "۴۰ میلیون به بالا"
-          : "توافقی",
+      salary: salary,
       description: description,
       educations: educationItems,
       technologies: technologieItems,
@@ -135,6 +119,43 @@ function JobSeekerDetailCreateForm({
           // isValid={!!formState.errors?.jobGroup}
           // errorMessage={formState.errors?.jobGroup}
         />
+        {/* <SelectInput label="شهر" name="city" value={city} setValue={setCity}>
+          <option value="تهران">تهران</option>
+          <option value="اصفهان">اصفهان</option>
+          <option value="شیراز">شیراز</option>
+          <option value="مشهد">مشهد</option>
+          <option value="تبریز">تبریز</option>
+          <option value="رشت">رشت</option>
+          <option value="کرج">کرج</option>
+          <option value="اهواز">اهواز</option>
+          <option value="بوشهر">بوشهر</option>
+          <option value="بندرعباس">بندرعباس</option>
+          <option value="خرم آباد">خرم آباد</option>
+          <option value="قم">قم</option>
+          <option value="اردبیل">اردبیل</option>
+          <option value="ارومیه">ارومیه</option>
+          <option value="کرمانشاه">کرمانشاه</option>
+          <option value="یزد">یزد</option>
+        </SelectInput>
+        <SelectInput
+          label="گروه شغلی"
+          name="job_group"
+          value={jobGroup}
+          setValue={setJobGroup}
+        >
+          <option value="مهندس نرم افزار">مهندس نرم افزار</option>
+          <option value="برنامه نویس موبایل">برنامه نویس موبایل</option>
+          <option value="برنامه نویس بکند">برنامه نویس بکند</option>
+          <option value="برنامه نویس فرانت اند">برنامه نویس فرانت اند</option>
+          <option value="کارشناس شبکه">کارشناس شبکه</option>
+          <option value="طراح گرافیک">طراح گرافیک</option>
+          <option value="کارشناس هوش مصنوعی">کارشناس هوش مصنوعی</option>
+          <option value="بازی سازی">بازی سازی</option>
+          <option value="طراح واسط کاربری">طراح واسط کاربری</option>
+          <option value="برنامه نویس فول استک">برنامه نویس فول استک</option>
+          <option value="کارشناس علوم داده">کارشناس علوم داده</option>
+          <option value="متخصص امنیت">متخصص امنیت</option>
+        </SelectInput> */}
         <SelectInput
           label="جنسیت"
           name="gender"
@@ -185,7 +206,6 @@ function JobSeekerDetailCreateForm({
           <option value="۲۰ تا ۴۰ میلیون تومان">۲۰ تا ۴۰ م</option>
           <option value="۴۰ میلیون به بالا">۴۰ م به بالا</option>
         </SelectInput>
-
         <CheckBox
           text="امکان دورکاری"
           name="is_remote"
@@ -240,6 +260,7 @@ function JobSeekerDetailCreateForm({
           items={educationItems}
           setItems={setEducationItems}
         />
+
         <InputTag
           name="specialized_jobs"
           label="مشاغل مورد علاقه"
