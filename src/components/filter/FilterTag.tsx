@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import Icon from "@/ui/Icon";
 
 type FilterTagProps = {
   name: string;
@@ -12,16 +13,17 @@ export default function FilterTag({
   setActive,
 }: FilterTagProps) {
   return (
-    <span
+    <button
+      type="button"
       onClick={() => setActive((active) => !active)}
-      className={`text-sm text-neutral-light  cursor-pointer ${
+      className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-all duration-200 ${
         isActive
-          ? "bg-secondary-blue dark:bg-primary-blue-dark ring-1 ring-secondary-blue dark:ring-primary-blue-dark"
-          : "bg-neutral-light dark:bg-neutral-950 text-neutral-mid ring-1 ring-neutral-mid dark:ring-primary-blue-dark hover:bg-secondary-blue hover:dark:bg-primary-blue-dark hover:text-neutral-light"
-      }
-      px-3 py-2 rounded-full`}
+          ? "bg-brand text-brand-fg ring-1 ring-brand shadow-soft"
+          : "bg-card text-fg-muted ring-1 ring-border hover:ring-brand hover:text-brand"
+      }`}
     >
+      {isActive && <Icon name="check" size={15} weight={600} />}
       {name}
-    </span>
+    </button>
   );
 }

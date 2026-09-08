@@ -1,36 +1,233 @@
-@import url("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* LightMode Colors */
-@theme {
-  --color-primary-blue: #2a3f54;
-  --color-secondary-blue: #6c9eb8;
-  --color-accent-coral: #ff6b6b;
-  --color-neutral-light: #f5f5f5;
-  --color-neutral-mid: #b0b0b0;
-  --color-neutral-secondary: #8a8a8a;
-  --color-neutral-dark: #333333;
+/* ============================================================
+   KARPARDAZ DESIGN SYSTEM — Semantic Design Tokens
+   ------------------------------------------------------------
+   Colors are defined as raw CSS variables (:root / .dark) and
+   mapped to Tailwind utilities via `@theme inline`. Components
+   use semantic utility names (bg-card, text-fg, ring-border…)
+   and NEVER hardcode light/dark color pairs with `dark:` —
+   the variables below swap automatically in dark mode.
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg: #f3f5f9; /* page background */
+  --card: #ffffff; /* cards, navbar, sheets */
+  --subtle: #edf1f6; /* inputs, hovers, skeletons */
+
+  /* Borders */
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  /* Text */
+  --fg: #1b2733; /* primary text */
+  --fg-muted: #5b6b7c; /* secondary text */
+
+  /* Brand (navy identity) */
+  --brand: #2a3f54;
+  --brand-hover: #1d2f42;
+  --brand-fg: #ffffff;
+  --brand-soft: #e7eef5;
+  --brand-soft-fg: #2a3f54;
+
+  /* Accent (coral identity) */
+  --accent: #ff6b6b;
+  --accent-fg: #ffffff;
+  --accent-soft: #ffe9e9;
+  --accent-soft-fg: #a93b3b;
+
+  /* Status */
+  --danger: #d92d20;
+  --danger-fg: #b42318;
+  --danger-soft: #fee4e2;
+  --success: #079455;
+  --success-fg: #067647;
+  --success-soft: #dcfae6;
+  --warning: #dc6803;
+  --warning-fg: #b54708;
+  --warning-soft: #fef0c7;
+  --info: #175cd3;
+  --info-fg: #1849a9;
+  --info-soft: #d1e9ff;
+
+  /* Elevation */
+  --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.08);
+  --shadow-lift: 0 4px 8px -2px rgb(15 23 42 / 0.06),
+    0 12px 20px -4px rgb(15 23 42 / 0.1);
 }
 
-/* Darkmoe Colors */
-@theme {
-  --color-primary-blue-dark: hsl(210, 50%, 50%);
-  --color-secondary-blue-dark: hsl(210, 70%, 70%);
-  --color-accent-coral-dark: #ff6b6b;
+.dark {
+  /* Surfaces */
+  --bg: #0c1117;
+  --card: #141b24;
+  --subtle: #1d2733;
+
+  /* Borders */
+  --border: #263241;
+  --border-strong: #3b4a5d;
+
+  /* Text */
+  --fg: #e9eef4;
+  --fg-muted: #94a3b8;
+
+  /* Brand — lightened navy for dark surfaces */
+  --brand: #5c93c7;
+  --brand-hover: #79a9d8;
+  --brand-fg: #0c1117;
+  --brand-soft: #1c2b3d;
+  --brand-soft-fg: #b6d3ee;
+
+  /* Accent */
+  --accent: #ff8080;
+  --accent-fg: #0c1117;
+  --accent-soft: #3a2325;
+  --accent-soft-fg: #ffb1b1;
+
+  /* Status */
+  --danger: #f97066;
+  --danger-fg: #fda29b;
+  --danger-soft: #3c2220;
+  --success: #45c48a;
+  --success-fg: #75e0a7;
+  --success-soft: #12332a;
+  --warning: #fdb022;
+  --warning-fg: #fec84b;
+  --warning-soft: #362c15;
+  --info: #84caff;
+  --info-fg: #b2ddff;
+  --info-soft: #17283e;
+
+  /* Elevation — shadows carry less weight on dark, rings do more */
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-lift: 0 8px 24px -6px rgb(0 0 0 / 0.55);
 }
 
-/* fonts */
+@theme inline {
+  /* Surfaces */
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-subtle: var(--subtle);
+
+  /* Borders */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Text */
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+
+  /* Brand */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-soft-fg: var(--brand-soft-fg);
+
+  /* Accent */
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-fg: var(--accent-soft-fg);
+
+  /* Status */
+  --color-danger: var(--danger);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+  --color-success-fg: var(--success-fg);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-fg: var(--warning-fg);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-fg: var(--info-fg);
+  --color-info-soft: var(--info-soft);
+
+  /* Elevation */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+}
+
 @theme {
-  --font-vazir: "Vazirmatn", sans-serif;
-  --font-lalezar: "Lalezar", sans-serif;
+  --font-sans: "Vazirmatn", "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-display: "Lalezar", "Vazirmatn", sans-serif;
+
+  /* Legacy aliases — kept so existing `font-vazir` / `font-lalezar`
+     utilities keep working during migration */
+  --font-vazir: "Vazirmatn", "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-lalezar: "Lalezar", "Vazirmatn", sans-serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--brand);
+    color: var(--brand-fg);
+  }
+
+  /* Consistent, accessible focus states everywhere */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  input,
+  textarea,
+  select {
+    outline: none;
+  }
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+  }
+}
+
+/* ============================================================
+   UTILITIES & ANIMATIONS
+   ============================================================ */
+
+/* Hide scrollbars while keeping scroll functionality */
+.no-scrollbar,
+#no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar,
+#no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin themed scrollbar for the whole app */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
 }
 
 @keyframes fade-in-right {
   0% {
-    transform: translateX(50px);
+    transform: translateX(40px);
     opacity: 0;
   }
   100% {
@@ -40,45 +237,59 @@
 }
 
 .fade-in-right {
-  animation: fade-in-right 1s cubic-bezier(0.47, 0, 0.745, 0.715) 200ms both;
+  animation: fade-in-right 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
 }
 
-
-
-.fade-out-view {
-  /* scale: 100%; opacity: 100%; */
-  animation: fade-out-view linear forwards;
-  animation-timeline: view();
-  animation-range: exit 100px;
-}
-
-@keyframes fade-out-view {
-  to {
-    scale: 0;
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(16px);
     opacity: 0;
   }
-}
-
-.fade-in-view {
-  scale: 0.7; opacity: 0.7;
-  animation: fade-in-view linear forwards;
-  animation-timeline: view();
-  animation-range: entry 100px;
-}
-
-@keyframes fade-in-view {
-  to {
-    scale: 1;
+  100% {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
-#no-scrollbar::-webkit-scrollbar {
-  display: none;
+.fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
 }
 
+/* Soft floating motion for hero decorative chips */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 7s ease-in-out 1.5s infinite;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out 0.8s infinite;
+}
+
+/* Dotted grid decoration (hero backgrounds) */
+.dot-grid {
+  background-image: radial-gradient(
+    var(--border-strong) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 26px 26px;
+}
+
+/* Animated hero gradient — brand navy → blue */
 .gradient-background {
-  background: linear-gradient(50deg, #2a3f54, #2a3f54, #55a9ff);
+  background: linear-gradient(50deg, #1d2f42, #2a3f54, #3f6ea0);
   background-size: 240% 240%;
   animation: gradient-animation 16s ease infinite;
 }
@@ -94,5 +305,3 @@
     background-position: 0% 50%;
   }
 }
-
-

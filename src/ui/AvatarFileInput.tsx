@@ -2,21 +2,21 @@
 
 import { BASE_LINK } from "@/fetch/config";
 import { redirect, usePathname } from "next/navigation";
+import Icon from "./Icon";
 import { useRef } from "react";
 
 type AvatarInputProps = {
   icon: string;
   token?: string;
-  role: 'jobseeker' | 'employer'
+  role: "jobseeker" | "employer";
 };
 
 function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const pathName = usePathname()
+  const pathName = usePathname();
 
   const handleUploadAvatar = () => {
-    console.log(fileInputRef.current?.files![0]);
     const formData = new FormData();
     const fetchUpload = async (token: string, formData: FormData) => {
       const res = await fetch(BASE_LINK + `${role}-avatar/upload/`, {
@@ -34,7 +34,7 @@ function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
     if (fileInputRef.current?.files) {
       formData.append("file", fileInputRef.current.files[0]);
       fetchUpload(token!, formData);
-      redirect(pathName)
+      redirect(pathName);
     }
   };
 
@@ -47,12 +47,14 @@ function AvatarFileInput({ icon, token, role }: AvatarInputProps) {
         className="hidden"
         accept="image/*"
       />
-      <span
+      <button
+        type="button"
         onClick={() => fileInputRef.current?.click()}
-        className="absolute p-1.5 text-white rounded-full cursor-pointer material-symbols-outlined top-20 bg-primary-blue"
+        aria-label="تغییر تصویر پروفایل"
+        className="absolute -bottom-1 end-0 p-2 text-white rounded-full cursor-pointer bg-brand ring-2 ring-card hover:bg-brand-hover transition-colors shadow-soft"
       >
-        {icon}
-      </span>
+        <Icon name={icon} size={18} />
+      </button>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 function AdSubtitle({ title }: { title: string }) {
-  return <h1 className="text-xl text-neutral-light dark:text-neutral-mid">{title}</h1>;
+  return <span className="text-base md:text-lg">{title}</span>;
 }
 
 export default AdSubtitle;

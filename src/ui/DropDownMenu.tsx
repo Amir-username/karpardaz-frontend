@@ -28,7 +28,7 @@ export default function DropDownMenu({
       ref={dropdownRef}
       className={`${
         !isOpen && "hidden"
-      } absolute top-12 left-0.5 py-2 rounded-b-lg shadow-sm flex flex-col gap-2 bg-neutral-light dark:bg-neutral-950`}
+      } absolute top-14 end-0 z-50 py-2 min-w-40 rounded-xl shadow-lift flex flex-col gap-0.5 bg-card ring-1 ring-border overflow-hidden`}
     >
       {children}
     </ul>
@@ -42,17 +42,15 @@ export function DropDownItem({
   link?: string;
   children: React.ReactNode;
 }) {
+  const classes =
+    "w-full p-3 text-sm rounded-none hover:bg-subtle text-fg transition-colors";
   if (link)
     return (
-      <Link href={link}>
-        <li className="w-32 p-3 text-sm rounded-lg hover:bg-gray-200 dark:text-neutral-light hover:dark:bg-neutral-dark">
+      <li>
+        <Link href={link} className={`block ${classes}`}>
           {children}
-        </li>
-      </Link>
+        </Link>
+      </li>
     );
-  return (
-    <li className="p-3 text-sm rounded-lg hover:bg-gray-200 hover:dark:bg-neutral-dark dark:text-neutral-light">
-      {children}
-    </li>
-  );
+  return <li className={classes}>{children}</li>;
 }

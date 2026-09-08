@@ -10,30 +10,34 @@ export function useSearchAdvertise(
   searchInput: string,
   pagination: paginationType,
   filters: FilterType,
-  setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>,
-  setTotalPages: Dispatch<SetStateAction<number>>
+  setJobsData: Dispatch<SetStateAction<AdvertiseModel[] | null>>,
+  setTotalPages: Dispatch<SetStateAction<number>>,
+  setIsFetching?: Dispatch<SetStateAction<boolean>>
 ) {
   useEffect(() => {
     const controller = new AbortController();
+    let cancelled = false;
+
+    setIsFetching?.(true);
+
     const fetchResult = async () => {
-      // try {
-      const jobsData = await fetchSearchAdvertise(
-        searchInput,
-        pagination,
-        filters,
-        controller.signal,
-        setTotalPages
-      );
-      setJobsData(jobsData.advertises);
-      // } catch (error) {
-      //   if (error instanceof Error) {
-      //     if (error.name === "AbortError") {
-      //       console.log("request was aborted");
-      //     } else {
-      //       console.log("fetch error");
-      //     }
-      //   }
-      // }
+      try {
+        const jobsData = await fetchSearchAdvertise(
+          searchInput,
+          pagination,
+          filters,
+          controller.signal,
+          setTotalPages
+        );
+        if (!cancelled) setJobsData(jobsData.advertises);
+      } catch (error) {
+        // aborted requests are expected while typing — ignore silently
+        if (!cancelled && !(error instanceof DOMException && error.name === "AbortError")) {
+          console.log("fetch error");
+        }
+      } finally {
+        if (!cancelled) setIsFetching?.(false);
+      }
     };
 
     const debounceTime = searchInput === "" ? 0 : 1000;
@@ -41,6 +45,7 @@ export function useSearchAdvertise(
     const debounceTimer = setTimeout(fetchResult, debounceTime);
 
     return () => {
+      cancelled = true;
       controller.abort();
       clearTimeout(debounceTimer);
     };

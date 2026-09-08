@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "./Button";
 import Avatar from "@/components/avatar/Avatar";
 import Link from "next/link";
+import Icon from "./Icon";
 
 type CarouselProps = {
   header: string;
@@ -10,23 +10,25 @@ type CarouselProps = {
 };
 
 export default function Carousel({ header, children, link }: CarouselProps) {
-  return (
-    <div className="flex flex-col w-full gap-4 px-8 py-4 fade-in-view">
-      {link ? (
-        <Link href={link}>
-          <header className="flex px-1 text-xl w-fit lg:text-2xl text-primary-blue dark:text-neutral-light">
-            {header}
-          </header>
-        </Link>
-      ) : (
-        <header className="flex px-1 text-xl w-fit lg:text-2xl text-primary-blue dark:text-neutral-light">
-          {header}
-        </header>
+  const headerContent = (
+    <header className="flex items-center justify-between w-full px-1">
+      <h2 className="flex items-center gap-2 text-xl lg:text-2xl font-bold text-fg">
+        <span className="w-1.5 h-6 rounded-full bg-brand" aria-hidden="true" />
+        {header}
+      </h2>
+      {link && (
+        <span className="flex items-center gap-1 text-sm font-medium text-brand hover:text-brand-hover transition-colors">
+          مشاهده همه
+          <Icon name="chevron_left" size={18} />
+        </span>
       )}
-      <ul
-        id="no-scrollbar"
-        className="flex flex-shrink gap-4 px-1 py-2 overflow-scroll"
-      >
+    </header>
+  );
+
+  return (
+    <div className="flex flex-col w-full gap-4 px-4 sm:px-8 py-4">
+      {link ? <Link href={link}>{headerContent}</Link> : headerContent}
+      <ul className="no-scrollbar flex shrink-0 gap-4 px-1 py-2 overflow-x-auto">
         {children}
       </ul>
     </div>
@@ -42,18 +44,26 @@ type CarouselItemProps = {
 
 export function CarouselItem({ title, id, role, link }: CarouselItemProps) {
   return (
-    <Link href={link}>
-      <li
+    <li className="shrink-0">
+      <Link
+        href={link}
         className={`${
           id && role ? "lg:h-64 lg:pt-8 h-48 pt-4" : "lg:h-40"
-        } flex justify-between w-32 h-32  lg:w-48 flex-shrink-0 flex-col hover:shadow-lg cursor-pointer items-center ring-1 ring-gray-300 dark:ring-gray-700 rounded-lg shadow-sm gap-3`}
+        } flex justify-between w-40 h-40 lg:w-48 shrink-0 flex-col items-center rounded-2xl bg-card ring-1 ring-border shadow-soft hover:shadow-lift hover:ring-brand/40 hover:-translate-y-0.5 transition-all duration-300 gap-3 group`}
       >
-        {id && role && <Avatar role={role} id={id} />}
-        <h3 className="flex items-center justify-center w-full h-full p-2 text-center dark:text-neutral-light text-md lg:text-xl">
+        {id && role && (
+          <span className="scale-90 lg:scale-100">
+            <Avatar role={role} id={id} />
+          </span>
+        )}
+        <h3 className="flex items-center justify-center w-full h-full p-3 text-center text-sm lg:text-base font-medium text-fg group-hover:text-brand transition-colors">
           {title}
         </h3>
-        <Button h="h-8" card text="مشاهده" />
-      </li>
-    </Link>
+        <span className="flex items-center justify-center gap-1 w-full h-9 text-sm font-medium text-fg-muted bg-subtle/60 group-hover:bg-brand group-hover:text-brand-fg transition-colors rounded-b-2xl">
+          مشاهده
+          <Icon name="chevron_left" size={16} />
+        </span>
+      </Link>
+    </li>
   );
 }

@@ -16,14 +16,14 @@ function EmployerLoginForm() {
 
   return (
     <Form action={action}>
-      <FormHeader title="کارپرداز" subtitle="ورود کارفرما" />
+      <FormHeader title="ورود کارفرما" subtitle="به کارپرداز خوش آمدید" />
       <FormContent>
         <Input
           type="text"
           name="email"
           placeholder="آدرس ایمیل (ترجیحا ایمیل سازمانی)"
           icon="mail"
-          isValid={!!formState.errors?.email}
+          hasError={!!formState.errors?.email}
           errorMessage={formState?.errors?.email}
         />
         <Input
@@ -31,7 +31,7 @@ function EmployerLoginForm() {
           name="password"
           placeholder="رمز عبور"
           icon="lock"
-          isValid={!!formState.errors?.password}
+          hasError={!!formState.errors?.password}
           errorMessage={formState?.errors?.password}
         />
         <Button text="ورود" type="submit" />

@@ -1,15 +1,12 @@
-import JobeekerLoginForm from "@/components/auth/JobSeekerLoginForm";
-import FormRedirectMessage from "@/ui/FormRedirectMessage";
+import AuthShell from "@/components/auth/AuthShell";
+import JobSeekerLoginForm from "@/components/auth/JobSeekerLoginForm";
 
-function JobeekerLoginPage() {
+function JobSeekerLoginPage() {
   return (
-    <div className="container flex items-center justify-center mx-auto">
-      <main className="flex flex-col items-center justify-center py-16 gap-4">
-        <FormRedirectMessage role="employer" action="login" />
-        <JobeekerLoginForm />
-      </main>
-    </div>
+    <AuthShell role="jobseeker" mode="login">
+      <JobSeekerLoginForm />
+    </AuthShell>
   );
 }
 
-export default JobeekerLoginPage;
+export default JobSeekerLoginPage;

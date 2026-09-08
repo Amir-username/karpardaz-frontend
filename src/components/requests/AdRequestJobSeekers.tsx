@@ -11,11 +11,12 @@ export default function AdRequestJobSeekers({
   token?: string;
 }) {
   return (
-    <>
-      <h2 className="w-full px-8 text-2xl text-center text-primary-blue dark:text-neutral-light">
-        درخواست ها
+    <section className="border-t border-border p-6 md:p-8 bg-bg">
+      <h2 className="flex items-center justify-center gap-2 mb-5 text-lg font-bold text-fg">
+        <span className="w-1.5 h-5 rounded-full bg-brand" aria-hidden="true" />
+        درخواست های ارسال شده
       </h2>
-      <ul className="flex flex-col gap-3 p-4">
+      <ul className="flex flex-col gap-3">
         {jobseekers.map((jobseeker) => {
           return (
             <AdRequestJobSeekersItem
@@ -27,6 +28,6 @@ export default function AdRequestJobSeekers({
           );
         })}
       </ul>
-    </>
+    </section>
   );
 }

@@ -16,14 +16,14 @@ function JobSeekerSignupForm() {
 
   return (
     <Form action={action}>
-      <FormHeader title="کارپرداز" subtitle="ثبت نام کارجو" />
+      <FormHeader title="ثبت نام کارجو" subtitle="در کارپرداز حساب بسازید" />
       <FormContent>
         <Input
           type="text"
           name="firstname"
           placeholder="نام"
           icon='person'
-          isValid={!!formState.errors?.firstname}
+          hasError={!!formState.errors?.firstname}
           errorMessage={formState?.errors?.firstname}
         />
         <Input
@@ -31,7 +31,7 @@ function JobSeekerSignupForm() {
           name="lastname"
           placeholder="نام خانوادگی"
           icon="person"
-          isValid={!!formState.errors?.lastname}
+          hasError={!!formState.errors?.lastname}
           errorMessage={formState?.errors?.lastname}
         />
         <Input
@@ -39,7 +39,7 @@ function JobSeekerSignupForm() {
           name="email"
           placeholder="آدرس ایمیل"
           icon="mail"
-          isValid={!!formState.errors?.email}
+          hasError={!!formState.errors?.email}
           errorMessage={formState?.errors?.email}
         />
         <Input
@@ -47,7 +47,7 @@ function JobSeekerSignupForm() {
           name="phonenumber"
           placeholder="شماره تلفن همراه"
           icon="smartphone"
-          isValid={!!formState.errors?.phonenumber}
+          hasError={!!formState.errors?.phonenumber}
           errorMessage={formState?.errors?.phonenumber}
         />
         <Input
@@ -55,7 +55,7 @@ function JobSeekerSignupForm() {
           name="password"
           placeholder="رمز عبور"
           icon="lock"
-          isValid={!!formState.errors?.password}
+          hasError={!!formState.errors?.password}
           errorMessage={formState?.errors?.password}
         />
         <Button text="ثبت نام" type="submit" />

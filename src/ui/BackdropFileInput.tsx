@@ -1,6 +1,7 @@
 "use client";
 
 import { BASE_LINK } from "@/fetch/config";
+import Icon from "./Icon";
 import { useRef } from "react";
 
 type BackdropInputProps = {
@@ -13,7 +14,6 @@ function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadBackdrop = () => {
-    console.log(fileInputRef.current?.files![0]);
     const formData = new FormData();
     const fetchUpload = async (token: string, formData: FormData) => {
       const res = await fetch(BASE_LINK + `${role}-backdrop/upload/`, {
@@ -35,7 +35,7 @@ function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
   };
 
   return (
-    <div className="rounded-lg">
+    <div className="rounded-xl">
       <input
         onChange={handleUploadBackdrop}
         type="file"
@@ -43,15 +43,14 @@ function BackdropFileInput({ icon, token, role }: BackdropInputProps) {
         className="hidden"
         accept="image/*"
       />
-      <span
+      <button
+        type="button"
         onClick={() => fileInputRef.current?.click()}
-        style={{
-          fontSize: "32px",
-        }}
-        className="absolute p-2 rounded-lg cursor-pointer material-symbols-outlined right-6 top-6 text-neutral-mid"
+        aria-label="تغییر تصویر پس‌زمینه"
+        className="absolute top-6 end-6 p-2.5 rounded-xl cursor-pointer bg-black/35 text-white backdrop-blur-sm hover:bg-black/55 transition-colors"
       >
-        {icon}
-      </span>
+        <Icon name={icon} size={26} />
+      </button>
     </div>
   );
 }

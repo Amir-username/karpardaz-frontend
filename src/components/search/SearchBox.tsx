@@ -3,16 +3,17 @@
 import { FilterType } from "@/fetch/employerAdvertise/fetchSearchAdvertise";
 import { useSearchAdvertise } from "@/hooks/useSearchAdvertise";
 import { AdvertiseModel } from "@/models/Advertise";
+import Icon from "@/ui/Icon";
 import { Dispatch, SetStateAction, useState } from "react";
 import { paginationType } from "./JobsResult";
-import searchSVG from "../../../public/icons/search.svg";
-import Image from "next/image";
 
 type SearchBoxProps = {
-  setJobsData: Dispatch<SetStateAction<AdvertiseModel[]>>;
+  setJobsData: Dispatch<SetStateAction<AdvertiseModel[] | null>>;
   filters: FilterType;
   pagination: paginationType;
   setTotalPages: Dispatch<SetStateAction<number>>;
+  isSearching: boolean;
+  setIsSearching: Dispatch<SetStateAction<boolean>>;
 };
 
 function SearchBox({
@@ -20,6 +21,8 @@ function SearchBox({
   filters,
   pagination,
   setTotalPages,
+  isSearching,
+  setIsSearching,
 }: SearchBoxProps) {
   const [searchInput, setSearchInput] = useState<string>("");
 
@@ -28,19 +31,26 @@ function SearchBox({
     pagination,
     filters,
     setJobsData,
-    setTotalPages
+    setTotalPages,
+    setIsSearching
   );
 
   return (
-    <div className="relative w-full rounded-lg">
+    <div className="relative w-full max-w-xl rounded-xl shadow-soft">
       <input
-        className="w-80 lg:w-96 h-12 px-4 pr-10 text-sm rounded-lg bg-gray-50 dark:bg-neutral-dark text-neutral-dark dark:text-neutral-light placeholder:text-neutral-mid ring-1 ring-gray-300 dark:ring-neutral-dark"
+        className="w-full h-14 ps-12 pe-4 text-sm rounded-xl bg-card text-fg placeholder:text-fg-muted/70 ring-1 ring-border hover:ring-border-strong focus:ring-2 focus:ring-brand transition-shadow duration-200"
         type="search"
         name="search"
-        placeholder="جستجوی آگهی"
+        placeholder="جستجوی آگهی شغلی…"
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      <Image alt="" src={searchSVG} className="absolute right-2 top-3" />
+      <Icon
+        name={isSearching ? "progress_activity" : "search"}
+        size={22}
+        className={`absolute start-4 top-1/2 -translate-y-1/2 pointer-events-none transition-colors ${
+          isSearching ? "animate-spin text-brand" : "text-fg-muted"
+        }`}
+      />
     </div>
   );
 }

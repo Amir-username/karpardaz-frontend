@@ -3,6 +3,7 @@
 import { BASE_LINK } from "@/fetch/config";
 import Button from "@/ui/Button";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default function CollaborationButton({
   token,
@@ -13,8 +14,11 @@ export default function CollaborationButton({
   role?: string;
   adID: number;
 }) {
+  const [isSending, setIsSending] = useState(false);
+
   const handleSendReq = () => {
     const fetchSendReq = async (token: string) => {
+      setIsSending(true);
       const res = await fetch(
         BASE_LINK + `jobseeker-ad-request/?advertise_id=${adID}`,
         {
@@ -26,7 +30,7 @@ export default function CollaborationButton({
         }
       );
       console.log(res);
-      // const data = await res.json();
+      setIsSending(false);
     };
     if (role === "employer") {
       fetchSendReq(token!);
@@ -37,9 +41,9 @@ export default function CollaborationButton({
   return (
     <div
       onClick={handleSendReq}
-      className={`${role === "jobseeker" && "hidden"} w-full`}
+      className={`${role === "jobseeker" && "hidden"} w-full px-8 pb-8`}
     >
-      <Button text="درخواست همکاری" h="h-16" />
+      <Button text="درخواست همکاری" size="lg" loading={isSending} />
     </div>
   );
 }

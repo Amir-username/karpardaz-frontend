@@ -1,48 +1,89 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { CSSProperties, Dispatch, SetStateAction } from "react";
+import Icon from "./Icon";
 
 type InputProps = {
-  type: "text" | "email" | "password" | "number";
+  type?: "text" | "email" | "password" | "number" | "search" | "tel" | "url";
   name: string;
-  placeholder: string;
+  placeholder?: string;
+  label?: string;
   icon?: string;
-  isValid?: boolean;
+  /** Shows the error ring + error messages below the input */
+  hasError?: boolean;
   errorMessage?: string[];
   value?: string;
   setValue?: Dispatch<SetStateAction<string>>;
+  required?: boolean;
+  autoComplete?: string;
+  dir?: "rtl" | "ltr";
+  className?: string;
+  style?: CSSProperties;
 };
 
+/**
+ * Text input with label, leading icon and inline validation.
+ * RTL-safe: the icon sits on the inline-start side (right in fa).
+ */
 function Input({
   type = "text",
   name,
   placeholder,
+  label,
   icon,
-  isValid = true,
+  hasError = false,
   errorMessage = [],
+  value,
+  setValue,
+  required,
+  autoComplete,
+  dir,
+  className = "",
+  style,
 }: InputProps) {
+  const controlled = value !== undefined && setValue !== undefined;
+
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <div
-        className={`relative w-full rounded-lg ${
-          isValid && "ring-2 ring-accent-coral"
-        }`}
-      >
+    <div className={`flex flex-col gap-1.5 w-full ${className}`} style={style}>
+      {label && (
+        <label htmlFor={`input-${name}`} className="text-sm font-medium text-fg">
+          {label}
+          {required && <span className="text-accent ms-1">*</span>}
+        </label>
+      )}
+      <div className="relative w-full">
         <input
-          className="w-full h-12 px-4 pl-8 text-sm rounded-lg bg-gray-50 dark:bg-neutral-dark text-neutral-dark dark:text-neutral-light placeholder:text-neutral-mid ring-1 ring-gray-300 dark:ring-neutral-dark"
+          id={`input-${name}`}
+          className={`w-full h-12 text-sm rounded-xl bg-card text-fg placeholder:text-fg-muted/70 ring-1 transition-shadow duration-200
+            ${icon ? "ps-11 pe-4" : "px-4"}
+            ${
+              hasError
+                ? "ring-danger ring-2 bg-danger-soft/30"
+                : "ring-border hover:ring-border-strong focus:ring-2 focus:ring-brand"
+            }`}
           type={type}
           name={name}
           placeholder={placeholder}
+          required={required}
+          autoComplete={autoComplete}
+          dir={dir}
+          {...(controlled ? { value, onChange: (e) => setValue(e.target.value) } : {})}
         />
-        {icon ? (
-          <span className="absolute material-symbols-outlined left-2 top-3 text-neutral-mid">
-            {icon}
-          </span>
-        ) : null}
+        {icon && (
+          <Icon
+            name={icon}
+            size={20}
+            className={`absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none ${
+              hasError ? "text-danger" : "text-fg-muted"
+            }`}
+          />
+        )}
       </div>
-      {errorMessage.map((message, i) => (
-        <p key={i} className="text-xs text-accent-coral">
-          {message}
-        </p>
-      ))}
+      {hasError &&
+        errorMessage.map((message, i) => (
+          <p key={i} className="flex items-center gap-1 text-xs text-danger-fg">
+            <Icon name="error" size={14} />
+            {message}
+          </p>
+        ))}
     </div>
   );
 }

@@ -4,24 +4,24 @@ type FormProps = {
   action?: (payload: FormData) => void;
   children: React.ReactNode;
   onFormSubmit?: (e: FormEvent<HTMLFormElement>) => void;
+  className?: string;
 };
 
-function Form({ children, action, onFormSubmit }: FormProps) {
+/**
+ * Card-style form shell used by every auth/profile form.
+ */
+function Form({ children, action, onFormSubmit, className = "" }: FormProps) {
+  const classes = `flex flex-col items-center justify-center w-full max-w-md gap-4 p-8 rounded-2xl bg-card ring-1 ring-border shadow-soft ${className}`;
+
   if (onFormSubmit) {
     return (
-      <form
-        onSubmit={(e) => onFormSubmit(e)}
-        className="flex flex-col items-center justify-center w-full gap-4 p-8 rounded-lg bg-neutral-light dark:bg-neutral-900 md:w-sm ring-1 ring-gray-300 dark:ring-neutral-900"
-      >
+      <form onSubmit={(e) => onFormSubmit(e)} className={classes}>
         {children}
       </form>
     );
   }
   return (
-    <form
-      action={action}
-      className="flex flex-col items-center justify-center w-full gap-4 p-8 rounded-lg bg-neutral-light dark:bg-neutral-900 md:w-sm ring-1 ring-gray-300 dark:ring-neutral-900"
-    >
+    <form action={action} className={classes}>
       {children}
     </form>
   );

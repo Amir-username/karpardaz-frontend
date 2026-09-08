@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Dispatch, SetStateAction, useState } from "react";
+import Icon from "@/ui/Icon";
 import { paginationType } from "../search/JobsResult";
 
 type PaginationProps = {
@@ -15,6 +16,7 @@ export default function Pagination({
   const [pageNumber, setPageNumberAction] = useState(1);
 
   const handlePrev = () => {
+    if (pageNumber <= 1) return;
     setPaginationAction((pag) => {
       return { ...pag, offset: pag.offset - pag.limit };
     });
@@ -22,44 +24,64 @@ export default function Pagination({
   };
 
   const handleNext = () => {
+    if (pageNumber >= totalPages) return;
     setPaginationAction((pag) => {
       return { ...pag, offset: pag.offset + pag.limit };
     });
     setPageNumberAction((number) => number + 1);
   };
 
+  const hasPrev = pageNumber > 1;
+  const hasNext = pageNumber < totalPages;
+
   return (
-    <div className="flex gap-2 justify-center">
-      <PaginationItem onClick={handlePrev} active={!!(pageNumber > 1)}>
+    <nav
+      aria-label="صفحه بندی"
+      className="flex items-center justify-center gap-2"
+    >
+      <PaginationButton onClick={handlePrev} disabled={!hasPrev}>
+        <Icon name="chevron_right" size={18} />
         قبلی
-      </PaginationItem>
-      <PaginationItem active>
-        <span className="font-bold mt-1">{pageNumber}</span>
-      </PaginationItem>
-      <PaginationItem onClick={handleNext} active={!!(pageNumber < totalPages)}>
+      </PaginationButton>
+
+      <span
+        aria-current="page"
+        className="flex items-center justify-center min-w-11 h-11 px-3 rounded-xl bg-brand text-brand-fg text-sm font-bold shadow-soft"
+      >
+        {pageNumber}
+      </span>
+
+      <PaginationButton onClick={handleNext} disabled={!hasNext}>
         بعدی
-      </PaginationItem>
-    </div>
+        <Icon name="chevron_left" size={18} />
+      </PaginationButton>
+    </nav>
   );
 }
 
-type PaginationItemProps = {
-  active: boolean;
+type PaginationButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
-function PaginationItem({ active, children, onClick }: PaginationItemProps) {
+function PaginationButton({
+  children,
+  onClick,
+  disabled = false,
+}: PaginationButtonProps) {
   return (
-    <span
-      onClick={active ? onClick : undefined}
-      className={`${
-        !active
-          ? "bg-secondary-blue dark:bg-neutral-950 dark:ring-1 dark:ring-neutral-dark"
-          : "bg-primary-blue dark:bg-neutral-dark dark:ring-1 dark:ring-neutral-dark"
-      } p-2 cursor-pointer w-12 flex text-sm items-center justify-center text-center text-neutral-light rounded-lg`}
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`flex items-center gap-1 h-11 px-4 rounded-xl text-sm font-medium ring-1 transition-all duration-200 ${
+        disabled
+          ? "bg-card text-fg-muted/50 ring-border cursor-not-allowed"
+          : "bg-card text-fg ring-border hover:ring-brand hover:text-brand cursor-pointer shadow-soft"
+      }`}
     >
       {children}
-    </span>
+    </button>
   );
 }

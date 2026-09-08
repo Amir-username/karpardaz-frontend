@@ -46,7 +46,7 @@ async function Profile({
   const backdropSRC = `data:${mimeType};base64,${base64}`;
 
   return (
-    <div className="relative flex flex-col gap-8 p-8 lg:px-96">
+    <div className="flex flex-col gap-6 p-4 sm:p-8 max-w-3xl mx-auto">
       <Container image={backdropRes.status === 200 ? backdropSRC : "empty"}>
         {res.status === 200 && data.id === id && (
           <BackdropFileInput
@@ -65,15 +65,19 @@ async function Profile({
             />
           )}
         </div>
-        <h1 className="text-2xl font-semibold text-neutral-light">{name}</h1>
-        {children}
+        <h1 className="text-2xl font-bold text-white">{name}</h1>
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 -mt-2">
+          {children}
+        </div>
       </Container>
-      <Container>
-        <p className="px-8 text-lg text-neutral-light">{description}</p>
+      <Container bg="neutral">
+        <p className="px-4 md:px-8 py-4 text-base leading-8 text-fg/90 text-center whitespace-pre-line">
+          {description}
+        </p>
       </Container>
       {technologies && (
-        <Container>
-          <ul className="flex flex-wrap items-center justify-center gap-3 px-8">
+        <Container bg="neutral">
+          <ul className="flex flex-wrap items-center justify-center gap-2.5 px-8 py-2">
             {technologies.map((tech, i) => {
               return <AdTag name={tech} key={i} size="lg" />;
             })}
@@ -105,8 +109,10 @@ export function Container({
   if (image === "empty") {
     return (
       <div
-        className={`relative flex flex-col items-center gap-6 py-8 rounded-lg ${
-          bg === "primary" ? "bg-primary-blue dark:bg-neutral-900" : "bg-neutral-light dark:bg-neutral-900"
+        className={`relative flex flex-col items-center gap-5 py-8 rounded-2xl shadow-soft overflow-hidden ${
+          bg === "primary"
+            ? "gradient-background"
+            : "bg-card ring-1 ring-border"
         }`}
       >
         {children}
@@ -121,13 +127,13 @@ export function Container({
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className={`relative rounded-lg`}
+      className={`relative rounded-2xl overflow-hidden shadow-soft`}
     >
       <div
         style={{
-          background: "rgba(0,0,0,0.6)",
+          background: "rgba(15, 23, 42, 0.55)",
         }}
-        className="flex flex-col items-center gap-6 h-full py-8 rounded-lg"
+        className="flex flex-col items-center gap-5 h-full py-10"
       >
         {children}
       </div>

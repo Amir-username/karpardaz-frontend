@@ -1,6 +1,7 @@
 "use client";
 
 import { fetchCreateAnswers } from "@/fetch/interview/fetchCreateAnswers";
+import Button from "@/ui/Button";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import AnswerItem from "./AnswerItem";
@@ -9,7 +10,7 @@ export type InterviewType = {
   id: number;
   questions: string[];
   answers?: string[];
-  jobseeker_ids: number[]
+  jobseeker_ids: number[];
 };
 
 export default function Answer({
@@ -40,9 +41,8 @@ export default function Answer({
     redirect(`/jobs/${advertiseID}`);
   };
 
-
   return (
-    <main className="flex flex-col gap-12 items-center justify-center">
+    <main className="flex flex-col gap-10 items-center justify-center w-full">
       {questions[pageNumber] ? (
         <AnswerItem
           question={questions[pageNumber]}
@@ -50,26 +50,23 @@ export default function Answer({
           setPageNumberAction={setPageNumber}
         />
       ) : (
-        <section className="flex flex-col gap-8 w-80">
-          <ul className="flex flex-col gap-10">
+        <section className="flex flex-col gap-8 w-full max-w-md rounded-2xl bg-card ring-1 ring-border shadow-soft p-6">
+          <ul className="flex flex-col gap-8">
             {questions.map((q, i) => {
               return (
-                <li key={i} className="flex flex-col gap-6">
-                  <h1 className="text-xl text-primary-blue dark:text-neutral-light">{q}</h1>
-                  <div className="flex gap-3">
-                    <h4 className="text-sm text-neutral-mid dark:text-neutral-light">پاسخ شما</h4>
-                    <p>{answers[i]}</p>
+                <li key={i} className="flex flex-col gap-3">
+                  <h1 className="text-lg font-semibold text-fg leading-7">{q}</h1>
+                  <div className="flex gap-2.5">
+                    <span className="text-xs font-medium text-fg-muted shrink-0 pt-0.5">
+                      پاسخ شما:
+                    </span>
+                    <p className="text-sm text-fg/90 leading-6">{answers[i]}</p>
                   </div>
                 </li>
               );
             })}
           </ul>
-          <button
-            onClick={handleCreateAnswers}
-            className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue dark:bg-primary-blue-dark"
-          >
-            ثبت پاسخ ها
-          </button>
+          <Button onClick={handleCreateAnswers} text="ثبت پاسخ ها" />
         </section>
       )}
     </main>

@@ -14,6 +14,11 @@ type NavItemsProps = {
   role: string | undefined;
 };
 
+const navLinks = [
+  { href: "/jobs", label: "فرصت های شغلی" },
+  { href: "/jobseeker-ads", label: "آگهی کارجویان" },
+];
+
 function NavItems({ token, role }: NavItemsProps) {
   const [currentJobSeeker, setCurrentJobSeeker] =
     useState<JobSeekerDetailModel>();
@@ -44,29 +49,25 @@ function NavItems({ token, role }: NavItemsProps) {
   }, [role, token]);
 
   return (
-    <ul className="items-center hidden gap-2 pl-8 md:flex lg:gap-4">
-      <Link href={"/jobs"}>
-        <li
-          className={`${
-            pathName === "/jobs"
-              ? "text-primary-blue dark:text-white"
-              : "hover:text-primary-blue hover:dark:text-gray-100 text-gray-600 dark:text-gray-300"
-          }`}
-        >
-          فرصت های شغلی
-        </li>
-      </Link>
-      <Link href={"/jobseeker-ads"}>
-        <li
-          className={`${
-            pathName === "/jobseeker-ads"
-              ? "text-primary-blue dark:text-white"
-              : "hover:text-primary-blue hover:dark:text-gray-100 text-gray-500 dark:text-gray-300"
-          }`}
-        >
-          آگهی کارجویان
-        </li>
-      </Link>
+    <ul className="items-center hidden gap-1 ms-4 md:flex">
+      {navLinks.map((item) => {
+        const isActive =
+          pathName === item.href || pathName.startsWith(item.href + "/");
+        return (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className={`flex items-center px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                isActive
+                  ? "text-brand bg-brand-soft"
+                  : "text-fg-muted hover:text-fg hover:bg-subtle"
+              }`}
+            >
+              {item.label}
+            </Link>
+          </li>
+        );
+      })}
       <ProfileNavLink
         currentEmployer={currentEmployer}
         currentJobSeeker={currentJobSeeker}

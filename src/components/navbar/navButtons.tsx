@@ -1,11 +1,12 @@
 "use client";
+
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import NavMenuButton from "./NavMenuButton";
 
 type NavButtonsProps = {
   token?: string;
-  role?: string
+  role?: string;
 };
 
 function NavButtons({ token, role }: NavButtonsProps) {

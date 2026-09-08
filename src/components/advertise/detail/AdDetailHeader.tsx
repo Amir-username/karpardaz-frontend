@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Avatar from "@/components/avatar/Avatar";
 import AdTitle from "./AdTitle";
 import AdSubtitle from "./AdSubtitle";
-import DEFAULT_AVATAR from "../../../../public/images/company_default_avatar.png";
 import Link from "next/link";
+import Icon from "@/ui/Icon";
 
 type AdDetailHeaderProps = {
   title: string;
@@ -13,28 +13,30 @@ type AdDetailHeaderProps = {
 
 function AdDetailHeader({ title, subtitle, role, id }: AdDetailHeaderProps) {
   return (
-    <div className="flex justify-between p-8 bg-primary-blue dark:bg-neutral-dark rounded-lg">
-      <div className="flex gap-4 md:gap-8 ">
-        <Image
-          src={DEFAULT_AVATAR}
-          alt="آواتار پیشفرض شرکت"
-          className="w-16 h-16 bg-white rounded-xl p-1"
+    <div className="flex justify-between items-center gap-4 p-6 md:p-8 gradient-background text-white">
+      <div className="flex items-center gap-4 md:gap-6 min-w-0">
+        <Avatar
+          id={id}
+          role={role}
+          className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl p-1.5 ring-2 ring-white/25 shrink-0 object-cover"
         />
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1.5 min-w-0">
           <AdTitle title={title} />
-          <Link href={`/profile/${role}/${id}`}>
+          <Link
+            href={`/profile/${role}/${id}`}
+            className="w-fit flex items-center gap-1 text-white/70 hover:text-white transition-colors"
+          >
             <AdSubtitle title={subtitle} />
+            <Icon name="chevron_left" size={16} />
           </Link>
         </div>
       </div>
       <div className={`${role === "employer" && "hidden"} flex items-center`}>
         <span
-          style={{
-            fontSize: "36px",
-          }}
-          className="cursor-pointer material-symbols-outlined text-neutral-mid"
+          className="flex items-center justify-center w-11 h-11 rounded-full cursor-pointer bg-white/10 ring-1 ring-white/20 hover:bg-white/20 transition-colors"
+          title="افزودن به علاقه مندی ها"
         >
-          favorite
+          <Icon name="favorite" size={22} />
         </span>
       </div>
     </div>

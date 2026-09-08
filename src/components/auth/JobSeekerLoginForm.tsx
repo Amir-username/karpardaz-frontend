@@ -16,14 +16,14 @@ function JobeekerLoginForm() {
 
   return (
     <Form action={action}>
-      <FormHeader title="کارپرداز" subtitle="ورود کارجو" />
+      <FormHeader title="ورود کارجو" subtitle="به کارپرداز خوش آمدید" />
       <FormContent>
         <Input
           type="text"
           name="email"
           placeholder="آدرس ایمیل"
           icon="mail"
-          isValid={!!formState.errors?.email}
+          hasError={!!formState.errors?.email}
           errorMessage={formState?.errors?.email}
         />
         <Input
@@ -31,7 +31,7 @@ function JobeekerLoginForm() {
           name="password"
           placeholder="رمز عبور"
           icon="lock"
-          isValid={!!formState.errors?.password}
+          hasError={!!formState.errors?.password}
           errorMessage={formState?.errors?.password}
         />
         <Button text="ورود" type="submit" />

@@ -1,56 +1,42 @@
 "use client";
 
-import Image from "next/image";
-import darkmode from "../../../public/icons/darkmode.svg";
-import lightmode from "../../../public/icons/lightmode.svg";
+import Icon from "@/ui/Icon";
 import { useEffect, useState } from "react";
 
-function ThemeToggle() {
+type ThemeToggleProps = {
+  className?: string;
+};
+
+function ThemeToggle({ className = "" }: ThemeToggleProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-
-    const theme = localStorage.getItem("theme");
-    const html = document.querySelector("html");
-
-    if (theme === "dark") {
-      html?.classList.add("dark");
-      setIsDark(true);
-    } else {
-      html?.classList.remove("dark");
-      setIsDark(false);
-    }
+    setIsDark(document.documentElement.classList.contains("dark"));
   }, []);
 
   const onToggle = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
     localStorage.setItem("theme", newTheme ? "dark" : "light");
-
-    const html = document.querySelector("html");
-    if (newTheme) {
-      html?.classList.add("dark");
-    } else {
-      html?.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", newTheme);
   };
 
-  if (!isMounted) return null;
+  if (!isMounted)
+    return <span aria-hidden="true" className={`w-10 h-10 ${className}`} />;
 
   return (
-    <div
+    <button
+      type="button"
       onClick={onToggle}
-      className="items-center hidden pl-4 cursor-pointer md:flex"
+      aria-label={isDark ? "تغییر به حالت روشن" : "تغییر به حالت تاریک"}
+      title={isDark ? "حالت روشن" : "حالت تاریک"}
+      className={`flex items-center justify-center w-10 h-10 rounded-lg text-fg-muted hover:text-fg hover:bg-subtle transition-colors cursor-pointer ${className}`}
     >
-      <Image
-        src={isDark ? lightmode : darkmode}
-        alt="theme toggle"
-        width={36}
-        height={36}
-      />
-    </div>
+      <Icon name={isDark ? "light_mode" : "dark_mode"} size={22} fill />
+    </button>
   );
 }
+
 export default ThemeToggle;

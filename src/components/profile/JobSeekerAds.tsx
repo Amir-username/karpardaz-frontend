@@ -2,7 +2,6 @@ import { BASE_LINK } from "@/fetch/config";
 import { JobSeekrAdModel } from "@/models/JobSeekerAd";
 import { Container } from "./Profile";
 import JobSeekerAdList from "../jobseekerAdvertise/JobseekerAdList";
-import Link from "next/link";
 import Button from "@/ui/Button";
 
 async function JobSeeekerAds({ id }: { id: number }) {
@@ -13,15 +12,23 @@ async function JobSeeekerAds({ id }: { id: number }) {
 
   return (
     <Container bg="neutral">
-      <div className="flex flex-col gap-8">
-        <h1 className="text-primary-blue dark:text-neutral-light text-2xl text-center">
-          موقعیت های شغلی
+      <div className="flex flex-col items-center gap-6 w-full px-3 sm:px-5">
+        <h1 className="flex items-center gap-2 text-xl font-bold text-fg">
+          <span className="w-1.5 h-5 rounded-full bg-brand" aria-hidden="true" />
+          آگهی های من
         </h1>
 
-        {ads.length > 0 && <JobSeekerAdList advertises={ads} />}
-        <Link href={`/profile/jobseeker/advertise/${id}/create`}>
-          <Button text="ایجاد آگهی" />
-        </Link>
+        {ads.length > 0 ? (
+          <JobSeekerAdList advertises={ads} variant="compact" />
+        ) : (
+          <p className="text-sm text-fg-muted">هنوز آگهی ثبت نشده است</p>
+        )}
+        <Button
+          href={`/profile/jobseeker/advertise/${id}/create`}
+          text="ایجاد آگهی"
+          fullWidth={false}
+          className="min-w-40"
+        />
       </div>
     </Container>
   );

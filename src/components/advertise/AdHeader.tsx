@@ -1,7 +1,6 @@
-import FILL_FAV from "../../../public/icons/red_fav.svg";
 import Link from "next/link";
+import Icon from "@/ui/Icon";
 import { useState } from "react";
-import Image from "next/image";
 import { fetchDisLikeAd } from "@/fetch/likedAdvertises/fetchDisLikeAd";
 import { fetchLikeAd } from "@/fetch/likedAdvertises/fetchLikeAd";
 
@@ -51,27 +50,34 @@ export default function AdHeader({
   };
 
   return (
-    <div className="flex justify-between w-full">
-      <div className="flex flex-col justify-between h-full gap-2">
-        <h3 className="font-semibold text-neutral-dark dark:text-neutral-light dark:font-normal">{title}</h3>
-        <Link href={`profile/${role}/${id}`}>
-          <h6 className="text-sm text-gray-700 dark:text-neutral-mid">{name ? name : "نام"}</h6>
-        </Link>
+    <div className="flex justify-between items-start w-full gap-2">
+      <div className="flex flex-col justify-between gap-1 min-w-0">
+        <h3 className="font-semibold text-fg leading-6 line-clamp-1 group-hover:text-brand transition-colors">
+          {title}
+        </h3>
+        {name && (
+          <Link
+            href={`profile/${role}/${id}`}
+            className="w-fit text-xs text-fg-muted hover:text-brand transition-colors"
+          >
+            {name}
+          </Link>
+        )}
       </div>
       {isLikeOpen && (
-        <div onClick={handleLikeOrDislike}>
-          {isLiked ? (
-            <Image
-              src={FILL_FAV}
-              alt="fill fav icon"
-              className="cursor-pointer"
-            />
-          ) : (
-            <span className="cursor-pointer material-symbols-outlined text-neutral-mid">
-              favorite
-            </span>
-          )}
-        </div>
+        <button
+          type="button"
+          onClick={handleLikeOrDislike}
+          aria-label={isLiked ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}
+          className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full transition-colors cursor-pointer hover:bg-accent-soft"
+        >
+          <Icon
+            name="favorite"
+            size={20}
+            fill={isLiked}
+            className={isLiked ? "text-accent" : "text-fg-muted"}
+          />
+        </button>
       )}
     </div>
   );

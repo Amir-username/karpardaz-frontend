@@ -3,20 +3,47 @@
 import { AdvertiseModel } from "@/models/Advertise";
 import AdvertiseItem from "./AdvertiseItem";
 import { useAdvertiseLike } from "@/hooks/useAdvertiseLike";
-import EmptyIll from "../../../public/Illustrations/NoDataILL.svg";
-import Image from "next/image";
+import EmptyState from "@/ui/EmptyState";
+import { AdCardSkeleton } from "@/ui/Skeleton";
 
 type AdvertiseListProps = {
   advertises: AdvertiseModel[];
   token?: string;
   role?: string;
+  isLoading?: boolean;
+  /** "wide" for full-width pages (default), "compact" for narrow containers like profiles */
+  variant?: "wide" | "compact";
 };
 
-function AdvertiseList({ advertises, token, role }: AdvertiseListProps) {
+function AdvertiseList({
+  advertises,
+  token,
+  role,
+  isLoading = false,
+  variant = "wide",
+}: AdvertiseListProps) {
+  const gridClass =
+    variant === "compact"
+      ? "grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
+      : "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 w-full";
+  const emptySpan =
+    variant === "compact" ? "sm:col-span-2" : "md:col-span-2 xl:col-span-3";
   const { favAdvertises } = useAdvertiseLike("jobseeker-favorites/", token);
 
+  if (isLoading) {
+    return (
+      <ul className={gridClass}>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <li key={i}>
+            <AdCardSkeleton />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   return (
-    <ul className="flex flex-col gap-8 justify-center items-center">
+    <ul className={gridClass}>
       {advertises.length > 0 ? (
         advertises.map((ad) => {
           return (
@@ -30,12 +57,11 @@ function AdvertiseList({ advertises, token, role }: AdvertiseListProps) {
           );
         })
       ) : (
-        <div className="flex flex-col gap-8 w-48 h-48 my-12 mb-16">
-          <Image src={EmptyIll} alt="" />
-          <h3 className="text-center text-xl text-neutral-700 dark:text-neutral-light">
-            فعلا آگهی وجود ندارد
-          </h3>
-        </div>
+        <EmptyState
+          title="فعلا آگهی وجود ندارد"
+          description="به زودی آگهی های جدید اضافه می شوند؛ بعدا دوباره سر بزنید."
+          className={emptySpan}
+        />
       )}
     </ul>
   );

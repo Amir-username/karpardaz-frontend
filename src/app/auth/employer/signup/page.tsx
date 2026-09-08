@@ -1,14 +1,11 @@
+import AuthShell from "@/components/auth/AuthShell";
 import EmployerSignupForm from "@/components/auth/EmployerSignupForm";
-import FormRedirectMessage from "@/ui/FormRedirectMessage";
 
 function EmployerSignupPage() {
   return (
-    <div className="container flex items-center justify-center mx-auto">
-      <main className="flex flex-col items-center justify-center py-16 gap-4">
-        <FormRedirectMessage role="jobseeker" action="signup"/>
-        <EmployerSignupForm />
-      </main>
-    </div>
+    <AuthShell role="employer" mode="signup">
+      <EmployerSignupForm />
+    </AuthShell>
   );
 }
 

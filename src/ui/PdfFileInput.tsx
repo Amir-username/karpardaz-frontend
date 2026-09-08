@@ -1,45 +1,71 @@
+"use client";
+
+import { ChangeEvent, useState } from "react";
+import Icon from "./Icon";
+
 type PdfFileInputProps = {
   label: string;
   name: string;
-  isValid?: boolean;
+  hasError?: boolean;
   errorMessage?: string[];
+  className?: string;
 };
 
+/**
+ * PDF file picker styled as a dropzone row. Shows the selected
+ * file name once a file is chosen.
+ */
 function PdfFileInput({
   label,
   name,
-  isValid,
+  hasError = false,
   errorMessage = [],
+  className = "",
 }: PdfFileInputProps) {
+  const [fileName, setFileName] = useState<string>("");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setFileName(file.name);
+  };
+
   return (
-    <div className="flex flex-col gap-1 w-full">
-      <div
-        className={`flex items-center justify-between w-full h-12 px-4 py-3 text-sm rounded-lg bg-gray-50 text-neutral-dark ring-1 ${
-          !isValid ? "ring-gray-300" : "ring-accent-coral"
+    <div className={`flex flex-col gap-1.5 w-full ${className}`}>
+      <label
+        htmlFor={`pdf-input-${name}`}
+        className={`flex items-center justify-between w-full gap-3 h-auto min-h-12 px-4 py-3 text-sm rounded-xl bg-card ring-1 ring-dashed cursor-pointer transition-colors duration-200 ${
+          hasError
+            ? "ring-danger ring-2"
+            : "ring-border-strong hover:ring-brand hover:bg-brand-soft/40"
         }`}
       >
-        <span className="text-sm text-neutral-mid">{label}</span>
-        <label
-          htmlFor={`pdf-input-${label}`}
-          className="flex items-center text-sm font-medium cursor-pointer text-neutral-dark hover:text-gray-900"
-        >
-          <span className="cursor-pointer material-symbols-outlined text-neutral-mid">
-            link
+        <span className="flex items-center gap-2 min-w-0">
+          <Icon
+            name={fileName ? "picture_as_pdf" : "upload_file"}
+            size={20}
+            className={hasError ? "text-danger" : "text-fg-muted"}
+          />
+          <span className={`truncate ${fileName ? "text-fg font-medium" : "text-fg-muted"}`}>
+            {fileName || label}
           </span>
-        </label>
+        </span>
+        <span className="text-xs font-medium text-brand shrink-0">انتخاب فایل</span>
         <input
           name={name}
-          id={`pdf-input-${label}`}
+          id={`pdf-input-${name}`}
           type="file"
+          onChange={handleChange}
           className="hidden"
           accept="application/pdf"
         />
-      </div>
-      {errorMessage.map((message, i) => (
-        <p key={i} className="text-xs text-accent-coral">
-          {message}
-        </p>
-      ))}
+      </label>
+      {hasError &&
+        errorMessage.map((message, i) => (
+          <p key={i} className="flex items-center gap-1 text-xs text-danger-fg">
+            <Icon name="error" size={14} />
+            {message}
+          </p>
+        ))}
     </div>
   );
 }

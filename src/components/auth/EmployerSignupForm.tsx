@@ -14,14 +14,14 @@ function EmployerSignupForm() {
   });
   return (
     <Form action={action}>
-      <FormHeader title="کارپرداز" subtitle="ثبت نام کارفرما" />
+      <FormHeader title="ثبت نام کارفرما" subtitle="در کارپرداز حساب بسازید" />
       <FormContent>
         <Input
           type="text"
           name="companyName"
           placeholder="عنوان سازمان"
           icon="source_environment"
-          isValid={!!formState.errors?.companyName}
+          hasError={!!formState.errors?.companyName}
           errorMessage={formState?.errors?.companyName}
         />
         <Input
@@ -29,7 +29,7 @@ function EmployerSignupForm() {
           name="email"
           placeholder="آدرس ایمیل (ترجیحا ایمیل سازمانی)"
           icon="mail"
-          isValid={!!formState.errors?.email}
+          hasError={!!formState.errors?.email}
           errorMessage={formState?.errors?.email}
         />
         <Input
@@ -37,7 +37,7 @@ function EmployerSignupForm() {
           name="password"
           placeholder="رمز عبور"
           icon="lock"
-          isValid={!!formState.errors?.password}
+          hasError={!!formState.errors?.password}
           errorMessage={formState?.errors?.password}
         />
         <Button text="ثبت نام" type="submit" />

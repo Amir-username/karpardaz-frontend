@@ -7,7 +7,7 @@ async function JobSeekerAdsPage() {
   const role = cookieStore.get("role");
 
   return (
-    <div className="container flex items-center justify-center mx-auto py-12 bg-neutral-light dark:bg-neutral-950">
+    <div className="max-w-6xl mx-auto px-4 py-10 flex items-center justify-center">
       <JobSeekerResult token={token?.value} role={role?.value} />
     </div>
   );

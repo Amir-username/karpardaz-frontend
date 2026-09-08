@@ -1,5 +1,10 @@
 function ProfileInfoItem({ content }: { content: string }) {
-  return <h4 className="text-neutral-mid text-sm">{content}</h4>;
+  if (!content) return null;
+  return (
+    <span className="text-sm text-white/85 bg-white/10 ring-1 ring-white/15 rounded-full px-3 py-1 backdrop-blur-sm">
+      {content}
+    </span>
+  );
 }
 
 export default ProfileInfoItem;

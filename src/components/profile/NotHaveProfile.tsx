@@ -1,5 +1,5 @@
 import Button from "@/ui/Button";
-import Link from "next/link";
+import EmptyState from "@/ui/EmptyState";
 
 type NotHaveProfileProps = {
   id: number;
@@ -8,15 +8,15 @@ type NotHaveProfileProps = {
 
 function NotHaveProfile({ id, role }: NotHaveProfileProps) {
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-col gap-12 py-64">
-        <h3 className="text-xl text-neutral-dark dark:text-neutral-light">
-          لطفا اول پروفایل خود را کامل کنید
-        </h3>
-        <Link href={`/profile/${role}/${id}/create`}>
-          <Button text="تکمیل پروفایل" />
-        </Link>
-      </div>
+    <div className="flex justify-center items-center px-4">
+      <EmptyState
+        title="پروفایل شما هنوز کامل نشده است"
+        description="برای استفاده از امکانات کارپرداز، ابتدا اطلاعات پروفایل خود را تکمیل کنید."
+        action={
+          <Button href={`/profile/${role}/${id}/create`} text="تکمیل پروفایل" fullWidth={false} className="min-w-44" />
+        }
+        className="py-24"
+      />
     </div>
   );
 }

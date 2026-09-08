@@ -1,13 +1,13 @@
 "use client";
 
 import { BASE_LINK } from "@/fetch/config";
+import Icon from "@/ui/Icon";
 import { useRef } from "react";
 
 function UploadResume({ token }: { token?: string }) {
   const resumeRef = useRef<HTMLInputElement>(null);
 
   const handleUplaodResume = () => {
-    console.log(resumeRef.current?.files![0]);
     const formData = new FormData();
     const fetchUpload = async (token: string, formData: FormData) => {
       const res = await fetch(BASE_LINK + `resume/upload/`, {
@@ -29,7 +29,13 @@ function UploadResume({ token }: { token?: string }) {
   };
 
   return (
-    <div className="flex gap-2 px-3 py-2 rounded-lg cursor-pointer ring-2 ring-neutral-mid">
+    <button
+      type="button"
+      onClick={() => resumeRef.current?.click()}
+      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-medium text-brand-soft-fg bg-brand-soft ring-1 ring-brand/20 hover:bg-brand hover:text-brand-fg transition-colors cursor-pointer"
+    >
+      <Icon name="upload_file" size={16} />
+      درج رزومه
       <input
         onChange={handleUplaodResume}
         type="file"
@@ -37,13 +43,7 @@ function UploadResume({ token }: { token?: string }) {
         className="hidden"
         accept="application/pdf"
       />
-      <span
-        onClick={() => resumeRef.current?.click()}
-        className="text-sm text-neutral-mid"
-      >
-        درج رزومه
-      </span>
-    </div>
+    </button>
   );
 }
 

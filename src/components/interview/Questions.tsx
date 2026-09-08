@@ -2,6 +2,7 @@
 
 import { fetchCreateInterview } from "@/fetch/interview/fetchCreateInterview";
 import InputTag from "@/ui/InputTag";
+import Button from "@/ui/Button";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
@@ -20,20 +21,16 @@ function Questions({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-12 pt-20 px-8 lg:w-xl">
-      <h1 className="text-2xl lg:text-3xl text-primary-blue dark:text-neutral-light">ایجاد مصاحبه</h1>
+    <div className="flex flex-col items-center justify-center gap-8 pt-16 pb-20 px-4 w-full max-w-xl mx-auto">
+      <h1 className="text-2xl font-bold text-fg">ایجاد مصاحبه</h1>
       <InputTag
         label="ایجاد سوال"
         name="questiontag"
         items={questions}
         setItems={setQuestions}
+        placeholder="متن سوال را وارد کنید"
       />
-      <button
-        onClick={handleCreateInterview}
-        className="w-full py-2 cursor-pointer hover:brightness-110 rounded-lg text-center text-lg text-neutral-light bg-primary-blue dark:bg-primary-blue-dark"
-      >
-        ثبت
-      </button>
+      <Button onClick={handleCreateInterview} text="ثبت" size="lg" />
     </div>
   );
 }

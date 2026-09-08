@@ -1,19 +1,34 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
+import Icon from "./Icon";
 
 type InputTagProps = {
   label: string;
   name: string;
   items: string[];
   setItems: Dispatch<SetStateAction<string[]>>;
+  placeholder?: string;
+  className?: string;
 };
 
-function InputTag({ label, name, items, setItems }: InputTagProps) {
+/**
+ * Tag-list field: type a value, press enter or the add button,
+ * and it becomes a removable chip. Used for technologies, benefits…
+ */
+function InputTag({
+  label,
+  name,
+  items,
+  setItems,
+  placeholder = "افزودن مورد جدید",
+  className = "",
+}: InputTagProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState("");
 
-  const handleAddItem = (text: string) => {
+  const handleAddItem = () => {
+    const text = inputText.trim();
     if (text.length) {
       setItems([...items, text]);
       setInputText("");
@@ -21,47 +36,73 @@ function InputTag({ label, name, items, setItems }: InputTagProps) {
     }
   };
 
+  const handleRemoveItem = (index: number) => {
+    setItems(items.filter((_, i) => i !== index));
+  };
+
   return (
-    <div className="flex items-center w-full px-4 py-3 text-sm rounded-lg bg-gray-50 dark:bg-neutral-dark text-neutral-dark ring-1 ring-gray-300 dark:ring-neutral-dark">
-      <div className="flex flex-col w-full gap-6">
-        <div className="flex items-center justify-between w-full">
-          <span className="text-sm text-neutral-mid">{label}</span>
-          <span
-            onClick={() => setIsOpen(true)}
-            className="cursor-pointer material-symbols-outlined text-neutral-mid"
-          >
-            add_circle
-          </span>
-        </div>
-        <div className={`flex justify-between gap-1 ${isOpen ? "" : "hidden"}`}>
+    <div
+      className={`flex flex-col w-full gap-3 p-4 text-sm rounded-xl bg-card ring-1 ring-border transition-shadow duration-200 focus-within:ring-2 focus-within:ring-brand ${className}`}
+    >
+      <div className="flex items-center justify-between w-full">
+        <span className="text-sm font-medium text-fg">{label}</span>
+        <button
+          type="button"
+          onClick={() => setIsOpen((o) => !o)}
+          aria-label={isOpen ? "بستن" : "افزودن"}
+          className="flex items-center justify-center w-8 h-8 rounded-lg text-fg-muted hover:bg-brand-soft hover:text-brand-soft-fg transition-colors cursor-pointer"
+        >
+          <Icon name={isOpen ? "remove" : "add_circle"} size={22} />
+        </button>
+      </div>
+
+      {isOpen && (
+        <div className="flex gap-2">
           <input
             name={name}
+            autoFocus
             onChange={(e) => setInputText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleAddItem();
+              }
+            }}
             type="text"
-            className="w-full p-2 rounded-lg ring-1 ring-neutral-mid dark:ring-neutral-600 dark:text-neutral-light"
+            placeholder={placeholder}
+            className="w-full h-10 p-2 px-3 text-sm rounded-lg bg-subtle text-fg placeholder:text-fg-muted/70 ring-1 ring-border focus:ring-brand"
             value={inputText}
           />
           <button
             type="button"
-            onClick={() => handleAddItem(inputText)}
-            className="px-2 text-white rounded-lg cursor-pointer bg-primary-blue dark:bg-primary-blue-dark"
+            onClick={handleAddItem}
+            className="px-4 text-sm font-medium rounded-lg bg-brand text-brand-fg hover:bg-brand-hover transition-colors cursor-pointer"
           >
             ثبت
           </button>
         </div>
-        <div className={`${items.length ? "flex flex-wrap" : "hidden"} gap-3`}>
-          {items.map((item, i) => {
-            return (
-              <span
-                className={`rounded-lg bg-primary-blue dark:bg-primary-blue-dark text-white px-2 py-1`}
-                key={i}
+      )}
+
+      {items.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {items.map((item, i) => (
+            <span
+              className="inline-flex items-center gap-1 rounded-full bg-brand-soft text-brand-soft-fg ring-1 ring-brand/15 ps-3 pe-1.5 py-1 text-xs font-medium"
+              key={i}
+            >
+              {item.length > 14 ? item.slice(0, 14) + "…" : item}
+              <button
+                type="button"
+                aria-label={`حذف ${item}`}
+                onClick={() => handleRemoveItem(i)}
+                className="flex items-center justify-center w-4 h-4 rounded-full hover:bg-accent hover:text-accent-fg transition-colors cursor-pointer"
               >
-                {item.length > 12 ? item.slice(0, 12) + "..." : item}
-              </span>
-            );
-          })}
+                <Icon name="close" size={12} weight={500} />
+              </button>
+            </span>
+          ))}
         </div>
-      </div>
+      )}
     </div>
   );
 }

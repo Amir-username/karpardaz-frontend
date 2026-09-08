@@ -8,9 +8,11 @@ import { BASE_LINK } from "@/fetch/config";
 type AdAvatarProps = {
   id: number;
   role: "jobseeker" | "employer";
+  /** Renders a small circular avatar (navbar chip) */
+  compact?: boolean;
 };
 
-export default function AdAvatar({ id, role }: AdAvatarProps) {
+export default function AdAvatar({ id, role, compact = false }: AdAvatarProps) {
   const [avatarSRC, setAvatarSRC] = useState<string | "empty">("empty");
 
   useEffect(() => {
@@ -30,13 +32,16 @@ export default function AdAvatar({ id, role }: AdAvatarProps) {
 
     fetchAvatar(id, role);
   }, []);
+
   return (
     <Image
       src={avatarSRC === "empty" ? DEFAULT_AVATAR : avatarSRC}
-      alt="آواتار پیشفرض شرکت"
-      className="w-12 h-12 rounded-lg"
-      width={500}
-      height={300}
+      alt="آواتار کاربر"
+      className={`${
+        compact ? "w-8 h-8 rounded-full" : "w-14 h-14 rounded-xl"
+      } object-cover bg-card`}
+      width={56}
+      height={56}
     />
   );
 }

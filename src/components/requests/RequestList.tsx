@@ -1,7 +1,6 @@
 import { AdRequestModel } from "@/models/AdRequest";
 import RequestItem from "./RequestItem";
-import Image from "next/image";
-import EmptyIll from "../../../public/Illustrations/NoDataILL.svg";
+import EmptyState from "@/ui/EmptyState";
 
 export default function RequestList({
   requests,
@@ -10,20 +9,19 @@ export default function RequestList({
   requests: AdRequestModel[];
   role: "jobseeker" | "employer";
 }) {
-  const reversedRequests: AdRequestModel[] = requests.reverse();
+  const reversedRequests: AdRequestModel[] = [...requests].reverse();
   return (
-    <ul className="flex flex-col gap-6 mb-32">
+    <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 w-full">
       {reversedRequests.length > 0 ? (
         reversedRequests.map((req) => {
           return <RequestItem key={req.id} request={req} role={role} />;
         })
       ) : (
-        <div className="flex flex-col gap-8 w-48 h-48 my-12 mb-16">
-          <Image src={EmptyIll} alt="" />
-          <h3 className="text-center text-xl text-neutral-700 dark:text-neutral-light">
-           درخواستی وجود ندارد
-          </h3>
-        </div>
+        <EmptyState
+          title="درخواستی وجود ندارد"
+          description="هر زمان برای آگهی ها درخواست ارسال کنید، وضعیت آن ها را اینجا می بینید."
+          className="md:col-span-2 xl:col-span-3"
+        />
       )}
     </ul>
   );

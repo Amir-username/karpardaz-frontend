@@ -1,5 +1,5 @@
 import { fetchGetInterview } from "@/fetch/interview/fetchGetInterview";
-import Link from "next/link";
+import Button from "@/ui/Button";
 import { InterviewType } from "./Answer";
 import { AdvertiseModel } from "@/models/Advertise";
 
@@ -18,40 +18,35 @@ export default async function Interview({
     if (!interview) {
       if (user_id === advertise.employer_id) {
         return (
-          <Link href={`/interview/${advertise.id}/create/`}>
-            <div className="bg-primary-blue dark:bg-primary-blue-dark px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
-              ایجاد مصاحبه
-            </div>
-          </Link>
+          <Button href={`/interview/${advertise.id}/create/`} text="ایجاد مصاحبه" fullWidth={false} className="min-w-40" />
         );
-      }
-      else {
-        return null
+      } else {
+        return null;
       }
     }
 
     return (
-      <div className="bg-primary-blue dark:bg-primary-blue-dark px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
-        مشاهده مصاحبه
-      </div>
+      <Button href={`/interview/${advertise.id}/`} text="مشاهده مصاحبه" variant="outline" fullWidth={false} className="min-w-40" />
     );
   }
 
   if (role === "jobseeker") {
     if (!interview) {
-      return <div className="text-neutral-mid">مصاحبه ای وجود ندارد</div>;
+      return (
+        <div className="text-sm text-fg-muted">مصاحبه ای وجود ندارد</div>
+      );
     }
 
     if (interview && interview.jobseeker_ids.includes(user_id)) {
-      return <div className="text-green-500">قبلا در این مصاحبه شرکت کرده اید</div>;
+      return (
+        <div className="flex items-center gap-1.5 text-sm font-medium text-success-fg">
+          قبلا در این مصاحبه شرکت کرده اید
+        </div>
+      );
     }
 
     return (
-      <Link href={`/interview/${advertise.id}/answer/`}>
-        <div className="bg-primary-blue bg-primary-blue-dark px-3 hover:brightness-105 py-2 text-neutral-light rounded-lg text-sm cursor-pointer">
-          شرکت در مصاحبه
-        </div>
-      </Link>
+      <Button href={`/interview/${advertise.id}/answer/`} text="شرکت در مصاحبه" fullWidth={false} className="min-w-40" />
     );
   }
 }

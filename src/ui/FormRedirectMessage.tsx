@@ -7,14 +7,15 @@ type FormRedirectMessageProps = {
 
 function FormRedirectMessage({ role, action }: FormRedirectMessageProps) {
   return (
-    <h3 className="text-neutral-dark dark:text-neutral-mid">
+    <p className="text-sm text-fg-muted">
       {role === "employer" ? "کارفرما هستید؟" : "کارجو هستید؟"}
-      <Link href={`/auth/${role}/${action}`}>
-        <span className="font-bold cursor-pointer text-secondary-blue dark:text-primary-blue-dark mr-2">
-          {role === "employer" ? "ورود به بخش کارفرما" : "ورود به بخش کارجو"}
-        </span>
+      <Link
+        href={`/auth/${role}/${action}`}
+        className="inline-block ms-2 font-semibold text-brand hover:text-brand-hover hover:underline underline-offset-4 transition-colors"
+      >
+        {role === "employer" ? "ورود به بخش کارفرما" : "ورود به بخش کارجو"}
       </Link>
-    </h3>
+    </p>
   );
 }
 
